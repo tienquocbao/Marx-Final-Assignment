@@ -1,0 +1,562 @@
+[
+  {
+    "character": "minh_an",
+    "expression": "normal",
+    "source_expression": "normal",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      31,
+      85,
+      481,
+      625
+    ]
+  },
+  {
+    "character": "minh_an",
+    "expression": "happy",
+    "source_expression": "happy",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      95,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "minh_an",
+    "expression": "worried",
+    "source_expression": "worried",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      27,
+      85,
+      484,
+      625
+    ]
+  },
+  {
+    "character": "minh_an",
+    "expression": "confused",
+    "source_expression": "confused",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      128,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "minh_an",
+    "expression": "stressed",
+    "source_expression": "stressed",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      27,
+      85,
+      485,
+      625
+    ]
+  },
+  {
+    "character": "minh_an",
+    "expression": "angry",
+    "source_expression": "angry",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      30,
+      85,
+      481,
+      625
+    ]
+  },
+  {
+    "character": "minh_an",
+    "expression": "thinking",
+    "source_expression": "thinking",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      91,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "minh_an",
+    "expression": "relieved",
+    "source_expression": "relieved",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      99,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "normal",
+    "source_expression": "normal",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      178,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "happy",
+    "source_expression": "happy",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      148,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "worried",
+    "source_expression": "worried",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      148,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "confused",
+    "source_expression": "confused",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      175,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "stressed",
+    "source_expression": "stressed",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      162,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "angry",
+    "source_expression": "angry",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      148,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "thinking",
+    "source_expression": "thinking",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      172,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "relieved",
+    "source_expression": "relieved",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      159,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chi_sen",
+    "expression": "normal",
+    "source_expression": "normal",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      94,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chi_sen",
+    "expression": "happy",
+    "source_expression": "happy",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      113,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chi_sen",
+    "expression": "worried",
+    "source_expression": "worried",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      85,
+      485,
+      625
+    ]
+  },
+  {
+    "character": "chi_sen",
+    "expression": "confused",
+    "source_expression": "confused",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      109,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chi_sen",
+    "expression": "stressed",
+    "source_expression": "stressed",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      112,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chi_sen",
+    "expression": "angry",
+    "source_expression": "angry",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      120,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chi_sen",
+    "expression": "thinking",
+    "source_expression": "thinking",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      109,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chi_sen",
+    "expression": "relieved",
+    "source_expression": "relieved",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      85,
+      485,
+      625
+    ]
+  },
+  {
+    "character": "anh_khoa",
+    "expression": "normal",
+    "source_expression": "normal",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      65,
+      85,
+      447,
+      625
+    ]
+  },
+  {
+    "character": "anh_khoa",
+    "expression": "happy",
+    "source_expression": "happy",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      117,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "anh_khoa",
+    "expression": "worried",
+    "source_expression": "worried",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      52,
+      85,
+      459,
+      625
+    ]
+  },
+  {
+    "character": "anh_khoa",
+    "expression": "confused",
+    "source_expression": "confused",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      124,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "anh_khoa",
+    "expression": "stressed",
+    "source_expression": "stressed",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      124,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "anh_khoa",
+    "expression": "angry",
+    "source_expression": "angry",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      37,
+      85,
+      475,
+      625
+    ]
+  },
+  {
+    "character": "anh_khoa",
+    "expression": "thinking",
+    "source_expression": "thinking",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      99,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "anh_khoa",
+    "expression": "relieved",
+    "source_expression": "relieved",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      109,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "ca_bong",
+    "expression": "normal",
+    "source_expression": "normal",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      138,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "ca_bong",
+    "expression": "happy",
+    "source_expression": "happy",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      175,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "ca_bong",
+    "expression": "worried",
+    "source_expression": "worried",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      125,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "ca_bong",
+    "expression": "confused",
+    "source_expression": "confused",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      138,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "ca_bong",
+    "expression": "stressed",
+    "source_expression": "stressed",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      169,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "ca_bong",
+    "expression": "angry",
+    "source_expression": "angry",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      118,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "ca_bong",
+    "expression": "thinking",
+    "source_expression": "thinking",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      118,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "ca_bong",
+    "expression": "relieved",
+    "source_expression": "relieved",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_clean",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      129,
+      486,
+      625
+    ]
+  }
+]
