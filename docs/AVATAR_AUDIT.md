@@ -82,10 +82,12 @@ Sau khi kiểm toán phản hồi thực tế từ người dùng (phát hiện 
 1. **Phân vùng động theo từng nhân vật (Dynamic Coordinate Splitting):**
    - Xác định tọa độ Y chuẩn xác cho từng hàng nhân vật: Minh An ($180..350$), Chú Bảy ($360..525$), Chị Sen ($535..705$), Anh Khoa ($715..880$), Cá Bống ($895..1060$).
    - Phân định ranh giới 8 cột độc lập cho từng hàng dựa trên cực tiểu hình thái học (Minimum Projection Split Points), mở rộng biên nón lá Chú Bảy lên đến $180\text{ px}$ mà không bị chạm vào nhân vật kế bên.
-2. **Thuật toán Phân đoạn GrabCut (Graph-Cut Optimization):**
-   - Sử dụng mô hình hỗn hợp Gaussian (GMM) của GrabCut với 4 vòng lặp hội tụ, phân biệt chính xác nét vẽ nhân vật và nền giấy kem mà không làm mất sợi tóc hay chi tiết nón lá.
-3. **Phép bù lỗ hổng hình thái học (Morphological Inward Hole-Filling):**
-   - Lấp đầy 100% các khoảng trống bên trong cơ thể nhân vật (cổ áo sơ mi trắng, răng khi cười, tròng trắng mắt, khăn rằn Chú Bảy), ngăn chặn tuyệt đối tình trạng floodfill ăn thủng tạo vệt rách trên quần áo.
+2. **Thuật toán Phân đoạn GrabCut có Định hướng Tiền cảnh (Guided GrabCut Segmentation):**
+   - Đặt các hạt giống tiền cảnh bắt buộc (`cv2.GC_FGD`) tại vùng đầu/khuôn mặt và đặc biệt là **toàn bộ khối thân/ngực áo sơ mi trắng ($y \in [0.55h..0.88h], x \in [cx-30..cx+30]$)**.
+   - Nhờ đó, mô hình GMM nhận diện chính xác màu vải sơ mi trắng ngà $[226, 230, 248]$ là tiền cảnh (Foreground), ngăn chặn triệt để tình trạng xóa nhầm áo trắng thành nền trong suốt.
+3. **Phép hàn gắn thân áo & Lấp lỗ hổng hình thái học (Torso Sealing & Inward Hole-Filling):**
+   - Hàn kín biên ngang của thân áo ($y \in [0.58h..0.95h]$) giữa hai bờ vai để bảo đảm $100\%$ diện tích áo sơ mi, cổ cồn, cà vạt và sọc khăn rằn là khối đặc (solid $100\%$, $0\%$ trong suốt xuyên thấu).
+   - Lấp đầy toàn bộ khoảng trống bên trong cơ thể nhân vật (tròng mắt, răng, nếp áo).
 4. **Khử viền trắng / Khử lẫn màu nền (Color Decontamination / Un-premultiplication):**
    - Đối với các pixel bán trong suốt ở biên ngoài ($0.05 < \alpha < 0.96$), thuật toán trừ bỏ màu nền kem $C_{bg}$ của giấy vẽ gốc:
      $$C_{true} = \text{clamp}\left(\frac{C_{obs} - (1 - \alpha) C_{bg}}{\alpha}, 0, 255\right)$$

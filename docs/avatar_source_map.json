@@ -4,12 +4,12 @@
     "expression": "normal",
     "source_expression": "normal",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
-      31,
+      32,
       85,
-      481,
+      480,
       625
     ]
   },
@@ -18,11 +18,11 @@
     "expression": "happy",
     "source_expression": "happy",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      95,
+      96,
       486,
       625
     ]
@@ -32,12 +32,12 @@
     "expression": "worried",
     "source_expression": "worried",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
-      27,
-      85,
-      484,
+      26,
+      96,
+      486,
       625
     ]
   },
@@ -46,11 +46,11 @@
     "expression": "confused",
     "source_expression": "confused",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      128,
+      125,
       486,
       625
     ]
@@ -60,7 +60,35 @@
     "expression": "stressed",
     "source_expression": "stressed",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
+    "resolution": "512x640",
+    "bbox": [
+      30,
+      85,
+      482,
+      625
+    ]
+  },
+  {
+    "character": "minh_an",
+    "expression": "angry",
+    "source_expression": "angry",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_solid_clothing",
+    "resolution": "512x640",
+    "bbox": [
+      33,
+      85,
+      478,
+      625
+    ]
+  },
+  {
+    "character": "minh_an",
+    "expression": "thinking",
+    "source_expression": "thinking",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       27,
@@ -71,42 +99,14 @@
   },
   {
     "character": "minh_an",
-    "expression": "angry",
-    "source_expression": "angry",
-    "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
-    "resolution": "512x640",
-    "bbox": [
-      30,
-      85,
-      481,
-      625
-    ]
-  },
-  {
-    "character": "minh_an",
-    "expression": "thinking",
-    "source_expression": "thinking",
-    "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
-    "resolution": "512x640",
-    "bbox": [
-      26,
-      91,
-      486,
-      625
-    ]
-  },
-  {
-    "character": "minh_an",
     "expression": "relieved",
     "source_expression": "relieved",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      99,
+      122,
       486,
       625
     ]
@@ -116,91 +116,7 @@
     "expression": "normal",
     "source_expression": "normal",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
-    "resolution": "512x640",
-    "bbox": [
-      26,
-      178,
-      486,
-      625
-    ]
-  },
-  {
-    "character": "chu_bay",
-    "expression": "happy",
-    "source_expression": "happy",
-    "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
-    "resolution": "512x640",
-    "bbox": [
-      26,
-      148,
-      486,
-      625
-    ]
-  },
-  {
-    "character": "chu_bay",
-    "expression": "worried",
-    "source_expression": "worried",
-    "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
-    "resolution": "512x640",
-    "bbox": [
-      26,
-      148,
-      486,
-      625
-    ]
-  },
-  {
-    "character": "chu_bay",
-    "expression": "confused",
-    "source_expression": "confused",
-    "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
-    "resolution": "512x640",
-    "bbox": [
-      26,
-      175,
-      486,
-      625
-    ]
-  },
-  {
-    "character": "chu_bay",
-    "expression": "stressed",
-    "source_expression": "stressed",
-    "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
-    "resolution": "512x640",
-    "bbox": [
-      26,
-      162,
-      486,
-      625
-    ]
-  },
-  {
-    "character": "chu_bay",
-    "expression": "angry",
-    "source_expression": "angry",
-    "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
-    "resolution": "512x640",
-    "bbox": [
-      26,
-      148,
-      486,
-      625
-    ]
-  },
-  {
-    "character": "chu_bay",
-    "expression": "thinking",
-    "source_expression": "thinking",
-    "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
@@ -211,14 +127,98 @@
   },
   {
     "character": "chu_bay",
-    "expression": "relieved",
-    "source_expression": "relieved",
+    "expression": "happy",
+    "source_expression": "happy",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      159,
+      141,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "worried",
+    "source_expression": "worried",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_solid_clothing",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      141,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "confused",
+    "source_expression": "confused",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_solid_clothing",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      169,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "stressed",
+    "source_expression": "stressed",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_solid_clothing",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      155,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "angry",
+    "source_expression": "angry",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_solid_clothing",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      141,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "thinking",
+    "source_expression": "thinking",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_solid_clothing",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      165,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "chu_bay",
+    "expression": "relieved",
+    "source_expression": "relieved",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_solid_clothing",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      152,
       486,
       625
     ]
@@ -228,7 +228,7 @@
     "expression": "normal",
     "source_expression": "normal",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
@@ -242,7 +242,7 @@
     "expression": "happy",
     "source_expression": "happy",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
@@ -256,7 +256,7 @@
     "expression": "worried",
     "source_expression": "worried",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
@@ -270,7 +270,7 @@
     "expression": "confused",
     "source_expression": "confused",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
@@ -284,7 +284,7 @@
     "expression": "stressed",
     "source_expression": "stressed",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
@@ -298,7 +298,7 @@
     "expression": "angry",
     "source_expression": "angry",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
@@ -312,7 +312,7 @@
     "expression": "thinking",
     "source_expression": "thinking",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
@@ -326,7 +326,21 @@
     "expression": "relieved",
     "source_expression": "relieved",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
+    "resolution": "512x640",
+    "bbox": [
+      26,
+      94,
+      486,
+      625
+    ]
+  },
+  {
+    "character": "anh_khoa",
+    "expression": "normal",
+    "source_expression": "normal",
+    "source_partially_clipped": false,
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
@@ -337,28 +351,14 @@
   },
   {
     "character": "anh_khoa",
-    "expression": "normal",
-    "source_expression": "normal",
-    "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
-    "resolution": "512x640",
-    "bbox": [
-      65,
-      85,
-      447,
-      625
-    ]
-  },
-  {
-    "character": "anh_khoa",
     "expression": "happy",
     "source_expression": "happy",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      117,
+      89,
       486,
       625
     ]
@@ -368,12 +368,12 @@
     "expression": "worried",
     "source_expression": "worried",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
-      52,
+      27,
       85,
-      459,
+      485,
       625
     ]
   },
@@ -382,11 +382,11 @@
     "expression": "confused",
     "source_expression": "confused",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      124,
+      93,
       486,
       625
     ]
@@ -396,11 +396,11 @@
     "expression": "stressed",
     "source_expression": "stressed",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      124,
+      107,
       486,
       625
     ]
@@ -410,12 +410,12 @@
     "expression": "angry",
     "source_expression": "angry",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
-      37,
-      85,
-      475,
+      26,
+      103,
+      486,
       625
     ]
   },
@@ -424,12 +424,12 @@
     "expression": "thinking",
     "source_expression": "thinking",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
-      26,
-      99,
-      486,
+      28,
+      85,
+      484,
       625
     ]
   },
@@ -438,11 +438,11 @@
     "expression": "relieved",
     "source_expression": "relieved",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      109,
+      107,
       486,
       625
     ]
@@ -452,11 +452,11 @@
     "expression": "normal",
     "source_expression": "normal",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      138,
+      127,
       486,
       625
     ]
@@ -466,11 +466,11 @@
     "expression": "happy",
     "source_expression": "happy",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      175,
+      159,
       486,
       625
     ]
@@ -480,11 +480,11 @@
     "expression": "worried",
     "source_expression": "worried",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      125,
+      107,
       486,
       625
     ]
@@ -494,11 +494,11 @@
     "expression": "confused",
     "source_expression": "confused",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      138,
+      127,
       486,
       625
     ]
@@ -508,11 +508,11 @@
     "expression": "stressed",
     "source_expression": "stressed",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      169,
+      152,
       486,
       625
     ]
@@ -522,11 +522,11 @@
     "expression": "angry",
     "source_expression": "angry",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      118,
+      103,
       486,
       625
     ]
@@ -536,11 +536,11 @@
     "expression": "thinking",
     "source_expression": "thinking",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      118,
+      103,
       486,
       625
     ]
@@ -550,11 +550,11 @@
     "expression": "relieved",
     "source_expression": "relieved",
     "source_partially_clipped": false,
-    "status": "rebuilt_authentic_clean",
+    "status": "rebuilt_authentic_solid_clothing",
     "resolution": "512x640",
     "bbox": [
       26,
-      129,
+      162,
       486,
       625
     ]
