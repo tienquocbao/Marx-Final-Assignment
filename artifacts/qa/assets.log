@@ -5,8 +5,24 @@ PASS All 58 runtime asset paths exist []
 PASS JavaScript syntax game.js 
 PASS JavaScript syntax learning.js 
 PASS JavaScript syntax learning-content.js 
+PASS JavaScript syntax audio.js 
 PASS JavaScript syntax simulation.js 
 PASS JavaScript syntax game-data.js 
+PASS JavaScript syntax dialogue.js 
+PASS JavaScript syntax state.js 
+PASS JavaScript syntax modules.js 
+PASS JavaScript syntax session.js 
+PASS JavaScript syntax index.js 
+PASS JavaScript syntax model.js 
+PASS JavaScript syntax report.js 
+PASS JavaScript syntax rendering.js 
+PASS JavaScript syntax ending.js 
+PASS JavaScript syntax journal.js 
+PASS JavaScript syntax memory.js 
+PASS JavaScript syntax migration.js 
+PASS JavaScript syntax save-load.js 
+PASS JavaScript syntax index.js 
+PASS JavaScript syntax evidence.js 
 PASS No remote runtime dependencies 
 PASS 40 portraits and four sprites retained 
 PASS Nine OGG files have valid magic 
@@ -17,4 +33,20 @@ PASS Static DOM references index.html []
 PASS Static DOM references game.js []
 PASS Static DOM references learning.js []
 PASS Static DOM references learning-content.js []
+PASS Static DOM references audio.js []
 PASS Static DOM references simulation.js []
+PASS Static DOM references dialogue.js []
+PASS Static DOM references state.js []
+PASS Static DOM references modules.js []
+PASS Static DOM references session.js []
+PASS Static DOM references index.js []
+PASS Static DOM references model.js []
+PASS Static DOM references report.js []
+PASS Static DOM references rendering.js []
+PASS Static DOM references ending.js []
+PASS Static DOM references journal.js []
+PASS Static DOM references memory.js []
+PASS Static DOM references migration.js []
+PASS Static DOM references save-load.js []
+PASS Static DOM references index.js []
+PASS Static DOM references evidence.js []

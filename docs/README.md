@@ -7,7 +7,7 @@ Source chính ở thư mục cha: `index.html`, `scripts/`, `styles/`, `assets/`
 | [V80_BASELINE.md](V80_BASELINE.md) | Kết quả trước nâng cấp, sai lệch tài liệu và rủi ro |
 | [GAMEPLAY_BALANCE_V80.md](GAMEPLAY_BALANCE_V80.md) | Điều kiện NPC, ending, exhaustive và giới hạn |
 | [ACADEMIC_CONTENT_MAP_V80.md](ACADEMIC_CONTENT_MAP_V80.md) | Chứng cứ, chủ thể, khái niệm, nguồn và đánh giá |
-| [ARCHITECTURE_V80.md](ARCHITECTURE_V80.md) | Module, state, save, luồng dữ liệu, build/test |
+| [ARCHITECTURE_V80.md](ARCHITECTURE_V80.md) | Modular Vanilla, dependency graph, state, save, file:// và regression |
 | [USER_GUIDE_V80.md](USER_GUIDE_V80.md) | Chơi, đọc phản biện, học tập, lưu và trình chiếu |
 | [KICH_BAN_MC_7_PHUT.md](KICH_BAN_MC_7_PHUT.md) | Kịch bản MC cập nhật cho v8 |
 | [TEST_REPORT_V80.md](TEST_REPORT_V80.md) | PASS/FAIL/BLOCKED/NOT TESTED và bằng chứng |

@@ -1,0 +1,39 @@
+=== STARTING PLAYWRIGHT QA TEST SUITE ===
+[PASS] Home Screen Cast Count: Found 3 cast images
+[PASS] Cast Pic 0 4:5 Aspect Ratio: w=108.0, h=135.0, ratio=0.800
+[PASS] Cast Pic 1 4:5 Aspect Ratio: w=108.0, h=135.0, ratio=0.800
+[PASS] Cast Pic 2 4:5 Aspect Ratio: w=108.0, h=135.0, ratio=0.800
+[PASS] Story Week 1 Cá Bống Happy: src=assets/portrait/ca_bong_happy.png, w=192.0, h=240.0, ratio=0.800
+[PASS] Story Week 1 Chú Bảy Happy: src=assets/portrait/chu_bay_happy.png
+[PASS] Story Week 2–4 Minh An Thinking: src=assets/portrait/minh_an_thinking.png
+[PASS] Story Week 6 Chú Bảy Angry: src=assets/portrait/chu_bay_angry.png
+[PASS] Story Week 6 Anh Khoa Angry: src=assets/portrait/anh_khoa_angry.png
+[PASS] Story Week 6 Chị Sen Stressed: src=assets/portrait/chi_sen_stressed.png
+[PASS] Minh An Walk Sprite Initial Frame: src=assets/sprites/minh_an_walk_0.png
+[PASS] Minh An Sprite Facing Left on 'A': facingLeft=True
+[PASS] Minh An Sprite Facing Right on 'D': facingRight=True
+[PASS] Ruộng Chú Bảy Dialogue Avatar: src=assets/portrait/chu_bay_stressed.png, w=104.0, h=130.0, ratio=0.800
+[PASS] Clue Modal Chú Bảy Portrait: src=assets/portrait/chu_bay_worried.png
+[PASS] HTX Chị Sen Dialogue Avatar: src=assets/portrait/chi_sen_stressed.png
+[PASS] Nhà máy Anh Khoa Dialogue Avatar: src=assets/portrait/anh_khoa_stressed.png
+[PASS] Invitation Screen Stakeholders Count: Found 3 invite cards
+[PASS] Negotiation Stakeholder Cards: Found 3 stakeholder portraits
+[PASS] Hearing Body Initial Portrait (Chú Bảy): src=assets/portrait/chu_bay_angry.png
+[PASS] Hearing Body Chị Sen Portrait: src=assets/portrait/chi_sen_angry.png
+[PASS] Hearing Body Anh Khoa Portrait: src=assets/portrait/anh_khoa_angry.png
+[PASS] Salinity Crisis Modal Trigger: Crisis modal displayed successfully
+[PASS] Ending A Faces Count: Found 3 faces in ending A
+[PASS] Ending A Faces Happy Mood: Happy count=3/3
+[PASS] Ending B Faces Thinking Mood: Thinking count=3/3
+[PASS] Ending C Faces Worried Mood: Worried count=3/3
+[PASS] Laptop 1366x768 Cast Dimensions: w=108.0, h=135.0
+[PASS] Projector 1280x720 Cast Dimensions: w=108.0, h=135.0
+[PASS] Mobile 390x844 Cast Dimensions: w=84.0, h=105.0
+[PASS] Mobile Story Portrait Dimensions: w=124.8, h=170.0
+[PASS] Mobile World Avatar Dimensions: w=52.0, h=70.0
+[PASS] Zoom 125% Cast Count: Found 3 cast images at 125% zoom
+[PASS] prefers-reduced-motion Disabled Animation: storyFace animationName=none
+
+=== TEST SUMMARY ===
+Total Tests: 34 | Passed: 34 | Failed: 0
+ALL TESTS PASSED WITH 100% SUCCESS!

@@ -1,26 +1,30 @@
 # Báo cáo kiểm thử v8.0
 
-Thời điểm tổng hợp UTC: 2026-11-07T19:09:16+00:00. Kết luận: **PASS trong phạm vi tự động**. Số đếm dưới đây lấy trực tiếp từ JSON/log đã chạy, không lấy từ báo cáo v7. Môi trường Linux x86_64, Node v22.23.3, Python 3.13 (uv), Playwright 1.64.1, Microsoft Edge Chromium 155.0.4283.45 headless, axe-core 4.14.0, tinycss2 1.5.1, html5lib 1.1.
+Thời điểm tổng hợp UTC: 2026-11-08T05:07:41+00:00. Kết luận: **PASS trong phạm vi tự động**. Số đếm dưới đây lấy trực tiếp từ JSON/log đã chạy, không lấy từ báo cáo v7. Môi trường Linux x86_64, Node v22.23.3, Python 3.13 (uv), Playwright 1.64.1, Microsoft Edge Chromium 155.0.4283.45 headless, axe-core 4.14.0, tinycss2 1.5.1, html5lib 1.1.
 
 ## Trước và sau
 
 Baseline: script Python nguyên trạng BLOCKED vì thiếu Playwright rồi đường dẫn Edge cố định không có. Bản sao source cũ chỉ đổi executable: **34/34 PASS**. Log nguyên vẹn: `artifacts/qa/baseline-legacy.txt`. Syntax PASS; 58 đường dẫn runtime hợp lệ; 118 asset gốc. Bộ cũ không đo console/network và một số ending chỉ được gán state để xem portrait.
 
-| Suite sau nâng cấp | Assertion | PASS | FAIL | BLOCKED |
+Baseline bổ sung trước Modular: **230/230 assertion PASS**, build PASS trên commit `11067bf`. JSON/log được giữ tại `artifacts/modular-baseline/`.
+
+| Suite sau nâng cấp và refactor | Assertion | PASS | FAIL | BLOCKED |
 |---|---:|---:|---:|---:|
-| assets | 20 | 20 | 0 | 0 |
+| assets | 52 | 52 | 0 | 0 |
 | simulation | 16 | 16 | 0 | 0 |
+| modules | 12 | 12 | 0 | 0 |
+| modular-browser | 18 | 18 | 0 | 0 |
 | legacy | 34 | 34 | 0 | 0 |
 | browser | 130 | 130 | 0 | 0 |
 | accessibility | 30 | 30 | 0 | 0 |
-| Tổng assertion | 230 | 230 | 0 | 0 |
+| Tổng assertion | 292 | 292 | 0 | 0 |
 
 Build chạy riêng, trạng thái: PASS. Không cộng 1.417.176 mẫu exhaustive vào số assertion để tránh thổi phồng số test độc lập.
 
 ## Technical
 
 - Asset integrity/manifest: 118 asset gốc giữ nguyên byte; 58 đường dẫn runtime tồn tại. Không đọc ZIP lồng.
-- Node syntax cho 5 script; HTML5 parse không lỗi; ID không trùng; CSS parse không lỗi; kiểm tra tham chiếu DOM.
+- Node syntax cho 21 script, bao gồm các thư mục module con; HTML5 parse không lỗi; ID không trùng; CSS parse không lỗi; kiểm tra tham chiếu DOM.
 - Không có dependency remote runtime. Bản source và standalone đều cold-start được khi context trình duyệt offline.
 - Cả 49 hình runtime (40 portrait + 5 cảnh + 4 sprite) decode; 9 OGG load metadata trong source và standalone. Bản một file được chép vào thư mục tạm độc lập trước khi test.
 - Console pageerror: **0**. HTTP error/thất bại tải thực: **0**. Request bị trình duyệt hủy do điều hướng/đóng context được ghi riêng (`cancelledRequests`), không coi như missing asset; mọi hình và audio có kiểm tra decode riêng.
@@ -39,6 +43,14 @@ PASS/FAIL thực tế từng assertion nằm trong `artifacts/qa/browser.json` v
 - Debrief, 5 chỉ báo, quiz 10 câu có một câu sai để thử giải thích/ôn tập, tiếp tục quiz sau reload, TXT có history/profile/quiz.
 - Save localStorage thật HTTP và file://; v71 migration giữ key cũ; JSON hỏng, dữ liệu lồng sai kiểu, phiên bản tương lai, lỗi quota; xem kiến thức ở home không ghi đè checkpoint. Reset hủy và xác nhận có test.
 - Escape biến cố phục hồi nhạc ngày; modal trap focus; map không nhận phím xuyên modal; các màn mới fit 390px; Tab/Enter/Space và reduced motion.
+
+## Modular regression
+
+- `12/12` nhóm Node: dependency graph không vòng, registry lỗi/khởi tạo một lần, import không DOM, state độc lập/thay state, save adapter/legacy/future/quota và assessment thuần.
+- Đối chiếu đúng 48 contract evaluate/dialogue/migrate chụp từ engine commit `11067bf`; mẫu được giữ ở `artifacts/modular-baseline/contracts.json`. Không thay luật ending để làm test qua.
+- `18/18` assertion trên source và standalone cold offline **không dùng QA bridge**: không rò binding gameplay global, resume save v8 trước refactor, UI đạt A, sửa thỏa thuận, reset/begin/thu chứng cứ, keyboard và mobile.
+- Các bộ UI cũ chỉ nạp `tools/browser_test_bridge.js` qua Playwright cho white-box assertions. Bridge không có trong HTML sản phẩm hoặc bản đóng gói. Kiểm tra decode asset dùng API liệt kê asset của module.
+- Lượt regression đầu có một FAIL do test cũ đọc `PORTRAITS` global sau khi đã đóng scope. Giữ log/JSON thật tại `artifacts/modular-first-run/`; đã sửa test dùng API module, không giảm yêu cầu 49 hình/9 audio.
 
 ## Simulation
 
@@ -75,7 +87,7 @@ Không còn assertion FAIL hoặc BLOCKED trong các suite đã chạy.
 
 ## Bằng chứng và tái lập
 
-`artifacts/qa/summary.json`, `assets.json`, `simulation.json`, `legacy.json`, `browser.json`, `accessibility.json`; log cùng tên. Screenshot mới `screenshots/v80/`, hồi quy portrait `screenshots/v80-legacy/`. `learning-report.txt` là báo cáo thực tải từ browser QA.
+`artifacts/qa/summary.json`, `assets.json`, `simulation.json`, `legacy.json`, `browser.json`, `accessibility.json`, `modules.json`, `modular-browser.json`; log cùng tên. Screenshot mới `screenshots/v80/`, hồi quy portrait `screenshots/v80-legacy/`. `learning-report.txt` là báo cáo thực tải từ browser QA.
 
 ```sh
 npm install --prefix /tmp/vcx-qa axe-core@4.14.0

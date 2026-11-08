@@ -15,6 +15,16 @@
     "exitCode": 0
   },
   {
+    "suite": "modules",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "suite": "modular-browser",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
     "suite": "legacy",
     "status": "PASS",
     "exitCode": 0

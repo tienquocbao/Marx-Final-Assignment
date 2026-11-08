@@ -8,7 +8,7 @@ import json
 import re
 ROOT=Path(__file__).resolve().parent.parent
 ART=ROOT/'artifacts/qa';ART.mkdir(parents=True,exist_ok=True)
-suites=[('build',[sys.executable,'tools/build_offline.py']),('assets',[sys.executable,'tools/test_assets.py']),('simulation',['node','tools/test_simulation.cjs']),('legacy',[sys.executable,'tools/test_game_qa.py']),('browser',[sys.executable,'tools/test_v80.py']),('accessibility',[sys.executable,'tools/test_accessibility.py'])]
+suites=[('build',[sys.executable,'tools/build_offline.py']),('assets',[sys.executable,'tools/test_assets.py']),('simulation',['node','tools/test_simulation.cjs']),('modules',['node','tools/test_modules.cjs']),('modular-browser',[sys.executable,'tools/test_modular_browser.py']),('legacy',[sys.executable,'tools/test_game_qa.py']),('browser',[sys.executable,'tools/test_v80.py']),('accessibility',[sys.executable,'tools/test_accessibility.py'])]
 summary=[]
 for name,cmd in suites:
     print('Running',name,flush=True)

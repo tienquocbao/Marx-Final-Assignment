@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parent.parent
 ART=ROOT/'artifacts/qa'
 read=lambda name:json.loads((ART/name).read_text())
 summary=read('summary.json')
-suites={name:read(name+'.json') for name in ['assets','simulation','legacy','browser','accessibility']}
+suites={item['suite']:read(item['suite']+'.json') for item in summary if item['suite']!='build'}
 counts={name:Counter(t['status'] for t in item['tests']) for name,item in suites.items()}
 sim=suites['simulation'];browser=suites['browser'];manifest=json.loads((ROOT/'dist/manifest.json').read_text())
 total=Counter()
@@ -19,6 +19,7 @@ for value in counts.values():total.update(value)
 def row(name):
     c=counts[name]
     return f"| {name} | {sum(c.values())} | {c['PASS']} | {c['FAIL']} | {c['BLOCKED']} |"
+script_count=len(list((ROOT/'scripts').rglob('*.js')))
 now=datetime.now(timezone.utc).isoformat(timespec='seconds')
 status='PASS trong phạm vi tự động' if all(r['status']=='PASS' for r in summary) else 'CHƯA ĐẠT bộ kiểm tra phát hành; xem FAIL/BLOCKED'
 failures=[f"- {name}: {t['name']} — {t.get('details',t.get('detail','xem JSON'))}" for name,item in suites.items() for t in item['tests'] if t['status']!='PASS']
@@ -31,7 +32,9 @@ Thời điểm tổng hợp UTC: {now}. Kết luận: **{status}**. Số đếm 
 
 Baseline: script Python nguyên trạng BLOCKED vì thiếu Playwright rồi đường dẫn Edge cố định không có. Bản sao source cũ chỉ đổi executable: **34/34 PASS**. Log nguyên vẹn: `artifacts/qa/baseline-legacy.txt`. Syntax PASS; 58 đường dẫn runtime hợp lệ; 118 asset gốc. Bộ cũ không đo console/network và một số ending chỉ được gán state để xem portrait.
 
-| Suite sau nâng cấp | Assertion | PASS | FAIL | BLOCKED |
+Baseline bổ sung trước Modular: **230/230 assertion PASS**, build PASS trên commit `11067bf`. JSON/log được giữ tại `artifacts/modular-baseline/`.
+
+| Suite sau nâng cấp và refactor | Assertion | PASS | FAIL | BLOCKED |
 |---|---:|---:|---:|---:|
 {chr(10).join(row(n) for n in suites)}
 | Tổng assertion | {sum(total.values())} | {total['PASS']} | {total['FAIL']} | {total['BLOCKED']} |
@@ -41,7 +44,7 @@ Build chạy riêng, trạng thái: {next(r['status'] for r in summary if r['sui
 ## Technical
 
 - Asset integrity/manifest: 118 asset gốc giữ nguyên byte; 58 đường dẫn runtime tồn tại. Không đọc ZIP lồng.
-- Node syntax cho 5 script; HTML5 parse không lỗi; ID không trùng; CSS parse không lỗi; kiểm tra tham chiếu DOM.
+- Node syntax cho {script_count} script, bao gồm các thư mục module con; HTML5 parse không lỗi; ID không trùng; CSS parse không lỗi; kiểm tra tham chiếu DOM.
 - Không có dependency remote runtime. Bản source và standalone đều cold-start được khi context trình duyệt offline.
 - Cả 49 hình runtime (40 portrait + 5 cảnh + 4 sprite) decode; 9 OGG load metadata trong source và standalone. Bản một file được chép vào thư mục tạm độc lập trước khi test.
 - Console pageerror: **{len(browser['errors'])}**. HTTP error/thất bại tải thực: **{len(browser['failedRequests'])}**. Request bị trình duyệt hủy do điều hướng/đóng context được ghi riêng (`cancelledRequests`), không coi như missing asset; mọi hình và audio có kiểm tra decode riêng.
@@ -60,6 +63,14 @@ PASS/FAIL thực tế từng assertion nằm trong `artifacts/qa/browser.json` v
 - Debrief, 5 chỉ báo, quiz 10 câu có một câu sai để thử giải thích/ôn tập, tiếp tục quiz sau reload, TXT có history/profile/quiz.
 - Save localStorage thật HTTP và file://; v71 migration giữ key cũ; JSON hỏng, dữ liệu lồng sai kiểu, phiên bản tương lai, lỗi quota; xem kiến thức ở home không ghi đè checkpoint. Reset hủy và xác nhận có test.
 - Escape biến cố phục hồi nhạc ngày; modal trap focus; map không nhận phím xuyên modal; các màn mới fit 390px; Tab/Enter/Space và reduced motion.
+
+## Modular regression
+
+- `{counts['modules']['PASS']}/{sum(counts['modules'].values())}` nhóm Node: dependency graph không vòng, registry lỗi/khởi tạo một lần, import không DOM, state độc lập/thay state, save adapter/legacy/future/quota và assessment thuần.
+- Đối chiếu đúng 48 contract evaluate/dialogue/migrate chụp từ engine commit `11067bf`; mẫu được giữ ở `artifacts/modular-baseline/contracts.json`. Không thay luật ending để làm test qua.
+- `{counts['modular-browser']['PASS']}/{sum(counts['modular-browser'].values())}` assertion trên source và standalone cold offline **không dùng QA bridge**: không rò binding gameplay global, resume save v8 trước refactor, UI đạt A, sửa thỏa thuận, reset/begin/thu chứng cứ, keyboard và mobile.
+- Các bộ UI cũ chỉ nạp `tools/browser_test_bridge.js` qua Playwright cho white-box assertions. Bridge không có trong HTML sản phẩm hoặc bản đóng gói. Kiểm tra decode asset dùng API liệt kê asset của module.
+- Lượt regression đầu có một FAIL do test cũ đọc `PORTRAITS` global sau khi đã đóng scope. Giữ log/JSON thật tại `artifacts/modular-first-run/`; đã sửa test dùng API module, không giảm yêu cầu 49 hình/9 audio.
 
 ## Simulation
 
@@ -96,7 +107,7 @@ axe audit các màn home, hồ sơ cũ, story, map, explore, chứng cứ, board
 
 ## Bằng chứng và tái lập
 
-`artifacts/qa/summary.json`, `assets.json`, `simulation.json`, `legacy.json`, `browser.json`, `accessibility.json`; log cùng tên. Screenshot mới `screenshots/v80/`, hồi quy portrait `screenshots/v80-legacy/`. `learning-report.txt` là báo cáo thực tải từ browser QA.
+`artifacts/qa/summary.json`, `assets.json`, `simulation.json`, `legacy.json`, `browser.json`, `accessibility.json`, `modules.json`, `modular-browser.json`; log cùng tên. Screenshot mới `screenshots/v80/`, hồi quy portrait `screenshots/v80-legacy/`. `learning-report.txt` là báo cáo thực tải từ browser QA.
 
 ```sh
 npm install --prefix /tmp/vcx-qa axe-core@4.14.0
@@ -132,15 +143,17 @@ Save version 8, migration từ v71/v7/v6/v4, lọc schema và lỗi dữ liệu 
 
 ## 3. File và kiến trúc
 
-Source chính vẫn HTML/CSS/Vanilla JS. Module catalog/simulation/content/learning tách riêng để dễ bảo trì và dùng cùng engine trong test. Danh sách đầy đủ tại [CHANGELOG_V80.md](CHANGELOG_V80.md), kiến trúc tại [ARCHITECTURE_V80.md](ARCHITECTURE_V80.md).
+Source chính vẫn HTML/CSS/Vanilla JS. Bổ sung Modular Vanilla: core state, simulation, NPC memory, story, exploration/evidence, negotiation, learning, assessment, UI, audio, storage. Factory có dependency tường minh; `game.js` chỉ bootstrap/wiring/lifecycle, state không còn là global. Classic script giữ mở trực tiếp file://; không chuyển ESM vì yêu cầu này. Danh sách đầy đủ tại [CHANGELOG_V80.md](CHANGELOG_V80.md), kiến trúc tại [ARCHITECTURE_V80.md](ARCHITECTURE_V80.md).
 
-Sửa `index.html`, `scripts/game.js`, `styles/game.css`, README, docs index/MC và QA cũ. Thêm bốn module JS, build/test helpers, tám tài liệu v8, standalone/manifest và QA artifacts/screenshot. Tài liệu cũ giữ như lịch sử, bổ sung link đến hướng dẫn hiện tại, thay đường dẫn Windows tuyệt đối bằng link tương đối. Không xóa file nội dung/asset cũ. `.git` không sử dụng được để commit; hash source phát hành tại `artifacts/qa/source-sha256.json`.
+Giữ `game.js` ở cùng đường dẫn, chuyển các trách nhiệm vào module riêng trong `scripts/`. Catalog và nội dung học thuật giữ nguyên; simulation giữ API tương thích. `index.html` nạp registry đầu tiên, bootstrap cuối; build giữ thứ tự đó. Source scan/hash mở rộng sang các thư mục con. Thêm Node architecture tests, production offline tests và QA bridge riêng cho bộ test cũ. Không xóa source, nội dung, asset hay tài liệu cũ. Hash source phát hành tại `artifacts/qa/source-sha256.json`.
 
 ## 4. Kết quả trước và sau
 
 - Baseline cũ: 34/34 assertion PASS khi sửa executable browser trong bản sao; script nguyên trạng BLOCKED bởi môi trường. Không thiếu 58 asset được tham chiếu.
+- Trước Modular: **230/230 assertion PASS**, build PASS; giữ bằng chứng và 48 contract gốc.
 - Sau: **{total['PASS']}/{sum(total.values())} assertion PASS**, {total['FAIL']} FAIL, {total['BLOCKED']} BLOCKED trong suite chạy. Build {next(r['status'] for r in summary if r['suite']=='build')}.
 - Exhaustive **{sim['cases']:,}** trạng thái: A={sim['counts']['A']:,}, B={sim['counts']['B']:,}, C={sim['counts']['C']:,}; {sim['successfulStrategies']} bộ phương án có thể đạt A. Kiểm tra veto khi tổng cao, khắc phục dòng tiền HTX, nhiều chiến lược, memory/hội thoại, dữ liệu biên và migration.
+- Modular: {counts['modules']['PASS']} nhóm Node PASS và {counts['modular-browser']['PASS']} assertion production source/standalone offline không bridge PASS; kiểm tra không global, save v8 cũ, state mới và đạt A qua UI.
 - Console JS: {len(browser['errors'])}; lỗi tải thực: {len(browser['failedRequests'])}. 118 asset gốc giữ nguyên hash, 49 hình decode và 9 OGG load trong source/standalone.
 - Browser đi thật toàn bộ full journey và demo mobile; B/C cùng A khác qua checkpoint hợp lệ và các quyết định UI; standalone đặt thư mục độc lập, tắt mạng và chơi đến A.
 - axe {counts['accessibility']['PASS']}/{sum(counts['accessibility'].values())} màn/viewport PASS; còn mục `incomplete` và kiểm tra máy thật được công khai trong báo cáo QA.
@@ -170,6 +183,7 @@ Test:
 
 ```sh
 node tools/test_simulation.cjs
+node tools/test_modules.cjs
 npm install --prefix /tmp/vcx-qa axe-core@4.14.0
 uv run --with-requirements tools/requirements-qa.txt python tools/run_qa.py
 python tools/write_release_reports.py
@@ -187,6 +201,6 @@ Công cụ QA cần chuẩn bị dependencies/browser; game không cần cài. H
 6. Nếu lớp cần trợ năng, thử trình đọc màn hình và giảm chuyển động trên thiết bị của người dùng thực.
 '''
 (ROOT/'docs/FINAL_RELEASE_REPORT_V80.md').write_text(release)
-source_files=[ROOT/'index.html',ROOT/'styles/game.css',*sorted((ROOT/'scripts').glob('*.js'))]
+source_files=[ROOT/'index.html',ROOT/'styles/game.css',*sorted((ROOT/'scripts').rglob('*.js'))]
 (ART/'source-sha256.json').write_text(json.dumps({str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in source_files},indent=2))
 print('Generated TEST_REPORT_V80.md, FINAL_RELEASE_REPORT_V80.md and source manifest from actual QA artifacts.')

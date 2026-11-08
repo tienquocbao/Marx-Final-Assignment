@@ -1,96 +1,223 @@
-/* Contextual pedagogy and accessible UI. All assessment stays on this device. */
-'use strict';
-const CONTENT=VCXContent;
-let knowledgeCurrent='coop_contract',learningView='knowledge',quizIndex=0,debateActor='bay';
-const decisionLabel=ids=>ids.split(' / ').map(id=>POLICIES.find(p=>p.id===id)?.short||STATE_TOOLS.find(t=>t.id===id)?.title||({dock:'Lịch giao hàng'}[id])||id).join(' · ');
-let debateDraft={concept:null,cause:null,response:null,proof:'',order:[]};
-function knowledgeContext(key){knowledgeCurrent=CONTENT.context[key]||key;if(!CONTENT.map[knowledgeCurrent])knowledgeCurrent='coop_contract';
- const n=$('knowledgeNudge');if(n)n.innerHTML=`🐟 Tình huống này liên quan đến <b>${esc(CONTENT.concepts[CONTENT.map[knowledgeCurrent].concepts[0]].title)}</b>. <button type="button" class="tinyBtn" id="contextKnowledge">Xem giải thích</button>`;
- $('contextKnowledge')?.addEventListener('click',()=>openKnowledge(knowledgeCurrent));
- const b=$('knowledgeBtn');if(b){b.title='Giải thích tình huống: '+(PROOF_TITLES[knowledgeCurrent]||'Thỏa thuận');b.dataset.context=knowledgeCurrent;}
-}
-function openLearning(title){$('learningTitle').textContent=title;const d=$('learningDialog');if(!d.open)d.showModal();mapWalking.keys.clear();}
-function openKnowledge(id=knowledgeCurrent){learningView='knowledge';knowledgeCurrent=CONTENT.map[id]?id:'coop_contract';openLearning('Từ chứng cứ đến khái niệm');renderKnowledge();}
-function renderKnowledge(){
- const id=knowledgeCurrent,item=CONTENT.map[id];if(!state.learning.viewed.includes(id))state.learning.viewed.push(id);save();
- $('learningBody').innerHTML=`<p class="small muted">🐟 Cá Bống: Xem điều kiện của từng bên trước khi chọn giải pháp.</p><label for="knowledgeSelect">Bản đồ chứng cứ – khái niệm</label><select id="knowledgeSelect">${Object.keys(CONTENT.map).map(k=>`<option value="${k}" ${id===k?'selected':''}>${VCXSim.owned(state,k)?'✓':'○'} ${esc(PROOF_TITLES[k])}</option>`).join('')}</select><article class="knowledgeCard"><span class="eyebrow">${VCXSim.owned(state,id)?'CHỨNG CỨ ĐÃ CÓ':'CHỨNG CỨ CÓ THỂ ĐIỀU TRA'}</span><h3>1. Tình huống · ${esc(PROOF_TITLES[id])}</h3><p>${esc(item.situation)}</p><h3>2. Khái niệm</h3><div class="pills">${item.concepts.map(k=>`<span class="pill">${esc(CONTENT.concepts[k].title)}</span>`).join('')}</div><h3>3. Các chủ thể</h3><p>${esc(item.analysis)}</p><h3>4. Quan hệ lợi ích</h3><p>${esc(item.relation)}</p><details><summary>5. Ghi nhớ và vận dụng</summary>${item.concepts.map(k=>`<p><b>${esc(CONTENT.concepts[k].title)}:</b> ${esc(CONTENT.concepts[k].remember)}</p>`).join('')}<p>Điểm quyết định liên quan: ${esc(decisionLabel(item.decision))}.</p></details></article><details><summary>Xem toàn bộ liên kết khái niệm</summary><div class="conceptMap">${Object.entries(CONTENT.map).map(([k,v])=>`<button type="button" class="conceptNode" data-concept-clue="${k}"><b>${esc(PROOF_TITLES[k])}</b><span>${v.actors.map(a=>VCXSim.ACTORS.find(x=>x.id===a).name).join(' · ')}</span><span>→ ${v.concepts.map(c=>esc(CONTENT.concepts[c].title)).join(' → ')}</span><small>Quyết định: ${esc(decisionLabel(v.decision))}</small></button>`).join('')}</div></details><p class="sourceNote">${esc(CONTENT.sourceNote)}</p>`;
- $('knowledgeSelect').onchange=e=>{knowledgeCurrent=e.target.value;renderKnowledge();$('knowledgeSelect').focus();};
- document.querySelectorAll('[data-concept-clue]').forEach(b=>b.onclick=()=>{knowledgeCurrent=b.dataset.conceptClue;renderKnowledge();$('knowledgeSelect').focus();});
-}
-function learningProfile(){
- const l=state.learning,decisions=state.decisions.filter(d=>d.source!=='prepared'),e=evaluate();
- const actualPolicies=new Set(decisions.filter(d=>d.kind==='policy').map(d=>d.key));
- const tools=new Set(decisions.filter(d=>d.kind==='governance'&&d.evidence?.some(id=>VCXSim.owned(state,id))).map(d=>d.key));
- const proofs=new Set(decisions.filter(d=>['governance','proof','invite'].includes(d.kind)).flatMap(d=>d.evidence||[]));
- const debates=Object.values(l.debates),contextScore=debates.filter(d=>d.rubric[2]===2).length;
- const measures=[
-  {title:'Nhận diện lợi ích kinh tế',value:l.heard.length,max:3,evidence:l.heard.length+'/3 chủ thể đã chủ động hỏi hoặc nghe tab phản biện.',review:'Hỏi thêm cả ba nhân vật, xác định khoản thu, chi và rủi ro riêng.'},
-  {title:'Nhận diện mâu thuẫn lợi ích',value:l.links.length,max:3,evidence:l.links.length+'/3 nút thắt đã tự ghép đúng chứng cứ.',review:'Đối chiếu giá – chất lượng, phí dịch vụ và rủi ro chung.'},
-  {title:'Sử dụng chứng cứ',value:Math.min(7,proofs.size),max:7,evidence:proofs.size+' chứng cứ khác nhau đã dùng để mời họp hoặc bảo vệ công cụ.',review:'Chọn hồ sơ có quan hệ trực tiếp với điều kiện cần giải quyết.'},
-  {title:'Điều phối và cân bằng lợi ích',value:Math.min(6,[...actualPolicies].filter(id=>{const p=state.policies[id];return id==='price'?(p==='fair'||p==='phased'&&state.governance.rights==='document'):id==='fees'?(p==='fair'||p==='upfront'&&state.governance.harmony==='credit'&&state.governance.rights==='document'||p==='deferred'&&state.governance.harmony==='link'&&state.governance.rights==='document'):(p==='fair'||p==='reserve'&&['targeted','full'].includes(state.governance.prevent));}).length+contextScore),max:6,evidence:actualPolicies.size+' nhóm điều khoản do bạn chọn; '+contextScore+'/3 phản biện vận dụng đúng quan hệ nguyên nhân và cách xử lý.',review:'Thử sửa phương án gây veto và hoàn thành tranh biện của từng bên.'},
-  {title:'Nhận thức vai trò Nhà nước',value:tools.size,max:4,evidence:tools.size+'/4 vai trò đã chủ động đề xuất với chứng cứ thu thập được.',review:'Phân biệt khuôn khổ, điều hòa, phòng ngừa và giải quyết mâu thuẫn.'}
- ];
- return measures.map(m=>({...m,score:Math.round(m.value/m.max*100)}));
-}
-function priorityText(){const e=evaluate();const max=Math.max(...e.vals),names=e.actors.filter(a=>a.score===max).map(a=>a.name);return names.join(', ')+' có mức lợi ích mô phỏng cao nhất ('+max+'/100). Đây là kết quả phương án hiện tại, không suy đoán ý định người chơi.';}
-const CHECK_LABELS={complete:'Đủ điều khoản và chứng cứ công cụ',participation:'Ba bên tham gia tự nguyện',minimums:'Mức lợi ích tối thiểu từng bên',consent:'Không còn lo ngại thiết yếu',trust:'Niềm tin chung và từng NPC',feasibility:'Khả năng thực hiện điều khoản',community:'Điều kiện cộng đồng / môi trường',crisis:'Quy trình ứng phó biến cố'};
-function debriefHTML(){const e=evaluate(),history=state.decisions.filter(d=>['policy','governance','crisis'].includes(d.kind)&&d.source!=='prepared').slice(-10),profile=learningProfile();
- const quiz=state.learning.quiz,debates=Object.entries(state.learning.debates);
- return `<h3>🌱 Nhìn lại hành trình · ${esc(state.result||'Đang chơi')}</h3><p>${esc(priorityText())}</p><div class="assessmentGrid">${profile.map(m=>`<article class="assessmentItem"><b>${esc(m.title)}</b><strong>${m.score}/100</strong><progress max="100" value="${m.score}" aria-label="${esc(m.title)}"></progress><small>${esc(m.evidence)}</small></article>`).join('')}</div><p class="small muted">Chỉ báo hành vi có giới hạn, không phải điểm năng lực chính thức. Mục chuẩn bị sẵn không tính như quyết định của bạn. Đọc panel chỉ ghi nội dung đã mở, không tự tăng điểm.</p><div class="knowledgeCard"><h4>Kiểm tra và tranh biện</h4><p>Quiz: ${quiz.submitted?quizScore()+'/10 · đã nộp, xem giải thích trong 10 tình huống sau game':quiz.answers.filter(n=>Number.isInteger(n)).length+'/10 câu đã chọn · chưa nộp'}.</p><p>${debates.length?debates.map(([id,d])=>esc(VCXSim.ACTORS.find(a=>a.id===id)?.name||id)+': '+d.rubric.reduce((a,b)=>a+b,0)+'/8 điểm lập luận').join(' · '):'Chưa có bài tranh biện được nộp.'}</p></div><details open><summary>Vì sao dẫn đến kết quả hiện tại?</summary><ul>${Object.entries(e.checks).map(([k,v])=>`<li>${v?'✓':'○'} ${CHECK_LABELS[k]}</li>`).join('')}</ul></details><div class="debriefActors">${e.actors.map(a=>`<article class="knowledgeCard"><h4>${esc(a.name)} · lợi ích ${a.score}, tin tưởng ${a.trust}</h4><p>${a.accepted?'Đủ điều kiện cá thể để cân nhắc hợp tác.':'Chưa đủ điều kiện cá thể để ký.'}</p><p>${a.concerns.filter(r=>r.type==='warn').map(r=>(r.critical?'Thiết yếu: ':'Cần theo dõi: ')+esc(r.text)).join('<br>')||'Các mâu thuẫn trọng yếu đã có cơ chế xử lý trong bản dự thảo.'}</p>${a.scar?'<small>Đề xuất trước đã được sửa nhưng vẫn để lại thận trọng trong quan hệ.</small>':''}</article>`).join('')}</div><details><summary>Quyết định và hệ quả gần nhất</summary>${history.length?history.map(d=>`<article class="decisionEntry"><b>#${esc(d.serial||d.at)} ${esc(d.choice||d.id)}</b><p>Được: ${esc(d.benefits||'Đối chiếu điều kiện hợp tác')}<br>Đánh đổi: ${esc(d.costs||'Cần nguồn lực và phối hợp')}</p><small>Chứng cứ: ${(d.evidence||[]).map(x=>esc(PROOF_TITLES[x]||x)).join(', ')||'Chưa gắn'}<br>${(d.effects||[]).map(x=>esc(VCXSim.ACTORS.find(a=>a.id===x.actor)?.name||x.actor)+': '+(x.delta>=0?'+':'')+x.delta).join(' · ')}</small></article>`).join(''):'Chưa có quyết định chủ động được ghi nhận.'}</details><h4>Vai trò Nhà nước đã vận dụng</h4><ul>${STATE_TOOLS.map(t=>`<li>${esc(t.title)}: ${esc(gainFromTool(t)?.title||'Chưa chọn')} · ${esc(PROOF_TITLES[state.govProof[t.id]]||'Chưa gắn chứng cứ')}</li>`).join('')}</ul><h4>Nội dung nên ôn</h4><ul>${profile.filter(m=>m.score<100).map(m=>`<li>${esc(m.review)}</li>`).join('')||'<li>Thử một chiến lược khác và giải thích vì sao các bên vẫn có thể đồng thuận.</li>'}</ul><p class="sourceNote">${esc(CONTENT.sourceNote)}</p>`;
-}
-function renderDebrief(){const el=$('debriefSection');if(el)el.innerHTML=debriefHTML();}
-function openDashboard(){learningView='dashboard';openLearning('Hồ sơ học tập của bạn');$('learningBody').innerHTML=debriefHTML()+`<div class="learningActions"><button type="button" class="btn soft" id="dashboardExport">Xuất báo cáo TXT</button>${state.result?'<button type="button" class="btn primary" id="dashboardQuiz">Làm / xem lại 10 tình huống</button>':'<p>Quiz mở sau khi hoàn thành một kết thúc.</p>'}</div>`;$('dashboardExport').onclick=createDecisionReport;$('dashboardQuiz')?.addEventListener('click',openQuiz);}
-function openDebate(actor='bay'){
- if(scene!=='hall'){notify('Tranh biện mở tại bàn đàm phán.');return;}
- debateActor=actor;const last=state.learning.debates[actor]?.selection;debateDraft=last&&Array.isArray(last.order)?JSON.parse(JSON.stringify(last)):{concept:null,cause:null,response:null,proof:'',order:[]};learningView='debate';openLearning('Tranh biện với các bên');renderDebate();
-}
-function renderDebate(){const d=CONTENT.debates[debateActor];
- const select=(id,label,options,value)=>`<label for="${id}">${label}</label><select id="${id}"><option value="">Chọn một phương án</option>${options.map((o,i)=>`<option value="${i}" ${value===i?'selected':''}>${esc(o)}</option>`).join('')}</select>`;
- $('learningBody').innerHTML=`<nav class="hearingTabs" aria-label="Chọn người tranh biện">${VCXSim.ACTORS.map(a=>`<button class="hearingTab ${a.id===debateActor?'active':''}" type="button" data-debate-actor="${a.id}">${a.name}</button>`).join('')}</nav><h3>${esc(d.title)}</h3><p class="small">Chọn luận điểm, căn cứ, cách xử lý; xếp trật tự trình bày. Rubric 4 tiêu chí, mỗi tiêu chí 0–2. Đây là chấm lập luận có cấu trúc theo kịch bản, không đánh giá văn bản tự do hay dùng AI.</p><div class="debateForm">${select('debateConcept','1. Luận điểm / khái niệm',d.concepts,debateDraft.concept)}<label for="debateProof">2. Chứng cứ bạn đã thu thập</label><select id="debateProof"><option value="">Chọn chứng cứ</option>${Object.keys(PROOF_TITLES).filter(id=>VCXSim.owned(state,id)).map(id=>`<option value="${id}" ${debateDraft.proof===id?'selected':''}>${esc(PROOF_TITLES[id])}</option>`).join('')}</select>${select('debateCause','3. Quan hệ nguyên nhân trong tình huống',d.causes,debateDraft.cause)}${select('debateResponse','4. Phản biện và đề xuất',d.responses,debateDraft.response)}</div><h4>Sắp xếp lập luận</h4><div class="learningActions">${[['response','Đề xuất xử lý'],['claim','Luận điểm'],['evidence','Chứng cứ và phân tích']].map(([id,label])=>`<button type="button" class="tinyBtn" data-order="${id}" ${debateDraft.order.includes(id)?'disabled':''}>${label}</button>`).join('')}<button type="button" class="tinyBtn" id="debateReset">Xếp lại</button></div><p id="debateSequence" aria-live="polite">${debateDraft.order.map(k=>({claim:'Luận điểm',evidence:'Chứng cứ và phân tích',response:'Đề xuất xử lý'}[k])).join(' → ')||'Chưa xếp bước nào'}</p><button type="button" class="btn primary" id="submitDebate">Trình bày và nhận phản hồi</button><div id="debateResult" aria-live="polite">${state.learning.debates[debateActor]?'<p>Lần đã nộp gần nhất: '+state.learning.debates[debateActor].rubric.reduce((a,b)=>a+b,0)+'/8. Bạn có thể sửa cấu trúc và trình bày lại.</p>':''}</div>`;
- document.querySelectorAll('[data-debate-actor]').forEach(b=>b.onclick=()=>openDebate(b.dataset.debateActor));
- for(const [id,key] of [['debateConcept','concept'],['debateCause','cause'],['debateResponse','response'],['debateProof','proof']])$(id).onchange=e=>{debateDraft[key]=key==='proof'?e.target.value:e.target.value===''?null:Number(e.target.value);};
- document.querySelectorAll('[data-order]').forEach(b=>b.onclick=()=>{debateDraft.order.push(b.dataset.order);renderDebate();(debateDraft.order.length===3?$('submitDebate'):$('debateReset')).focus({preventScroll:true});});
- $('debateReset').onclick=()=>{debateDraft.order=[];renderDebate();document.querySelector('[data-order]')?.focus({preventScroll:true});};$('submitDebate').onclick=submitDebate;
-}
-function submitDebate(){
- if(['concept','cause','response'].some(k=>debateDraft[k]===null)||!VCXSim.owned(state,debateDraft.proof)||debateDraft.order.length!==3){$('debateResult').textContent='Cần chọn đủ luận điểm, chứng cứ, nguyên nhân, đề xuất và xếp ba bước.';return;}
- const result=CONTENT.gradeDebate(debateActor,debateDraft);state.learning.debates[debateActor]=result;
- rememberDecision('debate',debateActor,'submitted',null,{choice:CONTENT.debates[debateActor].title,evidence:[debateDraft.proof],benefits:result.explanation,costs:'Rubric chỉ áp dụng các lựa chọn được thiết kế; không phải đánh giá toàn diện năng lực tranh biện.'});save();
- $('debateResult').innerHTML=`<h4>${result.rubric.reduce((a,b)=>a+b,0)}/8 điểm lập luận</h4><ul>${['Đúng khái niệm','Logic lập luận','Vận dụng tình huống','Chứng cứ phù hợp'].map((k,i)=>`<li>${k}: ${result.rubric[i]}/2</li>`).join('')}</ul><p>${esc(result.explanation)}</p><p class="small">Luận điểm cần cân nhắc cả hai phía; dữ liệu phải hỗ trợ nguyên nhân đã nêu; phương án xử lý cần theo sau căn cứ. Bạn có thể sửa và trình bày lại. Tranh biện không cộng điểm lợi ích hay buộc NPC ký.</p>`;
-}
-function openQuiz(){if(!state.result){notify('Hoàn thành một kết thúc để mở quiz.');return;}learningView='quiz';quizIndex=0;openLearning('10 tình huống sau hành trình');renderQuiz();}
-function renderQuiz(){const quiz=state.learning.quiz;
- if(quiz.submitted){renderQuizResults();return;}
- const q=CONTENT.quiz[quizIndex];$('learningBody').innerHTML=`<div class="eyebrow">TÌNH HUỐNG ${quizIndex+1}/10</div><h3>${esc(q.q)}</h3><fieldset class="quizOptions"><legend>Chọn cách phân tích phù hợp nhất</legend>${q.options.map((o,i)=>`<label><input type="radio" name="quizAnswer" value="${i}" ${quiz.answers[quizIndex]===i?'checked':''}> <span>${esc(o)}</span></label>`).join('')}</fieldset><p id="quizFeedback" aria-live="polite"></p><div class="learningActions"><button type="button" class="btn soft" id="quizPrev" ${quizIndex===0?'disabled':''}>← Câu trước</button><button type="button" class="btn primary" id="quizNext">${quizIndex===9?'Nộp và xem giải thích':'Câu tiếp →'}</button></div>`;
- const question=$('learningBody').querySelector('h3');question.tabIndex=-1;question.focus({preventScroll:true});
- document.querySelectorAll('[name=quizAnswer]').forEach(r=>r.onchange=()=>{quiz.answers[quizIndex]=Number(r.value);save();});
- $('quizPrev').onclick=()=>{quizIndex--;renderQuiz();};$('quizNext').onclick=()=>{if(!Number.isInteger(quiz.answers[quizIndex])){$('quizFeedback').textContent='Chọn một phương án để tiếp tục.';return;}if(quizIndex===9){quiz.submitted=true;save();renderQuizResults();renderDebrief();}else{quizIndex++;renderQuiz();}};
-}
-function quizScore(){return CONTENT.quiz.reduce((n,q,i)=>n+(state.learning.quiz.answers[i]===q.answer?1:0),0);}
-function renderQuizResults(){const score=quizScore();const wrong=CONTENT.quiz.filter((q,i)=>state.learning.quiz.answers[i]!==q.answer);$('learningBody').innerHTML=`<h3>Đã hoàn thành: ${score}/10</h3><p>${score>=8?'Bạn phân tích tốt các tình huống trong bài. Hãy thử giải thích một chiến lược khác với bạn học.':score>=5?'Bạn đã nhận ra một số quan hệ lợi ích; cần xem lại đánh đổi và điều kiện thực hiện.':'Hãy xem lại các chủ thể, chứng cứ và bốn vai trò Nhà nước trước khi chơi lại.'}</p><p>Nên ôn: ${[...new Set(wrong.map(q=>CONTENT.concepts[q.concept].title))].map(esc).join(', ')||'Thử vận dụng sang một tình huống mới.'}</p>${CONTENT.quiz.map((q,i)=>`<details class="quizReview"><summary>${i+1}. ${state.learning.quiz.answers[i]===q.answer?'✓':'○'} ${esc(q.q)}</summary><p>Bạn chọn: ${esc(q.options[state.learning.quiz.answers[i]]||'Chưa chọn')}</p><ul>${q.options.map((o,j)=>`<li><b>${j===q.answer?'✓ ':''}${esc(o)}</b><br>${esc(q.explain[j])}</li>`).join('')}</ul></details>`).join('')}<button type="button" class="btn soft" id="quizExport">Xuất báo cáo gồm kết quả quiz</button><p class="sourceNote">${esc(CONTENT.sourceNote)}</p>`;$('quizExport').onclick=createDecisionReport;}
-function learningReportText(){const e=evaluate(),l=state.learning;
- return ['HỒ SƠ HỌC TẬP V8.0',state.legacyResult?'Kết thúc lưu theo luật cũ: '+state.legacyResult+'; đối chiếu điều kiện v8 hiện tại: '+e.result:'Đánh giá điều kiện v8: '+e.result,priorityText(),...learningProfile().map(m=>`${m.title}: ${m.score}/100. ${m.evidence}`),'','ĐIỀU KIỆN KẾT THÚC',...Object.entries(e.checks).map(([k,v])=>`${v?'Đạt':'Chưa đạt'}: ${CHECK_LABELS[k]}`),'',...e.actors.map(a=>`${a.name}: lợi ích ${a.score}; tin tưởng ${a.trust}; ${a.accepted?'đủ điều kiện cá thể':'chưa đủ điều kiện'}. ${a.concerns.map(r=>r.text).join(' ')}`),'','LỊCH SỬ QUYẾT ĐỊNH',...state.decisions.map(d=>`#${esc(d.serial||d.at)} [${d.source||'legacy'} / ${d.kind}] ${d.choice||d.id}\n  Được: ${d.benefits||'Chưa ghi ở save cũ'}\n  Chi phí/rủi ro: ${d.costs||'Chưa ghi ở save cũ'}\n  Chứng cứ: ${(d.evidence||[]).map(k=>PROOF_TITLES[k]||k).join(', ')}\n  Hệ quả: ${(d.consequences||[]).join('; ')}\n  Phản ứng: ${(d.effects||[]).map(x=>x.actor+' '+x.delta+'; tin tưởng '+x.trust+'; '+(x.concerns||[]).join('; ')).join(' | ')}`),'','KIẾN THỨC ĐÃ MỞ',...l.viewed.map(id=>PROOF_TITLES[id]+': '+(CONTENT.map[id]?.concepts||[]).map(c=>CONTENT.concepts[c].title).join(', ')),'','TRANH BIỆN',...Object.entries(l.debates).map(([id,d])=>`${id}: ${d.rubric.join(' / ')} (khái niệm / logic / vận dụng / chứng cứ). ${d.explanation}`),'','QUIZ',l.quiz.submitted?`${quizScore()}/10`:l.quiz.answers.filter(n=>Number.isInteger(n)).length+'/10 câu đã chọn, chưa nộp',...(l.quiz.submitted?CONTENT.quiz.map((q,i)=>`${i+1}. ${q.q}\n  Đã chọn: ${q.options[l.quiz.answers[i]]}\n  Giải thích: ${q.explain[l.quiz.answers[i]]}`):[]),'','KHUYẾN NGHỊ',...learningProfile().filter(m=>m.score<100).map(m=>m.review),...CONTENT.quiz.filter((q,i)=>l.quiz.submitted&&l.quiz.answers[i]!==q.answer).map(q=>'Ôn '+CONTENT.concepts[q.concept].title),CONTENT.sourceNote].join('\n');
-}
-$('knowledgeBtn').onclick=()=>openKnowledge();$('learningBtn').onclick=openDashboard;$('debateBtn').onclick=()=>openDebate();$('quizBtn').onclick=openQuiz;
-$('learningClose').onclick=()=>$('learningDialog').close();$('learningDialog').addEventListener('click',e=>{if(e.target===$('learningDialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
-$('reviseAgreement').onclick=()=>{state.result=null;state.legacyResult=null;state.crisis=null;state.crisisSequence=[];renderHall();show('hall');};
-// Focus containment for the legacy modal windows, with restoration to the invoking control.
-const legacyModals=[...document.querySelectorAll('.modal,.questOverlay')];let legacyFocus=null,lastModal=null;
-function activeLegacyModal(){return legacyModals.find(el=>el.classList.contains('show')||el.id==='questOverlay'&&!el.hidden);}
-new MutationObserver(()=>{const modal=activeLegacyModal();if(modal===lastModal)return;document.querySelectorAll('.top,main.screens,.foot').forEach(el=>{el.inert=!!modal;});
- if(modal){if(!lastModal)legacyFocus=document.activeElement;modal.querySelector('button:not(:disabled),select,input,[tabindex]')?.focus();}
- else if(lastModal&&legacyFocus?.isConnected)legacyFocus.focus();
- lastModal=modal;
-}).observe(document.body,{subtree:true,attributes:true,attributeFilter:['class','hidden']});
-document.addEventListener('keydown',e=>{if(e.key!=='Tab'||$('learningDialog').open)return;const modal=activeLegacyModal();if(!modal)return;const buttons=[...modal.querySelectorAll('button:not(:disabled),select,input,[tabindex="0"]')].filter(el=>el.getClientRects().length);if(!buttons.length)return;const first=buttons[0],last=buttons.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}});
-// Typewriter paints a visual duplicate; assistive technology receives the full sentence once.
-let typeTimer=null;
-function paintStoryText(){clearTimeout(typeTimer);const el=$('storyText'),text=activeStory().text;if(matchMedia('(prefers-reduced-motion: reduce)').matches){el.textContent=text;return;}
- el.replaceChildren();const accessible=document.createElement('span'),visual=document.createElement('span');accessible.className='sr';accessible.textContent=text;visual.setAttribute('aria-hidden','true');el.append(accessible,visual);let n=0;
- const step=()=>{if(scene!=='story'){visual.textContent=text;return;}n=Math.min(text.length,n+4);visual.textContent=text.slice(0,n);if(n<text.length)typeTimer=setTimeout(step,22);};step();
-}
-new MutationObserver(()=>{if(scene==='story')paintStoryText();}).observe($('storyDots'),{childList:true});
-// Screen changes announce context; native controls retain their keyboard behavior.
-$('progressBadge').setAttribute('role','status');$('progressBadge').setAttribute('aria-live','polite');
-$('restartBtn').setAttribute('aria-label','Bắt đầu lại từ đầu');
-knowledgeContext('negotiation');
+/* learning: explicit dependencies; no gameplay bindings in global scope. */
+(function (root, factory) {
+  if (typeof module === "object" && module.exports)
+    module.exports = factory(
+      require("./game-data.js"),
+      require("./simulation.js"),
+      require("./learning-content.js"),
+    );
+  else
+    root.VCX.define(
+      "learning",
+      ["data", "simulation", "learning/content"],
+      factory,
+    );
+})(globalThis, (VCX_DATA, VCXSim, VCXContent) => {
+  "use strict";
+  return function create({ store, ui, rules, save }) {
+    const { POLICIES, STATE_TOOLS, PROOF_TITLES } = VCX_DATA;
+    const { $, esc, notify, openLearning } = ui;
+
+    const { rememberDecision } = rules;
+    const CONTENT = VCXContent;
+    let knowledgeCurrent = "coop_contract",
+      debateActor = "bay";
+    const decisionLabel = (ids) =>
+      ids
+        .split(" / ")
+        .map(
+          (id) =>
+            POLICIES.find((p) => p.id === id)?.short ||
+            STATE_TOOLS.find((t) => t.id === id)?.title ||
+            { dock: "Lịch giao hàng" }[id] ||
+            id,
+        )
+        .join(" · ");
+    let debateDraft = {
+      concept: null,
+      cause: null,
+      response: null,
+      proof: "",
+      order: [],
+    };
+    function knowledgeContext(key) {
+      knowledgeCurrent = CONTENT.context[key] || key;
+      if (!CONTENT.map[knowledgeCurrent]) knowledgeCurrent = "coop_contract";
+      const n = $("knowledgeNudge");
+      if (n)
+        n.innerHTML = `🐟 Tình huống này liên quan đến <b>${esc(CONTENT.concepts[CONTENT.map[knowledgeCurrent].concepts[0]].title)}</b>. <button type="button" class="tinyBtn" id="contextKnowledge">Xem giải thích</button>`;
+      $("contextKnowledge")?.addEventListener("click", () =>
+        openKnowledge(knowledgeCurrent),
+      );
+      const b = $("knowledgeBtn");
+      if (b) {
+        b.title =
+          "Giải thích tình huống: " +
+          (PROOF_TITLES[knowledgeCurrent] || "Thỏa thuận");
+        b.dataset.context = knowledgeCurrent;
+      }
+    }
+    function openKnowledge(id = knowledgeCurrent) {
+      knowledgeCurrent = CONTENT.map[id] ? id : "coop_contract";
+      openLearning("Từ chứng cứ đến khái niệm");
+      renderKnowledge();
+    }
+    function renderKnowledge() {
+      const id = knowledgeCurrent,
+        item = CONTENT.map[id];
+      if (!store.state.learning.viewed.includes(id))
+        store.state.learning.viewed.push(id);
+      save();
+      $("learningBody").innerHTML =
+        `<p class="small muted">🐟 Cá Bống: Xem điều kiện của từng bên trước khi chọn giải pháp.</p><label for="knowledgeSelect">Bản đồ chứng cứ – khái niệm</label><select id="knowledgeSelect">${Object.keys(
+          CONTENT.map,
+        )
+          .map(
+            (k) =>
+              `<option value="${k}" ${id === k ? "selected" : ""}>${VCXSim.owned(store.state, k) ? "✓" : "○"} ${esc(PROOF_TITLES[k])}</option>`,
+          )
+          .join(
+            "",
+          )}</select><article class="knowledgeCard"><span class="eyebrow">${VCXSim.owned(store.state, id) ? "CHỨNG CỨ ĐÃ CÓ" : "CHỨNG CỨ CÓ THỂ ĐIỀU TRA"}</span><h3>1. Tình huống · ${esc(PROOF_TITLES[id])}</h3><p>${esc(item.situation)}</p><h3>2. Khái niệm</h3><div class="pills">${item.concepts.map((k) => `<span class="pill">${esc(CONTENT.concepts[k].title)}</span>`).join("")}</div><h3>3. Các chủ thể</h3><p>${esc(item.analysis)}</p><h3>4. Quan hệ lợi ích</h3><p>${esc(item.relation)}</p><details><summary>5. Ghi nhớ và vận dụng</summary>${item.concepts.map((k) => `<p><b>${esc(CONTENT.concepts[k].title)}:</b> ${esc(CONTENT.concepts[k].remember)}</p>`).join("")}<p>Điểm quyết định liên quan: ${esc(decisionLabel(item.decision))}.</p></details></article><details><summary>Xem toàn bộ liên kết khái niệm</summary><div class="conceptMap">${Object.entries(
+          CONTENT.map,
+        )
+          .map(
+            ([k, v]) =>
+              `<button type="button" class="conceptNode" data-concept-clue="${k}"><b>${esc(PROOF_TITLES[k])}</b><span>${v.actors.map((a) => VCXSim.ACTORS.find((x) => x.id === a).name).join(" · ")}</span><span>→ ${v.concepts.map((c) => esc(CONTENT.concepts[c].title)).join(" → ")}</span><small>Quyết định: ${esc(decisionLabel(v.decision))}</small></button>`,
+          )
+          .join(
+            "",
+          )}</div></details><p class="sourceNote">${esc(CONTENT.sourceNote)}</p>`;
+      $("knowledgeSelect").onchange = (e) => {
+        knowledgeCurrent = e.target.value;
+        renderKnowledge();
+        $("knowledgeSelect").focus();
+      };
+      document.querySelectorAll("[data-concept-clue]").forEach(
+        (b) =>
+          (b.onclick = () => {
+            knowledgeCurrent = b.dataset.conceptClue;
+            renderKnowledge();
+            $("knowledgeSelect").focus();
+          }),
+      );
+    }
+    function openDebate(actor = "bay") {
+      if (store.session.scene !== "hall") {
+        notify("Tranh biện mở tại bàn đàm phán.");
+        return;
+      }
+      debateActor = actor;
+      const last = store.state.learning.debates[actor]?.selection;
+      debateDraft =
+        last && Array.isArray(last.order)
+          ? JSON.parse(JSON.stringify(last))
+          : {
+              concept: null,
+              cause: null,
+              response: null,
+              proof: "",
+              order: [],
+            };
+      openLearning("Tranh biện với các bên");
+      renderDebate();
+    }
+    function renderDebate() {
+      const d = CONTENT.debates[debateActor];
+      const select = (id, label, options, value) =>
+        `<label for="${id}">${label}</label><select id="${id}"><option value="">Chọn một phương án</option>${options.map((o, i) => `<option value="${i}" ${value === i ? "selected" : ""}>${esc(o)}</option>`).join("")}</select>`;
+      $("learningBody").innerHTML =
+        `<nav class="hearingTabs" aria-label="Chọn người tranh biện">${VCXSim.ACTORS.map((a) => `<button class="hearingTab ${a.id === debateActor ? "active" : ""}" type="button" data-debate-actor="${a.id}">${a.name}</button>`).join("")}</nav><h3>${esc(d.title)}</h3><p class="small">Chọn luận điểm, căn cứ, cách xử lý; xếp trật tự trình bày. Rubric 4 tiêu chí, mỗi tiêu chí 0–2. Đây là chấm lập luận có cấu trúc theo kịch bản, không đánh giá văn bản tự do hay dùng AI.</p><div class="debateForm">${select("debateConcept", "1. Luận điểm / khái niệm", d.concepts, debateDraft.concept)}<label for="debateProof">2. Chứng cứ bạn đã thu thập</label><select id="debateProof"><option value="">Chọn chứng cứ</option>${Object.keys(
+          PROOF_TITLES,
+        )
+          .filter((id) => VCXSim.owned(store.state, id))
+          .map(
+            (id) =>
+              `<option value="${id}" ${debateDraft.proof === id ? "selected" : ""}>${esc(PROOF_TITLES[id])}</option>`,
+          )
+          .join(
+            "",
+          )}</select>${select("debateCause", "3. Quan hệ nguyên nhân trong tình huống", d.causes, debateDraft.cause)}${select("debateResponse", "4. Phản biện và đề xuất", d.responses, debateDraft.response)}</div><h4>Sắp xếp lập luận</h4><div class="learningActions">${[
+          ["response", "Đề xuất xử lý"],
+          ["claim", "Luận điểm"],
+          ["evidence", "Chứng cứ và phân tích"],
+        ]
+          .map(
+            ([id, label]) =>
+              `<button type="button" class="tinyBtn" data-order="${id}" ${debateDraft.order.includes(id) ? "disabled" : ""}>${label}</button>`,
+          )
+          .join(
+            "",
+          )}<button type="button" class="tinyBtn" id="debateReset">Xếp lại</button></div><p id="debateSequence" aria-live="polite">${debateDraft.order.map((k) => ({ claim: "Luận điểm", evidence: "Chứng cứ và phân tích", response: "Đề xuất xử lý" })[k]).join(" → ") || "Chưa xếp bước nào"}</p><button type="button" class="btn primary" id="submitDebate">Trình bày và nhận phản hồi</button><div id="debateResult" aria-live="polite">${store.state.learning.debates[debateActor] ? "<p>Lần đã nộp gần nhất: " + store.state.learning.debates[debateActor].rubric.reduce((a, b) => a + b, 0) + "/8. Bạn có thể sửa cấu trúc và trình bày lại.</p>" : ""}</div>`;
+      document
+        .querySelectorAll("[data-debate-actor]")
+        .forEach((b) => (b.onclick = () => openDebate(b.dataset.debateActor)));
+      for (const [id, key] of [
+        ["debateConcept", "concept"],
+        ["debateCause", "cause"],
+        ["debateResponse", "response"],
+        ["debateProof", "proof"],
+      ])
+        $(id).onchange = (e) => {
+          debateDraft[key] =
+            key === "proof"
+              ? e.target.value
+              : e.target.value === ""
+                ? null
+                : Number(e.target.value);
+        };
+      document.querySelectorAll("[data-order]").forEach(
+        (b) =>
+          (b.onclick = () => {
+            debateDraft.order.push(b.dataset.order);
+            renderDebate();
+            (debateDraft.order.length === 3
+              ? $("submitDebate")
+              : $("debateReset")
+            ).focus({ preventScroll: true });
+          }),
+      );
+      $("debateReset").onclick = () => {
+        debateDraft.order = [];
+        renderDebate();
+        document.querySelector("[data-order]")?.focus({ preventScroll: true });
+      };
+      $("submitDebate").onclick = submitDebate;
+    }
+    function submitDebate() {
+      if (
+        ["concept", "cause", "response"].some((k) => debateDraft[k] === null) ||
+        !VCXSim.owned(store.state, debateDraft.proof) ||
+        debateDraft.order.length !== 3
+      ) {
+        $("debateResult").textContent =
+          "Cần chọn đủ luận điểm, chứng cứ, nguyên nhân, đề xuất và xếp ba bước.";
+        return;
+      }
+      const result = CONTENT.gradeDebate(debateActor, debateDraft);
+      store.state.learning.debates[debateActor] = result;
+      rememberDecision("debate", debateActor, "submitted", null, {
+        choice: CONTENT.debates[debateActor].title,
+        evidence: [debateDraft.proof],
+        benefits: result.explanation,
+        costs:
+          "Rubric chỉ áp dụng các lựa chọn được thiết kế; không phải đánh giá toàn diện năng lực tranh biện.",
+      });
+      save();
+      $("debateResult").innerHTML =
+        `<h4>${result.rubric.reduce((a, b) => a + b, 0)}/8 điểm lập luận</h4><ul>${["Đúng khái niệm", "Logic lập luận", "Vận dụng tình huống", "Chứng cứ phù hợp"].map((k, i) => `<li>${k}: ${result.rubric[i]}/2</li>`).join("")}</ul><p>${esc(result.explanation)}</p><p class="small">Luận điểm cần cân nhắc cả hai phía; dữ liệu phải hỗ trợ nguyên nhân đã nêu; phương án xử lý cần theo sau căn cứ. Bạn có thể sửa và trình bày lại. Tranh biện không cộng điểm lợi ích hay buộc NPC ký.</p>`;
+    }
+    function init() {
+      $("knowledgeBtn").onclick = () => openKnowledge();
+      $("debateBtn").onclick = () => openDebate();
+      knowledgeContext("negotiation");
+    }
+
+    function legacyNotes() {
+      alert(
+        "KIẾN THỨC MLN122\n\n1. Lợi ích kinh tế thúc đẩy mỗi chủ thể hoạt động.\n2. Lợi ích các bên có sự thống nhất (cần hợp tác) và mâu thuẫn (giá, chi phí, rủi ro).\n3. Nhà nước tạo môi trường thuận lợi, bảo vệ lợi ích hợp pháp, điều hòa lợi ích, kiểm soát tác động tiêu cực và hỗ trợ giải quyết mâu thuẫn.\n\nGame dùng một tình huống giả định, không phải số liệu thực tế.",
+      );
+    }
+    return { init, knowledgeContext, openKnowledge, openDebate, legacyNotes };
+  };
+});

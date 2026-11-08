@@ -1,0 +1,347 @@
+{
+  "cases": 1417176,
+  "counts": {
+    "A": 37692,
+    "B": 360504,
+    "C": 1018980
+  },
+  "successfulStrategies": 124,
+  "examples": {
+    "A": {
+      "saveVersion": 8,
+      "found": {
+        "field": [
+          "field_cost",
+          "field_sensor",
+          "field_buyer"
+        ],
+        "coop": [
+          "coop_fees",
+          "coop_contract",
+          "coop_trace"
+        ],
+        "factory": [
+          "factory_order",
+          "factory_quality",
+          "factory_trucks"
+        ]
+      },
+      "done": {
+        "field": true,
+        "coop": true,
+        "factory": true
+      },
+      "minis": {
+        "field": true,
+        "coop": true,
+        "factory": true
+      },
+      "npcTalk": {},
+      "board": {},
+      "policies": {
+        "price": "fair",
+        "fees": "fair",
+        "risk": "fair"
+      },
+      "governance": {
+        "rights": "document",
+        "harmony": "training",
+        "prevent": "targeted",
+        "resolve": "mediate"
+      },
+      "govProof": {
+        "rights": "field_buyer",
+        "harmony": "field_cost",
+        "prevent": "field_sensor",
+        "resolve": "field_buyer"
+      },
+      "sideQuests": {
+        "water": false,
+        "dock": false
+      },
+      "invited": {
+        "bay": true,
+        "sen": true,
+        "khoa": true
+      },
+      "memory": {
+        "bay": {
+          "seenConcerns": [],
+          "history": [],
+          "lastDialogue": ""
+        },
+        "sen": {
+          "seenConcerns": [],
+          "history": [],
+          "lastDialogue": ""
+        },
+        "khoa": {
+          "seenConcerns": [],
+          "history": [],
+          "lastDialogue": ""
+        }
+      },
+      "learning": {
+        "viewed": [],
+        "heard": [],
+        "debates": {},
+        "quiz": {
+          "answers": [],
+          "submitted": false
+        },
+        "miniAttempts": {},
+        "links": [],
+        "invitations": []
+      },
+      "decisions": [],
+      "crisis": "prepared",
+      "stage": "hall"
+    },
+    "B": {
+      "saveVersion": 8,
+      "found": {
+        "field": [
+          "field_cost",
+          "field_sensor",
+          "field_buyer"
+        ],
+        "coop": [
+          "coop_fees",
+          "coop_contract",
+          "coop_trace"
+        ],
+        "factory": [
+          "factory_order",
+          "factory_quality",
+          "factory_trucks"
+        ]
+      },
+      "done": {
+        "field": true,
+        "coop": true,
+        "factory": true
+      },
+      "minis": {
+        "field": true,
+        "coop": true,
+        "factory": true
+      },
+      "npcTalk": {},
+      "board": {},
+      "policies": {
+        "price": "fair",
+        "fees": "fair",
+        "risk": "fair"
+      },
+      "governance": {
+        "rights": "document",
+        "harmony": "training",
+        "prevent": "targeted",
+        "resolve": "mediate"
+      },
+      "govProof": {
+        "rights": "field_buyer",
+        "harmony": "field_cost",
+        "prevent": "field_sensor",
+        "resolve": "field_buyer"
+      },
+      "sideQuests": {
+        "water": false,
+        "dock": false
+      },
+      "invited": {
+        "bay": true,
+        "sen": true,
+        "khoa": true
+      },
+      "memory": {
+        "bay": {
+          "seenConcerns": [],
+          "history": [],
+          "lastDialogue": ""
+        },
+        "sen": {
+          "seenConcerns": [],
+          "history": [],
+          "lastDialogue": ""
+        },
+        "khoa": {
+          "seenConcerns": [],
+          "history": [],
+          "lastDialogue": ""
+        }
+      },
+      "learning": {
+        "viewed": [],
+        "heard": [],
+        "debates": {},
+        "quiz": {
+          "answers": [],
+          "submitted": false
+        },
+        "miniAttempts": {},
+        "links": [],
+        "invitations": []
+      },
+      "decisions": [],
+      "crisis": "unprepared",
+      "stage": "hall"
+    },
+    "C": {
+      "saveVersion": 8,
+      "found": {
+        "field": [
+          "field_cost",
+          "field_sensor",
+          "field_buyer"
+        ],
+        "coop": [
+          "coop_fees",
+          "coop_contract",
+          "coop_trace"
+        ],
+        "factory": [
+          "factory_order",
+          "factory_quality",
+          "factory_trucks"
+        ]
+      },
+      "done": {
+        "field": true,
+        "coop": true,
+        "factory": true
+      },
+      "minis": {
+        "field": true,
+        "coop": true,
+        "factory": true
+      },
+      "npcTalk": {},
+      "board": {},
+      "policies": {
+        "price": "fair",
+        "fees": "fair",
+        "risk": "fair"
+      },
+      "governance": {
+        "rights": "independent",
+        "harmony": "credit",
+        "prevent": "targeted",
+        "resolve": "formal"
+      },
+      "govProof": {
+        "rights": "field_buyer",
+        "harmony": "field_cost",
+        "prevent": "coop_trace",
+        "resolve": "field_buyer"
+      },
+      "sideQuests": {
+        "water": false,
+        "dock": false
+      },
+      "invited": {
+        "bay": true,
+        "sen": true,
+        "khoa": true
+      },
+      "memory": {
+        "bay": {
+          "seenConcerns": [],
+          "history": [],
+          "lastDialogue": ""
+        },
+        "sen": {
+          "seenConcerns": [],
+          "history": [],
+          "lastDialogue": ""
+        },
+        "khoa": {
+          "seenConcerns": [],
+          "history": [],
+          "lastDialogue": ""
+        }
+      },
+      "learning": {
+        "viewed": [],
+        "heard": [],
+        "debates": {},
+        "quiz": {
+          "answers": [],
+          "submitted": false
+        },
+        "miniAttempts": {},
+        "links": [],
+        "invitations": []
+      },
+      "decisions": [],
+      "crisis": "prepared",
+      "stage": "hall"
+    }
+  },
+  "tests": [
+    {
+      "name": "Exhaustive 3^7 × 3^4 proofs × 4 quests × 2 events",
+      "status": "PASS"
+    },
+    {
+      "name": "High aggregate benefit never overrides enterprise veto",
+      "status": "PASS"
+    },
+    {
+      "name": "HTX cash flow veto and restoration by documented resource pooling",
+      "status": "PASS"
+    },
+    {
+      "name": "Upfront fee strategy needs credit conditions AND documented obligations",
+      "status": "PASS"
+    },
+    {
+      "name": "Formal legal protection does not force immediate reconciliation",
+      "status": "PASS"
+    },
+    {
+      "name": "Unowned or incompatible proof cannot generate benefits",
+      "status": "PASS"
+    },
+    {
+      "name": "Evaluation is pure and repeatable",
+      "status": "PASS"
+    },
+    {
+      "name": "Memory persists harm, changes dialogue, recovers after amendment without farming",
+      "status": "PASS"
+    },
+    {
+      "name": "Unresolved repeated disputes persist",
+      "status": "PASS"
+    },
+    {
+      "name": "Legacy v71 migration retains evidence, choices and historical decisions",
+      "status": "PASS"
+    },
+    {
+      "name": "Malformed schema and impossible saves are sanitized",
+      "status": "PASS"
+    },
+    {
+      "name": "Future save version is rejected explicitly",
+      "status": "PASS"
+    },
+    {
+      "name": "Actor trust is differentiated and bounded even with maximal memory scars",
+      "status": "PASS"
+    },
+    {
+      "name": "Every evidence maps to concepts, actors and decisions",
+      "status": "PASS"
+    },
+    {
+      "name": "Ten contextual questions each explain every answer",
+      "status": "PASS"
+    },
+    {
+      "name": "Structured debate combines concept, causal context, evidence, response and order",
+      "status": "PASS"
+    }
+  ]
+}

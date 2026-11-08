@@ -1,0 +1,52 @@
+{
+  "tests": [
+    {
+      "name": "Registry rejects missing, duplicate and circular dependencies with a useful path",
+      "status": "PASS"
+    },
+    {
+      "name": "Registry resolves each factory once and exposes a defensive graph copy",
+      "status": "PASS"
+    },
+    {
+      "name": "All production modules import without DOM side effects; dependency graph is acyclic",
+      "status": "PASS"
+    },
+    {
+      "name": "Stores and nested NPC, quiz and session data are isolated per game",
+      "status": "PASS"
+    },
+    {
+      "name": "Rules follow store replacement instead of retaining a stale state reference",
+      "status": "PASS"
+    },
+    {
+      "name": "Pre-refactor evaluation, dialogue and migration match 48 saved contracts exactly",
+      "status": "PASS"
+    },
+    {
+      "name": "NPC memory can be used independently of browser UI and is replayable",
+      "status": "PASS"
+    },
+    {
+      "name": "Save adapter preserves legacy key and full v8 decisions, memory and quiz on resume",
+      "status": "PASS"
+    },
+    {
+      "name": "Home knowledge preview cannot overwrite a pending resume checkpoint",
+      "status": "PASS"
+    },
+    {
+      "name": "Future saves lock writes even after a fresh state replaces the current one",
+      "status": "PASS"
+    },
+    {
+      "name": "Corrupt newest save falls back without erasing legacy data; storage errors are bounded",
+      "status": "PASS"
+    },
+    {
+      "name": "Assessment model is pure, follows behavior and does not turn ending A into learning credit",
+      "status": "PASS"
+    }
+  ]
+}

@@ -24,15 +24,17 @@ Save version 8, migration từ v71/v7/v6/v4, lọc schema và lỗi dữ liệu 
 
 ## 3. File và kiến trúc
 
-Source chính vẫn HTML/CSS/Vanilla JS. Module catalog/simulation/content/learning tách riêng để dễ bảo trì và dùng cùng engine trong test. Danh sách đầy đủ tại [CHANGELOG_V80.md](CHANGELOG_V80.md), kiến trúc tại [ARCHITECTURE_V80.md](ARCHITECTURE_V80.md).
+Source chính vẫn HTML/CSS/Vanilla JS. Bổ sung Modular Vanilla: core state, simulation, NPC memory, story, exploration/evidence, negotiation, learning, assessment, UI, audio, storage. Factory có dependency tường minh; `game.js` chỉ bootstrap/wiring/lifecycle, state không còn là global. Classic script giữ mở trực tiếp file://; không chuyển ESM vì yêu cầu này. Danh sách đầy đủ tại [CHANGELOG_V80.md](CHANGELOG_V80.md), kiến trúc tại [ARCHITECTURE_V80.md](ARCHITECTURE_V80.md).
 
-Sửa `index.html`, `scripts/game.js`, `styles/game.css`, README, docs index/MC và QA cũ. Thêm bốn module JS, build/test helpers, tám tài liệu v8, standalone/manifest và QA artifacts/screenshot. Tài liệu cũ giữ như lịch sử, bổ sung link đến hướng dẫn hiện tại, thay đường dẫn Windows tuyệt đối bằng link tương đối. Không xóa file nội dung/asset cũ. `.git` không sử dụng được để commit; hash source phát hành tại `artifacts/qa/source-sha256.json`.
+Giữ `game.js` ở cùng đường dẫn, chuyển các trách nhiệm vào module riêng trong `scripts/`. Catalog và nội dung học thuật giữ nguyên; simulation giữ API tương thích. `index.html` nạp registry đầu tiên, bootstrap cuối; build giữ thứ tự đó. Source scan/hash mở rộng sang các thư mục con. Thêm Node architecture tests, production offline tests và QA bridge riêng cho bộ test cũ. Không xóa source, nội dung, asset hay tài liệu cũ. Hash source phát hành tại `artifacts/qa/source-sha256.json`.
 
 ## 4. Kết quả trước và sau
 
 - Baseline cũ: 34/34 assertion PASS khi sửa executable browser trong bản sao; script nguyên trạng BLOCKED bởi môi trường. Không thiếu 58 asset được tham chiếu.
-- Sau: **230/230 assertion PASS**, 0 FAIL, 0 BLOCKED trong suite chạy. Build PASS.
+- Trước Modular: **230/230 assertion PASS**, build PASS; giữ bằng chứng và 48 contract gốc.
+- Sau: **292/292 assertion PASS**, 0 FAIL, 0 BLOCKED trong suite chạy. Build PASS.
 - Exhaustive **1,417,176** trạng thái: A=37,692, B=360,504, C=1,018,980; 124 bộ phương án có thể đạt A. Kiểm tra veto khi tổng cao, khắc phục dòng tiền HTX, nhiều chiến lược, memory/hội thoại, dữ liệu biên và migration.
+- Modular: 12 nhóm Node PASS và 18 assertion production source/standalone offline không bridge PASS; kiểm tra không global, save v8 cũ, state mới và đạt A qua UI.
 - Console JS: 0; lỗi tải thực: 0. 118 asset gốc giữ nguyên hash, 49 hình decode và 9 OGG load trong source/standalone.
 - Browser đi thật toàn bộ full journey và demo mobile; B/C cùng A khác qua checkpoint hợp lệ và các quyết định UI; standalone đặt thư mục độc lập, tắt mạng và chơi đến A.
 - axe 30/30 màn/viewport PASS; còn mục `incomplete` và kiểm tra máy thật được công khai trong báo cáo QA.
@@ -56,12 +58,13 @@ Không khẳng định không còn bug trên mọi thiết bị. Chỉ số lợ
 
 Mở `index.html` với thư mục asset/scripts/styles kèm theo, hoặc chép riêng **`dist/Vung_Con_Xanh_v8_0_Offline.html`** và mở bằng Chrome/Edge hiện đại. Không cần mạng. Nếu file:// bị chính sách máy chặn: `python -m http.server 8000 --bind 127.0.0.1`, mở `http://127.0.0.1:8000/`.
 
-Bản standalone: **18,294,290 byte**, SHA-256 `f08481d48e2242856114f342048db3c615476e8f28ffade1a1d4e22a8ccfc5ae`. Manifest `dist/manifest.json`. Build `python tools/build_offline.py`; không nhúng base64 vào source chính.
+Bản standalone: **18,353,648 byte**, SHA-256 `0b34483e9cdbb3940b33a2a1cca8bc791b0faa28e2e9efa9abcf68ac7a728b23`. Manifest `dist/manifest.json`. Build `python tools/build_offline.py`; không nhúng base64 vào source chính.
 
 Test:
 
 ```sh
 node tools/test_simulation.cjs
+node tools/test_modules.cjs
 npm install --prefix /tmp/vcx-qa axe-core@4.14.0
 uv run --with-requirements tools/requirements-qa.txt python tools/run_qa.py
 python tools/write_release_reports.py

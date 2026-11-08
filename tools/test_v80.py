@@ -11,7 +11,7 @@ import tempfile
 import threading
 import sys
 from playwright.sync_api import sync_playwright
-from browser_support import launch_browser
+from browser_support import launch_browser, install_test_bridge
 
 ROOT = Path(__file__).resolve().parent.parent
 ART = ROOT / 'artifacts' / 'qa'
@@ -50,6 +50,7 @@ with sync_playwright() as playwright:
         if offline:
             context.set_offline(True)
         page = context.new_page()
+        install_test_bridge(page)
         page.set_default_timeout(10000)
         page.on('pageerror', lambda error: all_errors.append(str(error)))
         def request_failed(request):
@@ -354,12 +355,12 @@ with sync_playwright() as playwright:
             check('Offline '+name+' includes new panels',page.locator('.knowledgeCard').count()==1)
             page.click('#learningClose')
             loaded=page.evaluate('''async()=>{
-             const sources=[...Object.values(PORTRAITS),...Object.values(SCENE_ASSETS),...Object.values(SPRITES)];
+             const app=VCX.get('app');const sources=[...app.ui.imageSources(),...app.exploration.spriteSources()];
              return await Promise.all(sources.map(src=>new Promise(resolve=>{const i=new Image();i.onload=()=>resolve(i.naturalWidth>0);i.onerror=()=>resolve(false);i.src=src;})));
             }''')
             check('Offline '+name+' all 49 images decode',len(loaded)==49 and all(loaded))
             audio=page.evaluate('''async()=>{
-             const sources=[MUSIC.day.src,MUSIC.tension.src,...Object.values(SFX_ASSETS)];
+             const sources=VCX.get('app').audio.sources();
              return await Promise.all(sources.map(src=>new Promise(resolve=>{const a=new Audio();a.preload='metadata';const timer=setTimeout(()=>resolve(false),6000);a.onloadedmetadata=()=>{clearTimeout(timer);resolve(a.duration>0);};a.onerror=()=>{clearTimeout(timer);resolve(false);};a.src=src;})));
             }''')
             check('Offline '+name+' all 9 OGG metadata load',len(audio)==9 and all(audio))

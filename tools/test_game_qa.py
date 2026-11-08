@@ -3,7 +3,7 @@ sys.stdout.reconfigure(encoding='utf-8')
 import os
 import time
 from playwright.sync_api import sync_playwright
-from browser_support import launch_browser
+from browser_support import launch_browser, install_test_bridge
 
 repo_dir = os.path.abspath('.')
 index_path = f"file:///{repo_dir.replace(os.sep, '/')}/index.html"
@@ -25,6 +25,7 @@ with sync_playwright() as p:
     # Test Suite 1: Standard Desktop 1920x1080 Full Game Walkthrough
     # -------------------------------------------------------------
     page = browser.new_page(viewport={"width": 1920, "height": 1080})
+    install_test_bridge(page)
     page.goto(index_path)
     page.wait_for_timeout(800)
     

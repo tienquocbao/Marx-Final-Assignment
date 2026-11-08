@@ -1,0 +1,18 @@
+PASS source exposes no legacy gameplay globals 
+PASS source module API is cached and bootstrap runs once 
+PASS source music still waits for gesture 
+PASS source resumes pre-refactor v8 evidence, policies, memory and quiz 
+PASS source original v8 save reaches A through UI 
+PASS source revise clears result and restores editable negotiation 
+PASS source handlers follow fresh state after reset and begin 
+PASS source mobile knowledge and keyboard focus remain usable 
+PASS source no runtime errors, failed requests or internet {"errors": [], "failed": [], "external": []}
+PASS standalone exposes no legacy gameplay globals 
+PASS standalone module API is cached and bootstrap runs once 
+PASS standalone music still waits for gesture 
+PASS standalone resumes pre-refactor v8 evidence, policies, memory and quiz 
+PASS standalone original v8 save reaches A through UI 
+PASS standalone revise clears result and restores editable negotiation 
+PASS standalone handlers follow fresh state after reset and begin 
+PASS standalone mobile knowledge and keyboard focus remain usable 
+PASS standalone no runtime errors, failed requests or internet {"errors": [], "failed": [], "external": []}

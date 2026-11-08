@@ -52,3 +52,7 @@ Bật thiết lập **Reduce motion/Giảm chuyển động** của hệ điều
 Nếu nút không chạy, kiểm tra đã chép đủ scripts/styles/assets hoặc mở đúng bản standalone. Nếu lưu bị chặn, dùng server tĩnh cục bộ hoặc xuất báo cáo trước khi thoát. Nếu âm thanh không nghe thấy, bấm Bắt đầu, bật nhạc/hiệu ứng, kiểm tra âm lượng trang và hệ điều hành. Không xóa dữ liệu trình duyệt trước khi sao lưu báo cáo cần giữ.
 
 Nội dung học thuật là diễn giải tình huống từ tài liệu nhóm, chưa có PDF/slide gốc để xác minh. Cần đối chiếu với giảng viên trước buổi trình bày chính thức. Mọi nhân vật, số liệu, ngưỡng đồng thuận và hệ quả đều hư cấu.
+
+## Sau refactor Modular
+
+Cách chơi, phím tắt, trình chiếu và bản lưu không đổi. Khi chép source sang máy khác, giữ nguyên **toàn bộ cây thư mục `scripts/` kể cả thư mục con**, cùng `assets/`, `styles/` và `index.html`. Không cần npm, framework hay build để mở source. Nếu chỉ chép một file, dùng bản đã build trong `dist/`, không chép riêng `index.html`.

@@ -1,0 +1,94 @@
+{
+  "tests": [
+    {
+      "name": "source exposes no legacy gameplay globals",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "source module API is cached and bootstrap runs once",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "source music still waits for gesture",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "source resumes pre-refactor v8 evidence, policies, memory and quiz",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "source original v8 save reaches A through UI",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "source revise clears result and restores editable negotiation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "source handlers follow fresh state after reset and begin",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "source mobile knowledge and keyboard focus remain usable",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "source no runtime errors, failed requests or internet",
+      "status": "PASS",
+      "details": "{\"errors\": [], \"failed\": [], \"external\": []}"
+    },
+    {
+      "name": "standalone exposes no legacy gameplay globals",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "standalone module API is cached and bootstrap runs once",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "standalone music still waits for gesture",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "standalone resumes pre-refactor v8 evidence, policies, memory and quiz",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "standalone original v8 save reaches A through UI",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "standalone revise clears result and restores editable negotiation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "standalone handlers follow fresh state after reset and begin",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "standalone mobile knowledge and keyboard focus remain usable",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "standalone no runtime errors, failed requests or internet",
+      "status": "PASS",
+      "details": "{\"errors\": [], \"failed\": [], \"external\": []}"
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+PASS Audio waits for a user gesture 
+PASS Keyboard starts the story 
+PASS Enter advances exactly one story line 
+PASS Full opening story reaches map 
+PASS Map keyboard movement 
+PASS Price minigame rejects below-cost proposal 
+PASS Actual minigame field 
+PASS Fee minigame rejects empty matching 
+PASS Actual minigame coop 
+PASS Quality minigame rejects ineligible lot 
+PASS Actual minigame factory 
+PASS Side quest rejects wrong order water 
+PASS Actual optional task water 
+PASS Side quest rejects wrong order dock 
+PASS Actual optional task dock 
+PASS Clue board rejects mismatched evidence 
+PASS Invitation rejects unrelated proof 
+PASS Evidence collection, board and voluntary invitations 
+PASS Governance rejects missing evidence 
+PASS NPC veto with high total benefit 
+PASS NPC remembers harmful proposal and its repair 
+PASS Adaptive dialogue changed 
+PASS Knowledge panel and 9 evidence concept map 
+PASS Contextual HTX economic explanation 
+PASS Native dialog Escape and focus restoration 
+PASS Debate rejects incomplete argument bay 
+PASS Debate penalizes illogical order bay 
+PASS Contextual structured debate bay 
+PASS Debate rejects incomplete argument sen 
+PASS Debate penalizes illogical order sen 
+PASS Contextual structured debate sen 
+PASS Debate rejects incomplete argument khoa 
+PASS Debate penalizes illogical order khoa 
+PASS Contextual structured debate khoa 
+PASS Escape from crisis restores day music and editable hall 
+PASS Crisis switches tension soundtrack 
+PASS Ending A through actual gameplay 
+PASS Debrief shows reasons and behavior-based profile 
+PASS Quiz rejects unanswered item 
+PASS Quiz answers survive actual storage reload 
+PASS 10-question assessment includes wrong-option explanations 
+PASS TXT export contains actual decisions, profile, quiz and remediation 
+PASS Learning dashboard integrates quiz and debate results 
+PASS Resume retains NPC memory, learning and ending 
+PASS Crisis switches tension soundtrack 
+PASS Checkpoint UI decisions → ending B actual B
+PASS Ending B has no horizontal overflow 
+PASS Crisis switches tension soundtrack 
+PASS Checkpoint UI decisions → ending C actual C
+PASS Ending C has no horizontal overflow 
+PASS Crisis switches tension soundtrack 
+PASS Checkpoint UI decisions → ending A actual A
+PASS Ending A has no horizontal overflow 
+PASS Price minigame rejects below-cost proposal 
+PASS Actual minigame field 
+PASS Fee minigame rejects empty matching 
+PASS Actual minigame coop 
+PASS Quality minigame rejects ineligible lot 
+PASS Actual minigame factory 
+PASS Clue board rejects mismatched evidence 
+PASS Invitation rejects unrelated proof 
+PASS Evidence collection, board and voluntary invitations 
+PASS Presentation prepares 2 policies and 2 tools 
+PASS Prepared decisions are not credited as player actions 
+PASS 390px #knowledgeBtn responsive 
+PASS 390px #learningBtn responsive 
+PASS 390px #debateBtn responsive 
+PASS Crisis switches tension soundtrack 
+PASS Presentation mode and mobile Ending A 
+PASS 390px quiz fits viewport 
+PASS Reduced motion disables scene and weather animation 
+PASS Corrupt JSON does not break start 
+PASS Home knowledge preview preserves resumable checkpoint 
+PASS Actual v71 localStorage migration and preserved backup 
+PASS Migration does not invent learning behaviors 
+PASS Malformed nested learning and decision data remain usable 
+PASS Future schema is not overwritten 
+PASS Storage failure warns and game remains playable 
+PASS Legacy evidence modal traps Tab 
+PASS Map keys do not move through modal 
+PASS Cancel reset preserves progress 
+PASS Confirmed reset returns home with new save 
+PASS Cold offline source starts 
+PASS Offline source includes new panels 
+PASS Offline source all 49 images decode 
+PASS Offline source all 9 OGG metadata load 
+PASS CSS loaded source 
+PASS Offline source file storage resumes 
+PASS Cold offline standalone starts 
+PASS Offline standalone includes new panels 
+PASS Offline standalone all 49 images decode 
+PASS Offline standalone all 9 OGG metadata load 
+PASS CSS loaded standalone 
+PASS Fee minigame rejects empty matching 
+PASS Actual minigame coop 
+PASS Quality minigame rejects ineligible lot 
+PASS Actual minigame factory 
+PASS Clue board rejects mismatched evidence 
+PASS Invitation rejects unrelated proof 
+PASS Evidence collection, board and voluntary invitations 
+PASS Crisis switches tension soundtrack 
+PASS Isolated standalone full offline UI route reaches A 
+PASS Standalone quiz interactive 
+PASS Offline standalone file storage resumes 
+PASS Home fits 1920×1080 
+PASS Native dialog contains focus 1920 
+PASS Space activates button 1920 
+PASS Reduced motion text remains complete 1920 
+PASS CSS focus outline 1920 
+PASS HTML no duplicate IDs 1920 
+PASS Home fits 1366×768 
+PASS Native dialog contains focus 1366 
+PASS Space activates button 1366 
+PASS Reduced motion text remains complete 1366 
+PASS CSS focus outline 1366 
+PASS HTML no duplicate IDs 1366 
+PASS Home fits 1280×720 
+PASS Native dialog contains focus 1280 
+PASS Space activates button 1280 
+PASS Reduced motion text remains complete 1280 
+PASS CSS focus outline 1280 
+PASS HTML no duplicate IDs 1280 
+PASS Home fits 390×844 
+PASS Native dialog contains focus 390 
+PASS Space activates button 390 
+PASS Reduced motion text remains complete 390 
+PASS CSS focus outline 390 
+PASS HTML no duplicate IDs 390 
+PASS No uncaught JavaScript exceptions []
+PASS No missing/failed runtime assets []
+130/130 PASS; 0 FAIL

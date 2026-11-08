@@ -6,7 +6,7 @@ import os
 import json
 import sys
 from playwright.sync_api import sync_playwright
-from browser_support import launch_browser
+from browser_support import launch_browser, install_test_bridge
 ROOT=Path(__file__).resolve().parent.parent
 axe=Path(os.environ.get('VCX_AXE','/tmp/vcx-qa/node_modules/axe-core/axe.min.js'))
 ART=ROOT/'artifacts/qa'
@@ -19,6 +19,7 @@ with sync_playwright() as p:
     browser=launch_browser(p)
     for width in [1366,390]:
         page=browser.new_page(viewport={'width':width,'height':900},reduced_motion='reduce')
+        install_test_bridge(page)
         page.goto((ROOT/'index.html').as_uri());page.add_script_tag(path=str(axe))
         page.evaluate('(s)=>{window.auditFixture=s}',fixture)
         scenarios={

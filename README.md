@@ -19,6 +19,12 @@ Visual novel mô phỏng giáo dục về quan hệ lợi ích kinh tế giữa 
 - Save schema v8, kiểm tra dữ liệu, tiếp tục save v71/v7/v6/v4 còn hợp lệ; giữ nguyên key cũ. Lưu chỉ trên trình duyệt hiện tại.
 - Giữ phong cách cũ, bổ sung focus, dialog, tương phản, typewriter có hỗ trợ giảm chuyển động và nhạc căng thẳng khi biến cố.
 
+## Kiến trúc Modular Vanilla
+
+`game.js` là điểm khởi tạo và nối module. Core state, simulation, NPC memory, story/dialogue, exploration/evidence, negotiation, learning, assessment, UI, audio và save/load có trách nhiệm riêng. State được inject vào module, engine không dùng DOM. Không đổi schema/key save v8 hoặc gameplay.
+
+Module factory có scope riêng và dependency tường minh, dùng classic script để vẫn mở source bằng `file://`. Chỉ namespace `VCX` nằm trên browser; không cần framework hoặc bước build để chơi source. Xem [kiến trúc và cách mở rộng](docs/ARCHITECTURE_V80.md). Bản standalone tiếp tục được build và test cold offline thực tế.
+
 ## Cách chơi và trình chiếu
 
 Bắt đầu → khám phá ruộng/HTX/nhà máy → ghép 3 nút thắt → mời ba bên bằng chứng cứ → sửa 3 điều khoản và chọn 4 công cụ Nhà nước → ứng phó độ mặn → xem debrief và quiz.
@@ -32,6 +38,7 @@ Bật **Chế độ trình chiếu** trước khi bắt đầu: truyện rút g�
 ```sh
 python tools/build_offline.py
 node tools/test_simulation.cjs
+node tools/test_modules.cjs
 uv run --with-requirements tools/requirements-qa.txt python tools/run_qa.py
 ```
 
@@ -44,7 +51,7 @@ npm install --prefix /tmp/vcx-qa axe-core@4.14.0
 # hoặc đặt VCX_AXE=/đường/dẫn/axe.min.js
 ```
 
-Không có axe thì suite ghi **BLOCKED**, không ghi PASS. Game không dùng các gói QA, CDN, font ngoài, API, backend hay dịch vụ AI. Kết quả máy đọc ở `artifacts/qa/`; screenshot mới ở `screenshots/v80/`.
+Không có axe thì suite ghi **BLOCKED**, không ghi PASS. Game không dùng các gói QA, CDN, font ngoài, API, backend hay dịch vụ AI. Kiểm thử gồm contract trước/sau refactor, dependency/state/save và production browser không QA bridge. Baseline trước Modular ở `artifacts/modular-baseline/`. Kết quả hiện tại ở `artifacts/qa/`; screenshot mới ở `screenshots/v80/`.
 
 ## Tài liệu và giới hạn
 

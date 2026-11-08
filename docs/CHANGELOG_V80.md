@@ -34,3 +34,16 @@ Không thêm mini-game cung cầu hoặc c/v; ưu tiên chiều sâu đàm phán
 ## Nghiệm thu
 
 Đọc `TEST_REPORT_V80.md` và `FINAL_RELEASE_REPORT_V80.md`. Kết quả cũ không được coi là bằng chứng cho v8. Chưa thể xác minh slide gốc, diễn tập lớp, âm thanh nghe thực, máy chiếu và công cụ đọc màn hình trên thiết bị đích.
+
+## Bổ sung Modular Vanilla sau commit 11067bf
+
+- Tiếp tục trên source v8 đã hoàn thành; chạy baseline 230/230 PASS trước refactor và lưu JSON/log tại `artifacts/modular-baseline/`.
+- `scripts/game.js` giữ đường dẫn, trở thành composition root: tạo store/services, nối module và lifecycle; không xóa file hoặc thay UI/cốt truyện/luật mô phỏng.
+- Thêm `scripts/core/{modules,state}.js`, `characters/memory.js`, `simulation/session.js`, `story/dialogue.js`, `exploration/evidence.js`, `negotiation/index.js`, `assessment/{model,index,report}.js`, `ui/{rendering,ending,journal}.js`, `audio.js`, `storage/{migration,save-load}.js`.
+- Chuyển triển khai memory/dialogue/migration và assessment model vào đúng trách nhiệm; giữ API simulation v8 tương thích. Các feature có closure riêng, dependency theo tên và store được inject; không giữ tham chiếu state cũ sau reset/resume.
+- Registry phát hiện dependency thiếu/trùng/vòng; không mạng, eval, framework hoặc dynamic loader. Classic script giữ source file://; đã đánh giá và chưa dùng ESM vì giới hạn module loader khi mở file trực tiếp.
+- Nội dung học thuật, schema/key save, asset và cách trình chiếu giữ nguyên. Source được định dạng lại để đọc/bảo trì dễ hơn.
+- Thêm `tools/test_modules.cjs`, `tools/test_modular_browser.py`, `tools/browser_test_bridge.js`; mở rộng runner/asset/DOM/syntax/hash sang thư mục module con. Test cũ dùng bridge chỉ do Playwright inject; bridge không có trong sản phẩm. Test production riêng không dùng bridge.
+- Đối chiếu 48 contract gốc, exhaustive giữ cùng phân bố A/B/C; kiểm tra source và standalone offline thực tế, save v8 trước refactor, reset, UI và global scope. Kết quả cuối lấy từ báo cáo QA, không dùng số dự kiến.
+- Lượt hồi quy đầu phát hiện test decode asset còn đọc bảng global cũ; chuyển test sang API module, giữ nguyên tiêu chí 49 hình/9 audio. Log FAIL ban đầu được giữ tại `artifacts/modular-first-run/`.
+- Build lại `dist/`, cập nhật README, kiến trúc, hướng dẫn và báo cáo phát hành; không xóa file gameplay hoặc asset nào.

@@ -36,12 +36,92 @@
       "details": ""
     },
     {
+      "name": "JavaScript syntax audio.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
       "name": "JavaScript syntax simulation.js",
       "status": "PASS",
       "details": ""
     },
     {
       "name": "JavaScript syntax game-data.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax dialogue.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax state.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax modules.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax session.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax index.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax model.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax report.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax rendering.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax ending.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax journal.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax memory.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax migration.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax save-load.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax index.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax evidence.js",
       "status": "PASS",
       "details": ""
     },
@@ -96,7 +176,87 @@
       "details": "[]"
     },
     {
+      "name": "Static DOM references audio.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
       "name": "Static DOM references simulation.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references dialogue.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references state.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references modules.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references session.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references index.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references model.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references report.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references rendering.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references ending.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references journal.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references memory.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references migration.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references save-load.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references index.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references evidence.js",
       "status": "PASS",
       "details": "[]"
     }

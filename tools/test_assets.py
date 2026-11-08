@@ -31,12 +31,12 @@ except ImportError:
     results.append({'name':'HTML5 parser','status':'BLOCKED','details':'Use --with html5lib'})
 check('HTML IDs are unique',len(parser.ids)==len(set(parser.ids)))
 check('HTML local dependencies exist',all((ROOT/p).is_file() for p in parser.refs if not p.startswith(('#','data:'))))
-files=list((ROOT/'scripts').glob('*.js'))+[ROOT/'styles/game.css',ROOT/'index.html']
+files=list((ROOT/'scripts').rglob('*.js'))+[ROOT/'styles/game.css',ROOT/'index.html']
 refs=set()
 for p in files:refs.update(m.removeprefix('../') for m in re.findall(r'(?:\.\./)?assets/[\w/.-]+',p.read_text()))
 missing=[p for p in refs if not (ROOT/p).is_file()]
 check('All 58 runtime asset paths exist',len(refs)==58 and not missing,str(missing))
-for p in (ROOT/'scripts').glob('*.js'):
+for p in (ROOT/'scripts').rglob('*.js'):
     proc=subprocess.run(['node','--check',str(p)],capture_output=True,text=True)
     check('JavaScript syntax '+p.name,proc.returncode==0,proc.stderr)
 check('No remote runtime dependencies',not any(re.search(r'(?:https?:)?//[^\s]+\.(?:js|css|png|jpg|ogg)|@import|fonts.googleapis|fetch\(|XMLHttpRequest|WebSocket',p.read_text()) for p in files))
@@ -67,9 +67,9 @@ try:
     check('CSS syntax parser',not css_errors,str(css_errors))
 except ImportError:
     results.append({'name':'CSS syntax parser','status':'BLOCKED','details':'Use uv run --with tinycss2 python tools/test_assets.py'})
-for p in [ROOT/'index.html',*(ROOT/'scripts').glob('*.js')]:
+for p in [ROOT/'index.html',*(ROOT/'scripts').rglob('*.js')]:
     if p.name=='game-data.js':continue
-    used=re.findall(r"\$\('([^']+)'\)",p.read_text())
+    used=re.findall(r"""\$\(['"]([^'"]+)['"]\)""",p.read_text())
     dynamic={'priceSlider','miniResult','miniCheck','priceNum','sideSequence','contextKnowledge','demoExpand','knowledgeSelect','dashboardExport','dashboardQuiz','debateReset','submitDebate','debateResult','quizFeedback','quizPrev','quizNext','quizExport','debateConcept','debateProof','debateCause','debateResponse'}
     check('Static DOM references '+p.name,all(id in parser.ids or id in dynamic for id in used),str([id for id in used if id not in parser.ids and id not in dynamic]))
 out=ROOT/'artifacts/qa/assets.json';out.write_text(json.dumps({'tests':results},ensure_ascii=False,indent=2));sys.exit(1 if any(r['status']=='FAIL' for r in results) else 0)

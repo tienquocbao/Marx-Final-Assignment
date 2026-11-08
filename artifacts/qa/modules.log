@@ -1,0 +1,12 @@
+PASS Registry rejects missing, duplicate and circular dependencies with a useful path
+PASS Registry resolves each factory once and exposes a defensive graph copy
+PASS All production modules import without DOM side effects; dependency graph is acyclic
+PASS Stores and nested NPC, quiz and session data are isolated per game
+PASS Rules follow store replacement instead of retaining a stale state reference
+PASS Pre-refactor evaluation, dialogue and migration match 48 saved contracts exactly
+PASS NPC memory can be used independently of browser UI and is replayable
+PASS Save adapter preserves legacy key and full v8 decisions, memory and quiz on resume
+PASS Home knowledge preview cannot overwrite a pending resume checkpoint
+PASS Future saves lock writes even after a fresh state replaces the current one
+PASS Corrupt newest save falls back without erasing legacy data; storage errors are bounded
+PASS Assessment model is pure, follows behavior and does not turn ending A into learning credit
