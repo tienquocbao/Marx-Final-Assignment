@@ -1,3 +1,5 @@
+> Tài liệu lịch sử trước v8. Hướng dẫn hiện hành: [USER_GUIDE_V80.md](USER_GUIDE_V80.md); kiểm chứng hiện tại: [TEST_REPORT_V80.md](TEST_REPORT_V80.md). Các số trang, gói offline và kết quả cũ dưới đây không được coi là đã xác minh cho bản v8.
+
 # BÁO CÁO KIỂM TOÁN VÀ TÁI THIẾT KẾ TOÀN DIỆN HỆ THỐNG AVATAR & SPRITES
 **Dự án:** Vùng Cồn Xanh (Học phần MLN122 – Triết học & Kinh tế Chính trị Mác - Lênin)  
 **Tác giả kiểm toán & Technical Artist:** Senior 2D Technical Artist & Frontend Game Developer  
@@ -106,7 +108,7 @@ Sau khi kiểm toán phản hồi thực tế từ người dùng (phát hiện 
 - **Lỗi cắt cụt nón lá Chú Bảy:** ĐÃ KHẮC PHỤC $100\%$ (lề trái/phải $\ge 26\text{ px}$, đường cong nón liên tục, không cắt phẳng).
 - **Lỗi vệt trắng / rách áo / dính màu lạ:** ĐÃ KHẮC PHỤC $100\%$ (áo sơ mi, áo vest, khăn rằn solid $100\%$, không lỗ thủng).
 - **Lỗi viền halo trắng trên nền xanh:** ĐÃ KHẮC PHỤC $100\%$ qua Color Decontamination.
-- **Contact sheet đối chiếu trực quan:** Đã xuất tại [AVATAR_40_KIEM_TRA.png](file:///c:/Users/tienq/Vung_Con_Xanh_Repo/docs/AVATAR_40_KIEM_TRA.png) trên nền xanh game.
-- **Sprite sheet đối chiếu chuyển động:** Đã xuất tại [minh_an_walk_cycle_preview.png](file:///c:/Users/tienq/Vung_Con_Xanh_Repo/docs/minh_an_walk_cycle_preview.png).
+- **Contact sheet đối chiếu trực quan:** Đã xuất tại [AVATAR_40_KIEM_TRA.png](AVATAR_40_KIEM_TRA.png) trên nền xanh game.
+- **Sprite sheet đối chiếu chuyển động:** Đã xuất tại [minh_an_walk_cycle_preview.png](minh_an_walk_cycle_preview.png).
 - **Kết quả kiểm thử tự động Playwright:** 34/34 PASS ($100\%$).
-- **Hệ thống mapping tương thích:** [avatar_source_map.json](file:///c:/Users/tienq/Vung_Con_Xanh_Repo/docs/avatar_source_map.json).
+- **Hệ thống mapping tương thích:** [avatar_source_map.json](avatar_source_map.json).

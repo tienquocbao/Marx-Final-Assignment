@@ -1,0 +1,9 @@
+{
+  "index.html": "4235dbddd5bb32f2e0af67937aceb47615f2b2088ed8c68859ff48fd83f10489",
+  "styles/game.css": "48a9055d3eb60b63aa945080e26710f87fa09a421409ec87b7029d315ffccc8e",
+  "scripts/game-data.js": "9f289abad7887b02ac632f80041239d43e7fb98597b11a143882432ed3b1622e",
+  "scripts/game.js": "18ebb5c6c570dfa2dadc939417fb5bb7771cabbc3ff46e0eca16e741c904e28f",
+  "scripts/learning-content.js": "99167add535bf7b1a5983f010c4c952900e6b85f448bbc3456400a8baf6fec8d",
+  "scripts/learning.js": "8cbc442b36a35a3fd7d2e361e43376bd660318d5bca236da66e1261f5cb3d704",
+  "scripts/simulation.js": "d9584ba8747ba5314f44d12502e6ca997d428b42161a34abbaea2472aacf0946"
+}

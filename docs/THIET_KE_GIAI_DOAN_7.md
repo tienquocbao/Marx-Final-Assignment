@@ -1,3 +1,5 @@
+> Tài liệu lịch sử trước v8. Hướng dẫn hiện hành: [USER_GUIDE_V80.md](USER_GUIDE_V80.md); kiểm chứng hiện tại: [TEST_REPORT_V80.md](TEST_REPORT_V80.md). Các số trang, gói offline và kết quả cũ dưới đây không được coi là đã xác minh cho bản v8.
+
 # VÙNG CỒN XANH — THIẾT KẾ GIAI ĐOẠN 7 (v7)
 
 ## 1. Mục tiêu và phạm vi

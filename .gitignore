@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+node_modules/
+.DS_Store
+
+# Nested archive is not used as source. Existing tracked copy stays unchanged.
+/Vung_Con_Xanh_Repo.zip

@@ -1,0 +1,174 @@
+{
+  "tests": [
+    {
+      "name": "Home Screen Cast Count",
+      "status": "PASS",
+      "details": "Found 3 cast images"
+    },
+    {
+      "name": "Cast Pic 0 4:5 Aspect Ratio",
+      "status": "PASS",
+      "details": "w=108.0, h=135.0, ratio=0.800"
+    },
+    {
+      "name": "Cast Pic 1 4:5 Aspect Ratio",
+      "status": "PASS",
+      "details": "w=108.0, h=135.0, ratio=0.800"
+    },
+    {
+      "name": "Cast Pic 2 4:5 Aspect Ratio",
+      "status": "PASS",
+      "details": "w=108.0, h=135.0, ratio=0.800"
+    },
+    {
+      "name": "Story Week 1 Cá Bống Happy",
+      "status": "PASS",
+      "details": "src=assets/portrait/ca_bong_happy.png, w=192.0, h=240.0, ratio=0.800"
+    },
+    {
+      "name": "Story Week 1 Chú Bảy Happy",
+      "status": "PASS",
+      "details": "src=assets/portrait/chu_bay_happy.png"
+    },
+    {
+      "name": "Story Week 2–4 Minh An Thinking",
+      "status": "PASS",
+      "details": "src=assets/portrait/minh_an_thinking.png"
+    },
+    {
+      "name": "Story Week 6 Chú Bảy Angry",
+      "status": "PASS",
+      "details": "src=assets/portrait/chu_bay_angry.png"
+    },
+    {
+      "name": "Story Week 6 Anh Khoa Angry",
+      "status": "PASS",
+      "details": "src=assets/portrait/anh_khoa_angry.png"
+    },
+    {
+      "name": "Story Week 6 Chị Sen Stressed",
+      "status": "PASS",
+      "details": "src=assets/portrait/chi_sen_stressed.png"
+    },
+    {
+      "name": "Minh An Walk Sprite Initial Frame",
+      "status": "PASS",
+      "details": "src=assets/sprites/minh_an_walk_0.png"
+    },
+    {
+      "name": "Minh An Sprite Facing Left on 'A'",
+      "status": "PASS",
+      "details": "facingLeft=True"
+    },
+    {
+      "name": "Minh An Sprite Facing Right on 'D'",
+      "status": "PASS",
+      "details": "facingRight=True"
+    },
+    {
+      "name": "Ruộng Chú Bảy Dialogue Avatar",
+      "status": "PASS",
+      "details": "src=assets/portrait/chu_bay_stressed.png, w=104.0, h=130.0, ratio=0.800"
+    },
+    {
+      "name": "Clue Modal Chú Bảy Portrait",
+      "status": "PASS",
+      "details": "src=assets/portrait/chu_bay_worried.png"
+    },
+    {
+      "name": "HTX Chị Sen Dialogue Avatar",
+      "status": "PASS",
+      "details": "src=assets/portrait/chi_sen_stressed.png"
+    },
+    {
+      "name": "Nhà máy Anh Khoa Dialogue Avatar",
+      "status": "PASS",
+      "details": "src=assets/portrait/anh_khoa_stressed.png"
+    },
+    {
+      "name": "Invitation Screen Stakeholders Count",
+      "status": "PASS",
+      "details": "Found 3 invite cards"
+    },
+    {
+      "name": "Negotiation Stakeholder Cards",
+      "status": "PASS",
+      "details": "Found 3 stakeholder portraits"
+    },
+    {
+      "name": "Hearing Body Initial Portrait (Chú Bảy)",
+      "status": "PASS",
+      "details": "src=assets/portrait/chu_bay_angry.png"
+    },
+    {
+      "name": "Hearing Body Chị Sen Portrait",
+      "status": "PASS",
+      "details": "src=assets/portrait/chi_sen_angry.png"
+    },
+    {
+      "name": "Hearing Body Anh Khoa Portrait",
+      "status": "PASS",
+      "details": "src=assets/portrait/anh_khoa_angry.png"
+    },
+    {
+      "name": "Salinity Crisis Modal Trigger",
+      "status": "PASS",
+      "details": "Crisis modal displayed successfully"
+    },
+    {
+      "name": "Ending A Faces Count",
+      "status": "PASS",
+      "details": "Found 3 faces in ending A"
+    },
+    {
+      "name": "Ending A Faces Happy Mood",
+      "status": "PASS",
+      "details": "Happy count=3/3"
+    },
+    {
+      "name": "Ending B Faces Thinking Mood",
+      "status": "PASS",
+      "details": "Thinking count=3/3"
+    },
+    {
+      "name": "Ending C Faces Worried Mood",
+      "status": "PASS",
+      "details": "Worried count=3/3"
+    },
+    {
+      "name": "Laptop 1366x768 Cast Dimensions",
+      "status": "PASS",
+      "details": "w=108.0, h=135.0"
+    },
+    {
+      "name": "Projector 1280x720 Cast Dimensions",
+      "status": "PASS",
+      "details": "w=108.0, h=135.0"
+    },
+    {
+      "name": "Mobile 390x844 Cast Dimensions",
+      "status": "PASS",
+      "details": "w=84.0, h=105.0"
+    },
+    {
+      "name": "Mobile Story Portrait Dimensions",
+      "status": "PASS",
+      "details": "w=124.8, h=170.0"
+    },
+    {
+      "name": "Mobile World Avatar Dimensions",
+      "status": "PASS",
+      "details": "w=52.0, h=70.0"
+    },
+    {
+      "name": "Zoom 125% Cast Count",
+      "status": "PASS",
+      "details": "Found 3 cast images at 125% zoom"
+    },
+    {
+      "name": "prefers-reduced-motion Disabled Animation",
+      "status": "PASS",
+      "details": "storyFace animationName=none"
+    }
+  ]
+}

@@ -3,10 +3,11 @@ sys.stdout.reconfigure(encoding='utf-8')
 import os
 import time
 from playwright.sync_api import sync_playwright
+from browser_support import launch_browser
 
 repo_dir = os.path.abspath('.')
 index_path = f"file:///{repo_dir.replace(os.sep, '/')}/index.html"
-screenshots_dir = os.path.join(repo_dir, 'screenshots')
+screenshots_dir = os.path.join(repo_dir, 'screenshots', 'v80-legacy')
 os.makedirs(screenshots_dir, exist_ok=True)
 
 test_results = []
@@ -18,7 +19,7 @@ def record_test(name, status, details=""):
 print("=== STARTING PLAYWRIGHT QA TEST SUITE ===")
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(channel="msedge", headless=True)
+    browser = launch_browser(p)
     
     # -------------------------------------------------------------
     # Test Suite 1: Standard Desktop 1920x1080 Full Game Walkthrough
@@ -332,3 +333,6 @@ if fails > 0:
             print(f"  FAIL: {t['name']} - {t['details']}")
 else:
     print("ALL TESTS PASSED WITH 100% SUCCESS!")
+
+if fails:
+    sys.exit(1)

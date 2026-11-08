@@ -1,0 +1,32 @@
+[
+  {
+    "suite": "build",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "suite": "assets",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "suite": "simulation",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "suite": "legacy",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "suite": "browser",
+    "status": "PASS",
+    "exitCode": 0
+  },
+  {
+    "suite": "accessibility",
+    "status": "PASS",
+    "exitCode": 0
+  }
+]

@@ -1,0 +1,41 @@
+/* Exhaustive final proposals + deterministic memory/migration boundaries. */
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs');
+const S=require('../scripts/simulation.js'),D=require('../scripts/game-data.js'),C=require('../scripts/learning-content.js');
+const results=[];function test(name,fn){try{fn();results.push({name,status:'PASS'});}catch(e){results.push({name,status:'FAIL',detail:e.stack});}}
+function base(){return {saveVersion:8,found:Object.fromEntries(Object.entries(D.SCENES).map(([k,v])=>[k,v.hotspots.map(h=>h.id)])),done:{field:true,coop:true,factory:true},minis:{field:true,coop:true,factory:true},npcTalk:{},board:{},policies:{price:'fair',fees:'fair',risk:'fair'},governance:{rights:'document',harmony:'training',prevent:'targeted',resolve:'mediate'},govProof:{rights:'coop_contract',harmony:'field_cost',prevent:'field_sensor',resolve:'coop_contract'},sideQuests:{water:false,dock:false},invited:{bay:true,sen:true,khoa:true},memory:S.freshMemory(),learning:S.freshLearning(),decisions:[],crisis:'prepared',stage:'hall'};}
+const evaluate=s=>S.evaluate(s,D);
+let counts={A:0,B:0,C:0},examples={},cases=0,strategies=new Set();
+function cartesian(lists,fn,index=0,acc=[]){if(index===lists.length){fn(acc);return;}for(const v of lists[index])cartesian(lists,fn,index+1,[...acc,v]);}
+test('Exhaustive 3^7 × 3^4 proofs × 4 quests × 2 events',()=>{
+ const s=base(),choices=[...D.POLICIES.map(p=>p.choices.map(c=>c.id)),...D.STATE_TOOLS.map(t=>t.choices.map(c=>c.id))];
+ cartesian(choices,ids=>{
+  D.POLICIES.forEach((p,i)=>s.policies[p.id]=ids[i]);D.STATE_TOOLS.forEach((t,i)=>s.governance[t.id]=ids[i+3]);
+  cartesian(D.STATE_TOOLS.map(t=>t.proofs),proofs=>{D.STATE_TOOLS.forEach((t,i)=>s.govProof[t.id]=proofs[i]);
+   for(let q=0;q<4;q++){s.sideQuests={water:!!(q&1),dock:!!(q&2)};
+    for(const crisis of ['prepared','unprepared']){s.crisis=crisis;const e=evaluate(s);cases++;counts[e.result]++;examples[e.result]??=JSON.parse(JSON.stringify(s));
+     assert(e.vals.every(n=>Number.isFinite(n)&&n>=0&&n<=100));assert(e.actors.every(a=>a.trust>=0&&a.trust<=100));
+     if(e.result==='A'){assert(Object.values(e.checks).every(Boolean));assert(e.actors.every(a=>a.accepted&&a.critical.length===0));assert.equal(crisis,'prepared');assert.notEqual(s.policies.price,'premium');assert.notEqual(s.policies.risk,'pause');strategies.add(ids.join('/'));}
+    }
+   }
+  });
+ });
+ assert.equal(cases,1417176);assert(Object.values(counts).every(n=>n>0));assert(strategies.size>1);
+});
+test('High aggregate benefit never overrides enterprise veto',()=>{const s=base();s.policies.price='premium';const e=evaluate(s);assert(e.vals.reduce((a,b)=>a+b,0)>230);assert(e.actors[2].critical.includes('margin'));assert.notEqual(e.result,'A');});
+test('HTX cash flow veto and restoration by documented resource pooling',()=>{const s=base();s.policies.fees='deferred';assert(evaluate(s).actors[1].critical.includes('coop_cash'));s.governance.harmony='link';assert(!evaluate(s).actors[1].critical.includes('coop_cash'));assert.equal(evaluate(s).result,'A');});
+test('Upfront fee strategy needs credit conditions AND documented obligations',()=>{const s=base();s.policies.fees='upfront';assert(evaluate(s).actors[0].critical.includes('cash'));s.governance.harmony='credit';assert.equal(evaluate(s).result,'A');s.governance.rights='independent';assert.notEqual(evaluate(s).result,'A');});
+test('Formal legal protection does not force immediate reconciliation',()=>{const s=base();s.governance.resolve='formal';assert(evaluate(s).actors.every(a=>a.critical.includes('open_dispute')));assert.notEqual(evaluate(s).result,'A');});
+test('Unowned or incompatible proof cannot generate benefits',()=>{const s=base();s.found.field=[];assert(!S.validTool(s,D.STATE_TOOLS.find(t=>t.id==='prevent')));assert(!evaluate(s).checks.complete);s.govProof.prevent='factory_order';assert(!evaluate(s).checks.complete);});
+test('Evaluation is pure and repeatable',()=>{const s=base(),raw=JSON.stringify(s),e=evaluate(s);for(let i=0;i<30;i++)assert.deepEqual(evaluate(s),e);assert.equal(JSON.stringify(s),raw);});
+test('Memory persists harm, changes dialogue, recovers after amendment without farming',()=>{const s=base();const initial=S.dialogue(s,2,D).text,before=evaluate(s);s.policies.price='premium';S.record(s,D,'policy','price','premium',before,{choice:'Giá cao cố định'});assert(s.memory.khoa.seenConcerns.includes('margin'));assert.notEqual(S.dialogue(s,2,D).text,initial);assert.notEqual(evaluate(s).result,'A');const harmful=evaluate(s);s.policies.price='fair';S.record(s,D,'policy','price','fair',harmful,{choice:'Giá gắn chất lượng'});assert.equal(evaluate(s).result,'A');assert(S.dialogue(s,2,D).text.includes('Bản sửa'));const trust=evaluate(s).actors[2].trust;for(let i=0;i<20;i++)S.record(s,D,'policy','price','fair',evaluate(s));assert.equal(evaluate(s).actors[2].trust,trust);});
+test('Unresolved repeated disputes persist',()=>{const s=base();s.policies.risk='pause';s.policies.fees='deferred';s.policies.price='premium';for(let i=0;i<15;i++)S.record(s,D,'policy','risk','pause',evaluate(s));assert.equal(evaluate(s).result,'C');assert.equal(s.memory.sen.seenConcerns.filter(x=>x==='delivery_pause').length,1);});
+test('Legacy v71 migration retains evidence, choices and historical decisions',()=>{const s=base();delete s.saveVersion;delete s.learning;delete s.memory;s.decisions=[{kind:'policy',key:'price',id:'fair',at:1}];const m=S.migrate(s,base(),D);assert.equal(m.saveVersion,8);assert.deepEqual(m.policies,s.policies);assert.deepEqual(m.decisions,s.decisions);assert.equal(m.learning.heard.length,0);assert.deepEqual(m.found,s.found);});
+test('Malformed schema and impossible saves are sanitized',()=>{assert.equal(S.migrate({found:{field:'bad'},policies:{}},base(),D),null);assert.equal(S.migrate([],base(),D),null);const raw=base();raw.found.field=['fake','field_cost','field_cost'];raw.done.field=true;raw.policies.price='fake';raw.mapPos={x:Infinity,y:-9};raw.stage='ending';raw.storyPos=999;const m=S.migrate(raw,{...base(),policies:{}},D);assert.deepEqual(m.found.field,['field_cost']);assert(!m.done.field);assert(!m.policies.price);assert.equal(m.stage,'world');assert.equal(m.storyPos,9);assert.equal(m.mapPos.y,12);});
+test('Future save version is rejected explicitly',()=>{assert.throws(()=>S.migrate({...base(),saveVersion:99},base(),D),/mới hơn/);});
+test('Actor trust is differentiated and bounded even with maximal memory scars',()=>{const s=base();s.memory.bay.seenConcerns=Array.from({length:30},(_,i)=>'past'+i);const e=evaluate(s);assert.equal(e.actors[0].scar,6);assert(new Set(e.actors.map(a=>a.trust)).size>1);assert.equal(e.result,'A');});
+test('Every evidence maps to concepts, actors and decisions',()=>{assert.equal(Object.keys(C.map).length,9);for(const [id,item] of Object.entries(C.map)){assert(S.owned(base(),id));assert(item.concepts.every(c=>C.concepts[c]));assert(item.actors.every(a=>S.ACTORS.some(x=>x.id===a)));assert(item.situation&&item.analysis&&item.relation&&item.decision);}});
+test('Ten contextual questions each explain every answer',()=>{assert.equal(C.quiz.length,10);assert(C.quiz.every(q=>q.options.length===4&&q.explain.length===4&&q.explain.every(Boolean)&&q.answer>=0&&q.answer<4));assert(new Set(C.quiz.map(q=>q.answer)).size===4);});
+test('Structured debate combines concept, causal context, evidence, response and order',()=>{for(const [id,d] of Object.entries(C.debates)){const selected={concept:d.conceptAnswer,cause:d.causeAnswer,response:d.responseAnswer,proof:d.proofs[0],order:['claim','evidence','response']};assert.deepEqual(C.gradeDebate(id,selected).rubric,[2,2,2,2]);const bad=C.gradeDebate(id,{...selected,cause:(d.causeAnswer+1)%3,proof:'factory_order',order:['response','claim','evidence']});assert(bad.rubric.reduce((a,b)=>a+b,0)<8);}});
+fs.mkdirSync('artifacts/qa',{recursive:true});const output={cases,counts,successfulStrategies:strategies.size,examples,tests:results};fs.writeFileSync('artifacts/qa/simulation.json',JSON.stringify(output,null,2));
+for(const r of results)console.log(`${r.status} ${r.name}${r.detail?'\n'+r.detail:''}`);console.log(JSON.stringify({cases,counts,successfulStrategies:strategies.size}));if(results.some(r=>r.status==='FAIL'))process.exitCode=1;

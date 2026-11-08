@@ -1,0 +1,104 @@
+{
+  "tests": [
+    {
+      "name": "HTML5 parser reports no errors",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "HTML IDs are unique",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "HTML local dependencies exist",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "All 58 runtime asset paths exist",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "JavaScript syntax game.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax learning.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax learning-content.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax simulation.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "JavaScript syntax game-data.js",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "No remote runtime dependencies",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "40 portraits and four sprites retained",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Nine OGG files have valid magic",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "All 118 original assets byte-for-byte unchanged",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Standalone OGG MIME is deterministic",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS syntax parser",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references index.html",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references game.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references learning.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references learning-content.js",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "Static DOM references simulation.js",
+      "status": "PASS",
+      "details": "[]"
+    }
+  ]
+}

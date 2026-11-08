@@ -1,65 +1,55 @@
-# VÙNG CỒN XANH — Repository sửa lỗi tương tác
+# VÙNG CỒN XANH v8.0 — MLN122
 
-## Mở game
+Visual novel mô phỏng giáo dục về quan hệ lợi ích kinh tế giữa nông dân, HTX, doanh nghiệp và vai trò điều tiết của Nhà nước. Giữ truyện, 5 nhân vật, 40 portrait, 9 chứng cứ, 3 khu điều tra, 3 mini-game và kết thúc A/B/C.
 
-1. Giải nén toàn bộ ZIP (không mở `index.html` trực tiếp ngay trong giao diện của file ZIP).
-2. Vào thư mục `Vung_Con_Xanh_Repo_Day_Du_Avatar_Fixed`.
-3. Nhấp đúp `index.html` để mở bằng Google Chrome hoặc Microsoft Edge.
-4. Chọn **Bắt đầu hành trình**, rồi **Tiếp tục** để xem diễn biến.
+## Chạy game offline
 
-Game không cần Internet. Khi bấm **Bắt đầu hành trình**, trình duyệt mới cho phép phát nhạc nền; có nút **Nhạc** và **Hiệu ứng** để bật/tắt.
+- Mở **[index.html](index.html)** bằng Chrome/Edge hiện đại. Giữ `scripts/`, `styles/`, `assets/` cùng thư mục. Không cần cài thư viện để chơi.
+- Bản một file: **[dist/Vung_Con_Xanh_v8_0_Offline.html](dist/Vung_Con_Xanh_v8_0_Offline.html)**. Có thể chép riêng file này sang máy trình chiếu. Bản này được build từ source rời và kiểm tra trong trình duyệt khi ngắt mạng.
+- Nếu máy chặn tài nguyên `file://`, chạy `python -m http.server 8000 --bind 127.0.0.1` tại thư mục hiện tại, mở `http://127.0.0.1:8000/`. Đây là server tĩnh trên máy, không phải backend.
+- ZIP lồng `Vung_Con_Xanh_Repo.zip` không được dùng làm source hoặc đầu vào build.
 
-Nếu trình duyệt có chính sách chặn tài nguyên từ `file://`, hãy chạy một web server tĩnh tại thư mục repo, ví dụ: `python -m http.server 8000` rồi mở `http://localhost:8000/`. Không cần backend hoặc dịch vụ ngoài.
+## Những gì có ở v8.0
 
-## Cấu trúc
+- Simulation tính điều kiện tối thiểu, quyền từ chối ký, lo ngại thiết yếu, tính khả thi, niềm tin riêng và lợi ích cộng đồng. Tổng lợi ích cao không thay thế đồng thuận.
+- NPC nhớ đề xuất bất lợi và phản hồi khi điều khoản được sửa. Lịch sử ghi chứng cứ, được/mất, phản ứng và hệ quả.
+- **🐟 Kiến thức** giải thích tình huống theo 5 mục và nối 9 chứng cứ với chủ thể, quyết định, khái niệm.
+- **💬 Tranh biện** tại phòng họp: chọn luận điểm, căn cứ, nguyên nhân, cách xử lý và sắp lập luận; rubric 4 tiêu chí, không gọi AI.
+- **🌱 Học tập** và debrief cuối game: 5 chỉ báo hành vi, giải thích kết quả, mâu thuẫn còn tồn tại; quiz 10 tình huống giải thích từng phương án; xuất báo cáo TXT gồm nhật ký và khuyến nghị ôn tập.
+- Save schema v8, kiểm tra dữ liệu, tiếp tục save v71/v7/v6/v4 còn hợp lệ; giữ nguyên key cũ. Lưu chỉ trên trình duyệt hiện tại.
+- Giữ phong cách cũ, bổ sung focus, dialog, tương phản, typewriter có hỗ trợ giảm chuyển động và nhạc căng thẳng khi biến cố.
 
-```text
-Vung_Con_Xanh_Repo_Day_Du_Avatar_Fixed/
-├── index.html                  # HTML giao diện, không chứa ảnh hoặc mã JS nhúng
-├── styles/game.css             # CSS
-├── scripts/game.js             # Logic đầy đủ: câu chuyện, điều tra, mini-game, đàm phán
-├── assets/
-│   ├── scene/                  # 5 cảnh SVG nét sắc, không có chữ mờ dính vào hình
-│   ├── portrait/               # 40 avatar và biểu cảm tách riêng
-│   ├── sprites/                # 4 frame di chuyển Minh An
-│   ├── ui/                     # Hình nhóm nhân vật ở màn đầu
-│   ├── audio/music/            # 2 nhạc nền OGG
-│   ├── audio/sfx/              # 7 hiệu ứng OGG
-│   └── reference/              # Các hình reference/moodboard cũ
-├── docs/                       # Kịch bản, báo cáo và changelog
-└── screenshots/                # Preview và ảnh kiểm thử
+## Cách chơi và trình chiếu
+
+Bắt đầu → khám phá ruộng/HTX/nhà máy → ghép 3 nút thắt → mời ba bên bằng chứng cứ → sửa 3 điều khoản và chọn 4 công cụ Nhà nước → ứng phó độ mặn → xem debrief và quiz.
+
+Bản đồ dùng WASD/phím mũi tên, nhấp vị trí để đi, **E** tương tác; điện thoại có nút chạm. Dùng **Tab**, **Enter**, **Space** để điều khiển; **Escape** đóng bảng đang mở. Nhạc bắt đầu sau thao tác người chơi, có bật/tắt và thanh âm lượng.
+
+Bật **Chế độ trình chiếu** trước khi bắt đầu: truyện rút gọn, mỗi nơi chuẩn bị 2 chứng cứ hỗ trợ, bàn họp có sẵn 2 điều khoản + 2 công cụ; lớp quyết định 3 mục còn lại. Mục tiêu 5–7 phút cần diễn tập, chưa đo trên lớp thật. Tranh biện và quiz thích hợp cho phần thảo luận sau đó.
+
+## Build và kiểm thử
+
+```sh
+python tools/build_offline.py
+node tools/test_simulation.cjs
+uv run --with-requirements tools/requirements-qa.txt python tools/run_qa.py
 ```
 
-## Lỗi đã sửa (2026-11-04)
+QA cần Node 18+, Python 3.10+, `uv` và Chromium/Edge. Script tự tìm trình duyệt cục bộ; đặt `VCX_BROWSER=/đường/dẫn/trình-duyệt` nếu cần. Nếu chưa có browser, dùng `uv run --with playwright playwright install chromium` (chỉ cần mạng lúc chuẩn bị công cụ).
 
-Khi tách bản một-file thành repo, đoạn JavaScript chứa định nghĩa `$`, `SCENES`, `STORY`, `initialState`... đã bị cắt nhầm. Điều này khiến nút vẫn có hiệu ứng nhấn nhưng hành động không thực hiện được.
+Audit WCAG bổ sung cần axe-core dành riêng cho QA:
 
-- Khôi phục toàn bộ logic gốc từ bản HTML chạy được.
-- Bóc tách mã thành `scripts/game.js`, CSS thành `styles/game.css`.
-- Chuyển toàn bộ hình, nhạc và hiệu ứng khỏi inline base64 sang thư mục `assets`.
-- Thay nền phòng họp và các cảnh cũ bị mờ bằng bối cảnh SVG mới.
-- Kiểm tra liên kết asset, cú pháp JS và hành trình game trên Chromium.
+```sh
+npm install --prefix /tmp/vcx-qa axe-core@4.14.0
+# hoặc đặt VCX_AXE=/đường/dẫn/axe.min.js
+```
 
-**Lưu ý:** Các portrait cũ có một số đường viền/cạnh mặt đã bị cắt ngay từ bộ hình tham chiếu. Bản này tránh cắt thêm bằng CSS, nhưng không khôi phục lại các phần hình vốn thiếu trong ảnh gốc.
+Không có axe thì suite ghi **BLOCKED**, không ghi PASS. Game không dùng các gói QA, CDN, font ngoài, API, backend hay dịch vụ AI. Kết quả máy đọc ở `artifacts/qa/`; screenshot mới ở `screenshots/v80/`.
 
-## Kiểm thử
+## Tài liệu và giới hạn
 
-- Bắt đầu → câu chuyện → bản đồ: đạt.
-- Ba khu điều tra, ba mini-game và chín chứng cứ: đạt.
-- Ghép nguyên nhân, mời họp, chọn điều khoản, công cụ Nhà nước, cảnh báo độ mặn: đạt.
-- Kết thúc A và xuất nhật ký TXT: đạt.
-- Màn hình di động 390px: không tràn ngang, mở đầu và bản đồ hoạt động.
-- Tệp SVG, hình ảnh, nhạc và hiệu ứng: đường dẫn hợp lệ, không thiếu file trong repo.
-
-Kiểm thử chạy trên Chromium tự động với asset được phục vụ từ bản sao nội bộ; chưa thay thế cho việc kiểm tra trực tiếp trên laptop thuyết trình của người dùng.
-
-## Bản sửa avatar gần nhất
-
-Đọc `docs/AVATAR_AUDIT.md` và mở `docs/AVATAR_40_KIEM_TRA.png` để xem toàn bộ 40 avatar sau chỉnh sửa; ảnh cũ giữ trong `assets/reference/avatar_legacy/` (không dùng trong game).
-
-
-## Kiểm tra đóng gói mới
-
-ZIP trước chỉ 1,45 MB là file bị hỏng/truncated. Gói này được tạo mới từ toàn bộ repository và được kiểm tra CRC, giải nén cùng so sánh SHA-256 từng tệp.
-
-Lưu ý: không thể chạy thử trên Chromium trong môi trường đóng gói do hạn chế truy cập `file://` và localhost của trình duyệt kiểm thử. Các asset và cú pháp JS đã được kiểm tra.
+- [Báo cáo phát hành](docs/FINAL_RELEASE_REPORT_V80.md), [kết quả QA](docs/TEST_REPORT_V80.md), [baseline](docs/V80_BASELINE.md).
+- [Hướng dẫn chơi](docs/USER_GUIDE_V80.md), [kiến trúc](docs/ARCHITECTURE_V80.md), [cân bằng](docs/GAMEPLAY_BALANCE_V80.md), [bản đồ học thuật](docs/ACADEMIC_CONTENT_MAP_V80.md), [changelog](docs/CHANGELOG_V80.md).
+- Không có PDF/slide MLN122 gốc trong repository: nội dung mới là diễn giải học tập từ tình huống và tài liệu nhóm, **cần giảng viên đối chiếu**, không trích nguyên văn hay xác nhận số trang.
+- Chỉ số mô phỏng và rubric không phải dữ liệu kinh tế, khuyến nghị chính sách hay điểm đánh giá năng lực chính thức. Tranh biện chỉ chấm các cấu trúc đã thiết kế.
+- Cần kiểm tra âm thanh nghe thực tế, máy chiếu, màn hình cảm ứng, công cụ đọc màn hình và trình duyệt đích trên máy của nhóm. Xem phạm vi cụ thể trong báo cáo QA.

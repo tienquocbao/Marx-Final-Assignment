@@ -1,0 +1,658 @@
+{
+  "browser": "local Chromium/Edge via Playwright",
+  "errors": [],
+  "failedRequests": [],
+  "cancelledRequests": [],
+  "tests": [
+    {
+      "name": "Audio waits for a user gesture",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Keyboard starts the story",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Enter advances exactly one story line",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Full opening story reaches map",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Map keyboard movement",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Price minigame rejects below-cost proposal",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Actual minigame field",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fee minigame rejects empty matching",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Actual minigame coop",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Quality minigame rejects ineligible lot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Actual minigame factory",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Side quest rejects wrong order water",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Actual optional task water",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Side quest rejects wrong order dock",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Actual optional task dock",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Clue board rejects mismatched evidence",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Invitation rejects unrelated proof",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Evidence collection, board and voluntary invitations",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Governance rejects missing evidence",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "NPC veto with high total benefit",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "NPC remembers harmful proposal and its repair",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Adaptive dialogue changed",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Knowledge panel and 9 evidence concept map",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contextual HTX economic explanation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Native dialog Escape and focus restoration",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Debate rejects incomplete argument bay",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Debate penalizes illogical order bay",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contextual structured debate bay",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Debate rejects incomplete argument sen",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Debate penalizes illogical order sen",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contextual structured debate sen",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Debate rejects incomplete argument khoa",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Debate penalizes illogical order khoa",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Contextual structured debate khoa",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Escape from crisis restores day music and editable hall",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Crisis switches tension soundtrack",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Ending A through actual gameplay",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Debrief shows reasons and behavior-based profile",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Quiz rejects unanswered item",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Quiz answers survive actual storage reload",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "10-question assessment includes wrong-option explanations",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "TXT export contains actual decisions, profile, quiz and remediation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Learning dashboard integrates quiz and debate results",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Resume retains NPC memory, learning and ending",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Crisis switches tension soundtrack",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Checkpoint UI decisions → ending B",
+      "status": "PASS",
+      "details": "actual B"
+    },
+    {
+      "name": "Ending B has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Crisis switches tension soundtrack",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Checkpoint UI decisions → ending C",
+      "status": "PASS",
+      "details": "actual C"
+    },
+    {
+      "name": "Ending C has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Crisis switches tension soundtrack",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Checkpoint UI decisions → ending A",
+      "status": "PASS",
+      "details": "actual A"
+    },
+    {
+      "name": "Ending A has no horizontal overflow",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Price minigame rejects below-cost proposal",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Actual minigame field",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fee minigame rejects empty matching",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Actual minigame coop",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Quality minigame rejects ineligible lot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Actual minigame factory",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Clue board rejects mismatched evidence",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Invitation rejects unrelated proof",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Evidence collection, board and voluntary invitations",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Presentation prepares 2 policies and 2 tools",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Prepared decisions are not credited as player actions",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "390px #knowledgeBtn responsive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "390px #learningBtn responsive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "390px #debateBtn responsive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Crisis switches tension soundtrack",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Presentation mode and mobile Ending A",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "390px quiz fits viewport",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Reduced motion disables scene and weather animation",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Corrupt JSON does not break start",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Home knowledge preview preserves resumable checkpoint",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Actual v71 localStorage migration and preserved backup",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Migration does not invent learning behaviors",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Malformed nested learning and decision data remain usable",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Future schema is not overwritten",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Storage failure warns and game remains playable",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Legacy evidence modal traps Tab",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Map keys do not move through modal",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cancel reset preserves progress",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Confirmed reset returns home with new save",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cold offline source starts",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Offline source includes new panels",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Offline source all 49 images decode",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Offline source all 9 OGG metadata load",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS loaded source",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Offline source file storage resumes",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Cold offline standalone starts",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Offline standalone includes new panels",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Offline standalone all 49 images decode",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Offline standalone all 9 OGG metadata load",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS loaded standalone",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Fee minigame rejects empty matching",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Actual minigame coop",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Quality minigame rejects ineligible lot",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Actual minigame factory",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Clue board rejects mismatched evidence",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Invitation rejects unrelated proof",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Evidence collection, board and voluntary invitations",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Crisis switches tension soundtrack",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Isolated standalone full offline UI route reaches A",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Standalone quiz interactive",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Offline standalone file storage resumes",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Home fits 1920×1080",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Native dialog contains focus 1920",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Space activates button 1920",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Reduced motion text remains complete 1920",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS focus outline 1920",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "HTML no duplicate IDs 1920",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Home fits 1366×768",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Native dialog contains focus 1366",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Space activates button 1366",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Reduced motion text remains complete 1366",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS focus outline 1366",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "HTML no duplicate IDs 1366",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Home fits 1280×720",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Native dialog contains focus 1280",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Space activates button 1280",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Reduced motion text remains complete 1280",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS focus outline 1280",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "HTML no duplicate IDs 1280",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Home fits 390×844",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Native dialog contains focus 390",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Space activates button 390",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "Reduced motion text remains complete 390",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "CSS focus outline 390",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "HTML no duplicate IDs 390",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "name": "No uncaught JavaScript exceptions",
+      "status": "PASS",
+      "details": "[]"
+    },
+    {
+      "name": "No missing/failed runtime assets",
+      "status": "PASS",
+      "details": "[]"
+    }
+  ]
+}
