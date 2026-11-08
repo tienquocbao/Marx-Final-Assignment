@@ -1,62 +1,80 @@
-# VÙNG CỒN XANH v8.0 — MLN122
+# VÙNG CỒN XANH — WEBSITE 3 TRONG 1
 
-Visual novel mô phỏng giáo dục về quan hệ lợi ích kinh tế giữa nông dân, HTX, doanh nghiệp và vai trò điều tiết của Nhà nước. Giữ truyện, 5 nhân vật, 40 portrait, 9 chứng cứ, 3 khu điều tra, 3 mini-game và kết thúc A/B/C.
+Bản tích hợp ba sản phẩm **nguyên bản** của nhóm trên một website, với ba tab chuyển cảnh mượt:
 
-## Chạy game offline
+1. **Infographic** — `experiences/infographic/index.html`
+2. **Web game** — `experiences/game/index.html`
+3. **Video** — `assets/video/nha-nuoc-nong-nghiep-cnc.mp4`
 
-- Mở **[index.html](index.html)** bằng Chrome/Edge hiện đại. Giữ `scripts/`, `styles/`, `assets/` cùng thư mục. Không cần cài thư viện để chơi.
-- Bản một file: **[dist/Vung_Con_Xanh_v8_0_Offline.html](dist/Vung_Con_Xanh_v8_0_Offline.html)**. Có thể chép riêng file này sang máy trình chiếu. Bản này được build từ source rời và kiểm tra trong trình duyệt khi ngắt mạng.
-- Nếu máy chặn tài nguyên `file://`, chạy `python -m http.server 8000 --bind 127.0.0.1` tại thư mục hiện tại, mở `http://127.0.0.1:8000/`. Đây là server tĩnh trên máy, không phải backend.
-- ZIP lồng `Vung_Con_Xanh_Repo.zip` không được dùng làm source hoặc đầu vào build.
+**Không sửa nội dung học thuật, cốt truyện, hình ảnh, nhạc, kịch bản, mã nguồn game hoặc infographic.** Hai dự án gốc được tách riêng và giữ nguyên từng byte, chỉ thêm một `index.html` ở root, `styles/portal.css`, `scripts/portal.js` và ảnh poster video ở root. Video MP4 cũng được chép nguyên byte, chỉ đặt tên file ASCII để dễ deploy.
 
-## Những gì có ở v8.0
+**Ngoại lệ kỹ thuật:** bỏ `.git/` nằm bên trong ZIP game. Thư mục này là lịch sử Git, không phải nội dung website; khi push vào repository Git hiện có thì phải dùng `.git` của repository đó. Các file game khác, gồm tài liệu/ảnh tham khảo/screenshot, được giữ lại.
 
-- Simulation tính điều kiện tối thiểu, quyền từ chối ký, lo ngại thiết yếu, tính khả thi, niềm tin riêng và lợi ích cộng đồng. Tổng lợi ích cao không thay thế đồng thuận.
-- NPC nhớ đề xuất bất lợi và phản hồi khi điều khoản được sửa. Lịch sử ghi chứng cứ, được/mất, phản ứng và hệ quả.
-- **🐟 Kiến thức** giải thích tình huống theo 5 mục và nối 9 chứng cứ với chủ thể, quyết định, khái niệm.
-- **💬 Tranh biện** tại phòng họp: chọn luận điểm, căn cứ, nguyên nhân, cách xử lý và sắp lập luận; rubric 4 tiêu chí, không gọi AI.
-- **🌱 Học tập** và debrief cuối game: 5 chỉ báo hành vi, giải thích kết quả, mâu thuẫn còn tồn tại; quiz 10 tình huống giải thích từng phương án; xuất báo cáo TXT gồm nhật ký và khuyến nghị ôn tập.
-- Save schema v8, kiểm tra dữ liệu, tiếp tục save v71/v7/v6/v4 còn hợp lệ; giữ nguyên key cũ. Lưu chỉ trên trình duyệt hiện tại.
-- Giữ phong cách cũ, bổ sung focus, dialog, tương phản, typewriter có hỗ trợ giảm chuyển động và nhạc căng thẳng khi biến cố.
+## Cách sử dụng
 
-## Kiến trúc Modular Vanilla
+Tải và giải nén ZIP, sau đó mở `index.html` bằng Chrome/Edge. Không được chỉ lấy riêng file `index.html` vì website cần ba thư mục `experiences/`, `assets/`, `scripts/`, `styles/`.
 
-`game.js` là điểm khởi tạo và nối module. Core state, simulation, NPC memory, story/dialogue, exploration/evidence, negotiation, learning, assessment, UI, audio và save/load có trách nhiệm riêng. State được inject vào module, engine không dùng DOM. Không đổi schema/key save v8 hoặc gameplay.
+- **Infographic:** xem poster và các tương tác, theo đúng bản gốc.
+- **Web game:** bắt đầu hành trình và chơi bình thường, theo đúng bản gốc.
+- **Video:** phát / tạm dừng / tua bằng trình phát video của trình duyệt.
+- **Chuyển tab:** thanh trên cùng. Nhớ trang đang xem bằng URL `#infographic`, `#game` hoặc `#video`.
+- **Mở riêng:** biểu tượng mở trong tab mới ở góc phải, hữu ích khi muốn dùng toàn bộ màn hình cho sản phẩm gốc.
+- **Toàn màn hình:** biểu tượng khung mở rộng ở góc phải.
 
-Module factory có scope riêng và dependency tường minh, dùng classic script để vẫn mở source bằng `file://`. Chỉ namespace `VCX` nằm trên browser; không cần framework hoặc bước build để chơi source. Xem [kiến trúc và cách mở rộng](docs/ARCHITECTURE_V80.md). Bản standalone tiếp tục được build và test cold offline thực tế.
+Khi đổi tab, website **không hủy iframe đã tải**, nhằm giữ lại trạng thái đang xem hoặc đang chơi; video được tạm dừng khi chuyển sang tab khác. Âm thanh của các phần nhúng được tắt khi ẩn và khôi phục khi quay lại, trên các trình duyệt cho phép truy cập iframe cùng origin. Với trình duyệt áp chính sách riêng cho `file://`, bạn có thể mở bằng localhost (xem dưới đây).
 
-## Cách chơi và trình chiếu
+## Chạy bằng web server tĩnh (nếu trình duyệt hạn chế file://)
 
-Bắt đầu → khám phá ruộng/HTX/nhà máy → ghép 3 nút thắt → mời ba bên bằng chứng cứ → sửa 3 điều khoản và chọn 4 công cụ Nhà nước → ứng phó độ mặn → xem debrief và quiz.
+Trong thư mục chứa `index.html`:
 
-Bản đồ dùng WASD/phím mũi tên, nhấp vị trí để đi, **E** tương tác; điện thoại có nút chạm. Dùng **Tab**, **Enter**, **Space** để điều khiển; **Escape** đóng bảng đang mở. Nhạc bắt đầu sau thao tác người chơi, có bật/tắt và thanh âm lượng.
-
-Bật **Chế độ trình chiếu** trước khi bắt đầu: truyện rút gọn, mỗi nơi chuẩn bị 2 chứng cứ hỗ trợ, bàn họp có sẵn 2 điều khoản + 2 công cụ; lớp quyết định 3 mục còn lại. Mục tiêu 5–7 phút cần diễn tập, chưa đo trên lớp thật. Tranh biện và quiz thích hợp cho phần thảo luận sau đó.
-
-## Build và kiểm thử
-
-```sh
-python tools/build_offline.py
-node tools/test_simulation.cjs
-node tools/test_modules.cjs
-uv run --with-requirements tools/requirements-qa.txt python tools/run_qa.py
+```powershell
+python -m http.server 8000
 ```
 
-QA cần Node 18+, Python 3.10+, `uv` và Chromium/Edge. Script tự tìm trình duyệt cục bộ; đặt `VCX_BROWSER=/đường/dẫn/trình-duyệt` nếu cần. Nếu chưa có browser, dùng `uv run --with playwright playwright install chromium` (chỉ cần mạng lúc chuẩn bị công cụ).
+Truy cập `http://localhost:8000`. Không cần backend hoặc cài thư viện JavaScript.
 
-Audit WCAG bổ sung cần axe-core dành riêng cho QA:
+## Triển khai lên GitHub Pages
 
-```sh
-npm install --prefix /tmp/vcx-qa axe-core@4.14.0
-# hoặc đặt VCX_AXE=/đường/dẫn/axe.min.js
+Giữ nguyên `.git` hiện tại của repo GitHub. Có thể chạy file PowerShell `COPY_TO_EXISTING_GIT_REPO.ps1` (chỉ sao chép, **không xóa hay tự push**) hoặc chép thủ công toàn bộ nội dung thư mục này vào:
+
+`C:\Users\tienq\Vung_Con_Xanh_Repo`
+
+Sau khi kiểm tra bằng trình duyệt:
+
+```powershell
+cd C:\Users\tienq\Vung_Con_Xanh_Repo
+git status
+git add -A
+git commit -m "Integrate infographic, web game and video into one website"
+git push origin main
 ```
 
-Không có axe thì suite ghi **BLOCKED**, không ghi PASS. Game không dùng các gói QA, CDN, font ngoài, API, backend hay dịch vụ AI. Kiểm thử gồm contract trước/sau refactor, dependency/state/save và production browser không QA bridge. Baseline trước Modular ở `artifacts/modular-baseline/`. Kết quả hiện tại ở `artifacts/qa/`; screenshot mới ở `screenshots/v80/`.
+Nếu nhánh hiện tại không phải `main`, thay `main` bằng tên nhánh thực tế từ `git branch --show-current`. Bật **Settings → Pages → Deploy from a branch → main / (root)** trên GitHub. GitHub Pages có giới hạn dung lượng/băng thông, nên kiểm tra tình trạng triển khai sau khi push.
 
-## Tài liệu và giới hạn
+**Lưu ý khi chép đè vào repo cũ:** Script không tự xóa các file cũ ở root, vì xóa hàng loạt có thể làm mất dữ liệu đã commit của bạn. Các file cũ dư thừa không cản trang chủ mới hoạt động nhưng khiến repository nặng hơn. Nếu muốn dọn, hãy tạo commit backup trước rồi kiểm tra từng file cần xóa.
 
-- [Báo cáo phát hành](docs/FINAL_RELEASE_REPORT_V80.md), [kết quả QA](docs/TEST_REPORT_V80.md), [baseline](docs/V80_BASELINE.md).
-- [Hướng dẫn chơi](docs/USER_GUIDE_V80.md), [kiến trúc](docs/ARCHITECTURE_V80.md), [cân bằng](docs/GAMEPLAY_BALANCE_V80.md), [bản đồ học thuật](docs/ACADEMIC_CONTENT_MAP_V80.md), [changelog](docs/CHANGELOG_V80.md).
-- Không có PDF/slide MLN122 gốc trong repository: nội dung mới là diễn giải học tập từ tình huống và tài liệu nhóm, **cần giảng viên đối chiếu**, không trích nguyên văn hay xác nhận số trang.
-- Chỉ số mô phỏng và rubric không phải dữ liệu kinh tế, khuyến nghị chính sách hay điểm đánh giá năng lực chính thức. Tranh biện chỉ chấm các cấu trúc đã thiết kế.
-- Cần kiểm tra âm thanh nghe thực tế, máy chiếu, màn hình cảm ứng, công cụ đọc màn hình và trình duyệt đích trên máy của nhóm. Xem phạm vi cụ thể trong báo cáo QA.
+## Cấu trúc
+
+```text
+Vung_Con_Xanh_3in1_GitHub_Pages/
+├── index.html                       # Cổng điều hướng mới
+├── styles/portal.css                # CSS cổng mới
+├── scripts/portal.js                # Logic tabs, giữ trạng thái, âm thanh
+├── assets/
+│   ├── site-logo.svg                # Logo mới cho cổng chung
+│   └── video/
+│       ├── poster.jpg               # Ảnh chụp từ video gốc
+│       └── nha-nuoc-nong-nghiep-cnc.mp4
+├── experiences/
+│   ├── infographic/                 # Nguyên file từ ZIP infographic
+│   └── game/                        # Nguyên file từ ZIP game (trừ .git/)
+├── docs/
+│   └── CONTENT_INTEGRITY.json       # SHA-256 các file gốc + đầu vào
+├── tests/
+│   └── qa_threeinone.py
+└── .nojekyll                        # GitHub Pages phục vụ asset không qua Jekyll
+```
+
+## Bảo toàn nội dung
+
+Mọi file trong `experiences/game/`, `experiences/infographic/` và file MP4 đều khớp SHA-256 đầu vào, có thể kiểm tra bằng `docs/CONTENT_INTEGRITY.json`. Việc thêm tab không cần sửa bất kỳ file gốc nào.

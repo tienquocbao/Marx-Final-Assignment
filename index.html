@@ -1,68 +1,94 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#183e30">
-<title>Vùng Cồn Xanh v8.0 • Hành trình học tập MLN122</title>
-<link rel="stylesheet" href="styles/game.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#123c2b">
+  <meta name="description" content="Vùng Cồn Xanh — Không gian chung của infographic tương tác, web game giáo dục và video minh họa MLN122 Group 2.">
+  <title>Vùng Cồn Xanh | Infographic · Web game · Video</title>
+  <link rel="icon" type="image/svg+xml" href="assets/site-logo.svg">
+  <link rel="stylesheet" href="styles/portal.css">
+  <script src="scripts/portal.js" defer></script>
 </head>
 <body>
-<div class="shell">
-<header class="top"><div class="logo"><div class="logoMark">🌾</div><div><b>VÙNG CỒN XANH</b><small>v8.0 • Một vụ mùa, những lợi ích cần hài hòa</small></div></div><div class="topRight"><span class="stagePill" id="progressBadge">CHƯƠNG 0 · KHỞI ĐẦU</span><button class="tinyBtn" id="knowledgeBtn" type="button">🐟 Kiến thức</button><button class="tinyBtn" id="learningBtn" type="button">🌱 Học tập</button><button class="tinyBtn" id="journalBtn" title="Xem hồ sơ và nhiệm vụ">📓 Hồ sơ</button><button class="tinyBtn audioTiny" id="musicToggle" type="button" aria-pressed="true" title="Bật hoặc tắt nhạc nền">♫ Nhạc: Bật</button><button class="tinyBtn audioTiny" id="soundToggle" type="button" aria-pressed="true" title="Bật hoặc tắt hiệu ứng">🔊 Hiệu ứng</button><label class="volControl" title="Âm lượng nhạc nền"><span>Âm lượng</span><input id="musicVol" type="range" min="0" max="100" value="45" aria-label="Âm lượng nhạc nền"></label><button class="tinyBtn" id="fullToggle" title="Chế độ toàn màn hình">⛶ Trình chiếu</button><button class="tinyBtn" id="restartBtn" title="Chơi lại từ đầu">↺</button></div></header>
-<main class="screens">
-<section id="home" class="active card home"><div class="homeInner"><div class="eyebrow">GROUP 02 • MLN122 • TRÒ CHƠI GIÁO DỤC</div><h1 class="heading">Vùng<br>Cồn Xanh</h1><div class="tagline">Một vụ mùa. Ba lợi ích.<br>Một cơ hội ngồi lại.</div><p class="intro">Từng cùng nhau làm dự án lúa công nghệ cao, nhưng chỉ sau sáu tuần nông dân, hợp tác xã và doanh nghiệp đã ngừng hợp tác. Bạn có thể khám phá lý do và giúp họ tìm lại tiếng nói chung?</p><div class="homeNav"><button class="btn gold" id="startBtn">▶ BẮT ĐẦU HÀNH TRÌNH</button><button class="btn soft" id="resumeBtn" hidden>↪ Tiếp tục bản lưu</button></div><label class="demoSwitch"><input type="checkbox" id="demoMode"> Chế độ trình chiếu: rút gọn mở đầu, chuẩn bị sẵn 2 điều khoản + 2 công cụ điều phối (mục tiêu 5–7 phút)</label><p class="small" style="color:#bfdbc3;margin-top:20px">🎮 WASD / phím mũi tên / nhấp để đi trên bản đồ • E tương tác • không cần mạng</p></div><div class="homeCast"><img class="castPic character-portrait character-portrait--cast" src="assets/portrait/chu_bay_normal.png" alt="Chú Bảy"><img class="castPic character-portrait character-portrait--cast" src="assets/portrait/chi_sen_normal.png" alt="Chị Sen"><img class="castPic character-portrait character-portrait--cast" src="assets/portrait/anh_khoa_normal.png" alt="Anh Khoa"></div></section>
-<section id="story" class="card"><div class="sectionHead"><b>🎬 <span id="storyChapter">CHƯƠNG 1 — TỪ HỢP TÁC ĐẾN TAN VỠ</span></b><button class="tinyBtn" id="skipStory">Bỏ qua đoạn mở đầu ›</button></div><div class="gameGrid" style="padding:15px"><div class="sceneFrame" id="storyFrame"><img class="sceneBG" id="storyBg" src="assets/scene/meeting.svg" alt="Cảnh truyện"><div class="sceneWeather" id="storyWeather"></div><div class="sceneLight" id="storyLight"></div><div class="projectorCopy" aria-hidden="true"><strong>Vùng Cồn Xanh</strong><span>Liên kết phát triển<br>lúa chất lượng cao</span></div><div class="sceneTag" id="storyTime">TUẦN 1</div><div class="portraitStage"><img id="storyFace" class="character-portrait character-portrait--story" alt="Biểu cảm nhân vật"><div class="speakerBadge"><b id="storyName"></b><small id="storyRole"></small></div></div></div><div class="speakArea"><div class="ribbon">📖 CÂU CHUYỆN VÙNG CỒN XANH</div><div class="speech" aria-live="polite"><b id="storySpeaker"></b><p id="storyText"></p></div><div class="actions"><div class="progressDots" id="storyDots"></div><button class="btn primary" id="nextStory">Tiếp tục →</button></div><div id="phoneChat" class="phoneChat" aria-live="polite"></div><div class="box"><b>🧭 Nhiệm vụ của Minh An</b><p class="small muted">Không tìm một người để đổ lỗi. Hãy tìm hiểu lợi ích và khó khăn của cả ba phía trước khi đề xuất cách nối lại hợp tác.</p><div class="sceneNoteV5">v8.0: người chơi điều phối các bên, thử chính sách và quan sát hậu quả của từng quyết định.</div></div></div></div></section>
-<section id="world" class="card"><div class="sectionHead"><b>🗺️ CHƯƠNG 2 — ĐI MỘT VÒNG CỒN XANH</b><span class="pill" id="mapCount">0 / 3 địa điểm hoàn thành</span></div><div class="mapGrid"><div class="mapCanvas" id="walkMap" role="region" aria-label="Bản đồ có thể di chuyển"><img src="assets/scene/map.svg" alt="Bản đồ các địa điểm Vùng Cồn Xanh"><div class="trailOverlay" aria-hidden="true"><svg viewBox="0 0 1000 563" preserveAspectRatio="none"><path d="M500 318 L250 242 M500 318 L550 113 M500 318 L750 242 M500 318 L500 406 M500 406 L280 433 M500 406 L765 433" /></svg></div><button class="mapPin" data-go="field" style="left:25%;top:43%">🌾 Ruộng chú Bảy</button><button class="mapPin" data-go="coop" style="left:55%;top:20%">🏘️ HTX chị Sen</button><button class="mapPin" data-go="factory" style="left:75%;top:43%">🏭 Nhà máy</button><button class="mapPin lock" id="hallPin" data-go="hall" style="left:50%;top:72%" disabled>🔒 Phòng đối thoại</button><button class="mapPin questPin" data-go="water" style="left:28%;top:77%">📡 Trạm nước</button><button class="mapPin questPin" data-go="dock" style="left:77%;top:77%">🚤 Bến giao hàng</button><div id="mapDestination" class="mapDestination" hidden></div><div id="worldAvatar" class="worldAvatar" aria-label="Minh An"><img id="worldAvatarImg" src="assets/sprites/minh_an_walk_0.png" alt="Minh An đang di chuyển"><span class="avatarTag">Minh An</span></div></div><div class="side"><div class="box"><h3>🎒 Nhật ký chứng cứ</h3><p class="small">Nhấn các điểm sáng để tìm chứng cứ. Chế độ trình chiếu có sẵn hai chứng cứ hỗ trợ mỗi nơi.</p><div class="docGrid" id="inventory"></div></div><div class="box"><h3>🧭 Di chuyển & tương tác</h3><p class="small muted">Nhấp trên bản đồ để Minh An đi tới điểm đó; dùng <b>WASD / ↑↓←→</b> để đi từng bước. Khi tới gần địa điểm, bấm <b>E</b> hoặc nút bên dưới.</p><div class="walkButtons"><button id="walkInteract" class="btn primary" disabled>🖐️ Đến gần địa điểm</button><button id="walkCenter" class="btn soft" type="button">⌖ Về giữa bản đồ</button></div><p id="walkStatus" class="walkStatus" aria-live="polite">Hãy chọn một địa điểm để khám phá.</p><div class="walkDpad" aria-label="Điều khiển bằng nút chạm"><button data-walk="up" aria-label="Đi lên">▲</button><button data-walk="left" aria-label="Sang trái">◀</button><button data-walk="down" aria-label="Đi xuống">▼</button><button data-walk="right" aria-label="Sang phải">▶</button></div></div><div class="box"><h3>🎯 Mục tiêu hiện tại</h3><p id="mapGoal">Khám phá ba địa điểm để biết vì sao mỗi bên gặp khó khăn sau khi nghỉ hợp tác.</p><div id="questSummary" class="questSummary">Nhiệm vụ phụ: 0 / 2</div><button class="btn soft" style="width:100%;margin-top:12px" id="openNotes">📖 Ghi chú bài học</button></div></div></div></section>
-<section id="explore" class="card"><div class="sectionHead"><b id="exploreTitle">🔎 ĐIỀU TRA</b><button class="tinyBtn" id="backWorld">← Bản đồ</button></div><div class="exploreGrid"><div class="exploreScene" id="exploreScene"><img id="exploreBg" alt="Địa điểm đang khám phá"><div class="sceneWeather" id="exploreWeather"></div><div class="sceneLight" id="exploreLight"></div><div id="hotspots"></div></div><div class="explorePanel"><div class="npcAvatar"><img id="npcFace" class="character-portrait character-portrait--dialogue" alt="Biểu cảm nhân vật"><div><h3 id="npcName"></h3><small id="npcJob"></small></div></div><div class="npcLine" id="npcLine"></div><button type="button" class="btn soft npcTalk" id="talkNPC">💬 Hỏi thêm nhân vật</button><div><b class="small" style="color:var(--forest)">Chứng cứ đã thu thập tại đây</b><div class="clueTray" id="localClues" style="margin-top:9px"></div></div><div id="miniGameArea" aria-live="polite"></div><div class="tip" id="exploreHint">💡 Nhấn vào các điểm sáng trên cảnh để khám phá.</div><button class="btn gold" id="finishPlace" disabled>Hoàn tất điều tra →</button></div></div></section>
-<section id="board" class="card"><div class="sectionHead"><b>🧩 CHƯƠNG 3 — BA MẢNH GHÉP SỰ THẬT</b><button class="tinyBtn" id="boardBack">← Bản đồ</button></div><div class="boardIntro"><h2 class="subhead">Không ai là “thủ phạm” duy nhất.</h2><p>Ba bên cùng muốn có lợi, nhưng vướng vào những điều kiện hợp tác chưa rõ. <b>Nhấn chọn chứng cứ bên trái, sau đó nhấn đúng nút thắt bên phải</b> để hoàn thiện hồ sơ giải quyết.</p><div class="message" id="boardMsg">Chọn một chứng cứ để bắt đầu.</div></div><div class="boardGrid"><div class="evidenceList" id="keyEvidence"></div><div class="slots" id="issueSlots"></div></div><div style="padding:0 20px 25px;display:flex;justify-content:end"><button class="btn primary" id="enterHall" disabled>📨 Dùng chứng cứ mời ba bên →</button></div></section>
-<section id="invite" class="card inviteScreen"><div class="sectionHead"><b>💌 CHƯƠNG 3.5 — MỜI BA BÊN QUAY LẠI</b><span class="pill" id="inviteProgress">0 / 3 người đồng ý</span></div>
-<div class="inviteIntro"><div class="eyebrow">MẤT NIỀM TIN KHÔNG THỂ CHỮA BẰNG MỘT CÂU “THÔI ĐỪNG GIẬN”</div><h2 class="subhead">Mỗi người cần một lý do để tin vào cuộc họp mới.</h2><p>Chọn một <b>chứng cứ trong hồ sơ</b> rồi đưa cho người có mối lo phù hợp. Nếu chỉ đưa lời hứa chung chung, họ sẽ chưa chịu quay lại. Không có “kẻ xấu” ở đây — mỗi người có một lợi ích cần được tôn trọng.</p></div>
-<div class="inviteGrid"><div class="inviteEvidence"><div class="inviteToolbar"><b>📁 Hồ sơ đã thu thập</b><small>Chọn một chứng cứ</small></div><div id="inviteDeck" class="inviteDeck"></div><div class="inviteTip" id="inviteSelected">Chưa chọn chứng cứ nào.</div></div><div class="invitePeople" id="invitePeople"></div></div>
-<div class="inviteBottom"><div class="inviteMessage" id="inviteMessage" aria-live="polite">🐟 Cá Bống: “Đừng giơ đại tờ giấy nha! Phải đúng chuyện người ta đang lo mới được.”</div><div style="display:flex;gap:9px;flex-wrap:wrap"><button class="btn soft" id="inviteBack">← Xem lại hồ sơ</button><button class="btn primary" id="inviteProceed" disabled>🤝 Cả ba đã có mặt – mở bàn đàm phán →</button></div></div></section>
-<section id="hall" class="card"><div class="sectionHead"><b>🤝 CHƯƠNG 4 — BÀN ĐÀM PHÁN CUỐI CÙNG</b><span class="pill">Không ép ký • Cùng tìm thỏa thuận</span></div><div class="negGrid"><div><div class="stakeholders" id="stakeholders"></div><div class="debateBubble" id="debateBubble" aria-live="polite"><b>Chị Sen:</b> “Mời mọi người đưa ra phương án. Ai còn điều gì chưa yên tâm thì cứ nói thẳng nhé!”</div><button class="btn soft" id="debateBtn" type="button">💬 Tranh biện có chứng cứ</button><div id="knowledgeNudge" class="knowledgeNudge" aria-live="polite"></div><div id="v71Guide" class="v71Guide" aria-live="polite"></div><div class="policyBlocks" style="margin-top:13px" id="policies"></div>
- <section class="mediationSection" id="governanceSection" hidden><div class="mediationHead"><div class="eyebrow">V8.0 · ĐIỀU PHỐI CÓ ĐÁNH ĐỔI</div><h3>🏛️ Công cụ điều phối của Nhà nước</h3><p>Ba bên vừa nêu điều kiện hợp tác. Chọn biện pháp phù hợp tình huống và chỉ rõ chứng cứ để bảo vệ đề xuất. Biện pháp nào cũng có chi phí hoặc giới hạn; không có phép màu. Bạn có thể đổi phương án để xem hậu quả.</p><span class="pill" id="govProgress">0/4 công cụ đã chọn</span></div><div id="governanceCards" class="governanceCards"></div></section>
- </div><div class="negSide"><div class="agreementBox"><h3>📜 Dự thảo thỏa thuận</h3><p class="small">Chọn điều khoản và xem mỗi bên phản ứng. Bạn có thể sửa trước khi ký.</p><div class="agreementItems" id="agreementItems"></div></div><div class="box"><h3>🎭 Nghe các bên phản biện</h3><div id="hearingPanel"></div></div><div class="box"><h3>🌿 Hệ quả của phương án</h3><p class="small muted">Chỉ số trong tình huống hư cấu, không phải dữ liệu nghiên cứu.</p><div id="impactPanel"></div></div><div class="box"><h3>🐟 Cá Bống nhắc khẽ</h3><p class="small" id="advice">Một thỏa thuận có lợi cho một người nhưng đẩy toàn bộ rủi ro cho người khác khó bền vững.</p></div><div class="news" id="saltNews" hidden>🚨 TIN KHẨN: Trạm cảnh báo ghi nhận độ mặn tăng. Thỏa thuận mới có giúp các bên chuẩn bị ứng phó không?</div><p class="small" id="agreementReadiness" aria-live="polite">Chọn đủ điều khoản và công cụ điều phối để tiếp tục.</p><button class="btn gold" id="checkAgreement">🌧️ THỬ THÁCH THỎA THUẬN TRƯỚC BIẾN CỐ</button></div></div></section>
-<section id="ending" class="card ending"><div class="endingTop"><div class="eyebrow">CHƯƠNG 5 — MÙA VỤ MỚI</div><div class="ribbon" id="endingBadge"></div><h2 id="endingHeading"></h2><p id="endingNarrative" style="max-width:790px;margin:0 auto"></p><div class="endChars" id="endFaces"></div></div><div class="endingGrid"><div class="endNote"><h3>📚 Bài học đọng lại</h3><p><b>Sự thống nhất lợi ích:</b> Nông dân, HTX và doanh nghiệp cần liên kết để có đầu ra, dịch vụ và nguồn cung ổn định.</p><p><b>Sự mâu thuẫn:</b> Mỗi bên có chi phí và rủi ro riêng; bỏ qua chúng khiến hợp tác đổ vỡ.</p><p><b>Vai trò Nhà nước:</b> (1) bảo vệ lợi ích hợp pháp, tạo môi trường thuận lợi; (2) điều hòa lợi ích; (3) kiểm soát tác động tiêu cực; (4) giải quyết mâu thuẫn — không ép các bên nhận một thỏa thuận bất lợi.</p></div><div class="endNote"><h3>📝 Hồ sơ hành trình</h3><div id="endingReport"></div><button class="btn soft" type="button" id="downloadDecisionReport" style="margin-top:13px">📄 Xuất nhật ký quyết định (.txt)</button><button class="btn soft" id="quizBtn" type="button">🧠 10 tình huống sau game</button><button class="btn soft" id="reviseAgreement" type="button">✎ Trở lại sửa thỏa thuận</button><button class="btn primary" id="replay" style="margin-top:13px">↻ Chơi lại, thử cách khác</button></div></div><div id="debriefSection" class="learningDebrief" aria-label="Phân tích và hồ sơ học tập"></div></section>
-</main><div class="questOverlay" id="questOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="questTitle"><div class="questWindow"><div class="questHead"><div><span class="eyebrow">NHIỆM VỤ PHỤ · VÙNG CỒN XANH</span><h2 id="questTitle">Nhiệm vụ</h2></div><button type="button" class="tinyBtn" id="questClose" aria-label="Đóng nhiệm vụ">✕</button></div><div class="questContent" id="questContent"></div><div class="questFoot"><div id="questFeedback" class="questFeedback" aria-live="polite"></div><button type="button" class="btn soft" id="questExit">Trở về bản đồ</button></div></div></div><footer class="foot">Vùng Cồn Xanh là tình huống hư cấu để minh họa kiến thức MLN122 về quan hệ lợi ích kinh tế và vai trò của Nhà nước. Không phải mô hình dự báo hay hướng dẫn chính sách thực tế.</footer></div>
-<div id="clueModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modalCard"><div class="modalHead"><b>📁 CHỨNG CỨ THU THẬP</b><button class="close" id="closeModal" aria-label="Đóng">×</button></div><div class="modalBody"><div class="emoji" id="modalEmoji">📄</div><div><h3 id="modalTitle"></h3><p id="modalText"></p></div></div><div class="modalFoot"><span class="lesson" id="modalLesson"></span><button class="btn primary" id="modalOkay">Cất vào hồ sơ ✓</button></div></div></div>
-<div id="crisisModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="crisisTitle">
-<div class="crisisCard"><div class="crisisHead"><div style="font-weight:800;font-size:12px;letter-spacing:.1em">BẢN TIN KHẨN • TUẦN 7</div><h2 id="crisisTitle">🌊 Nước mặn đang tăng!</h2><div>Đã đến lúc xem thỏa thuận mới có thực sự xử lý được rủi ro chung.</div></div>
-<div class="crisisBody"><p style="margin:0">Trạm cảm biến phát hiện thay đổi độ mặn. Hãy <b>xếp đúng thứ tự ba hành động</b> để các bên vừa kiểm soát thiệt hại vừa tôn trọng nghĩa vụ hợp đồng.</p>
-<div class="crisisSeq" id="crisisSequence">Chưa có hành động nào</div>
-<div class="crisisChoices" id="crisisChoices"></div><div class="crisisMessage" id="crisisMessage" aria-live="polite">Gợi ý: Không thể điều chỉnh hợp đồng dựa trên dữ liệu chưa được xác minh.</div>
-</div><div class="crisisActions"><button class="btn soft" id="crisisReset">↺ Thử lại</button><button class="btn gold" id="crisisCommit">Áp dụng kết quả và xem kết thúc →</button></div></div></div>
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
-<div id="journalModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="journalHeading">
-  <div class="journalCard"><header class="journalHeader"><div><small>NHẬT KÝ ĐIỀU PHỐI</small><h2 id="journalHeading">Hồ sơ Vùng Cồn Xanh</h2></div><button id="journalClose" class="tinyBtn" aria-label="Đóng hồ sơ">✕ Đóng</button></header>
-    <div class="journalBody"><div class="journalLead" id="journalMission"></div><div class="journalColumns"><section><h3>🔎 Tiến độ điều tra</h3><div id="journalProgress"></div><h3>📁 Chứng cứ đã có</h3><div class="journalClues" id="journalClues"></div></section><section><h3>📚 Kiến thức đang khám phá</h3><div id="journalLearning"></div><h3>🐟 Gợi ý của Cá Bống</h3><div id="journalHint" class="journalHint"></div></section></div></div>
-  </div>
-</div>
+  <div class="app" id="app">
+    <header class="topbar">
+      <div class="brand" aria-label="Vùng Cồn Xanh — Group 2 MLN122">
+        <div class="brand-emblem" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M23.6 42V15" stroke="#e5efb6" stroke-width="2.8" stroke-linecap="round"/><path d="M23 31C12 30 8 21 8 14c11 0 15 7 15 17Z" fill="#c1e39c"/><path d="M25 25C36 24 39 16 39 9c-11 .5-15 7-14 16Z" fill="#8dcd86"/><path d="M23.5 20c-5-2-8-7-8-14 6 1 10 7 8 14Z" fill="#f0d88b"/><path d="M14 41c7-2 14-2 21 0" stroke="#c1e39c" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="brand-copy"><strong>VÙNG CỒN XANH</strong><span>GROUP 2 <b aria-hidden="true">·</b> MLN122</span></div>
+      </div>
 
-<!-- External soundtrack and interface sounds. Music starts only after user interaction. -->
-<audio id="music_day" preload="auto" loop src="assets/audio/music/music_day.ogg"></audio>
-<audio id="music_tension" preload="auto" loop src="assets/audio/music/music_tension.ogg"></audio>
-<dialog id="learningDialog" class="learningDialog" aria-labelledby="learningTitle"><header class="journalHeader"><div><small>CÁ BỐNG · HỌC TỪ TÌNH HUỐNG</small><h2 id="learningTitle">Hồ sơ học tập</h2></div><button type="button" class="tinyBtn" id="learningClose" aria-label="Đóng bảng học tập">✕ Đóng</button></header><div id="learningBody" class="learningBody"></div></dialog>
-<script src="scripts/core/modules.js" defer></script>
-<script src="scripts/game-data.js" defer></script>
-<script src="scripts/characters/memory.js" defer></script>
-<script src="scripts/core/state.js" defer></script>
-<script src="scripts/storage/migration.js" defer></script>
-<script src="scripts/simulation.js" defer></script>
-<script src="scripts/simulation/session.js" defer></script>
-<script src="scripts/learning-content.js" defer></script>
-<script src="scripts/audio.js" defer></script>
-<script src="scripts/ui/rendering.js" defer></script>
-<script src="scripts/storage/save-load.js" defer></script>
-<script src="scripts/story/dialogue.js" defer></script>
-<script src="scripts/exploration/evidence.js" defer></script>
-<script src="scripts/negotiation/index.js" defer></script>
-<script src="scripts/learning.js" defer></script>
-<script src="scripts/assessment/model.js" defer></script>
-<script src="scripts/assessment/index.js" defer></script>
-<script src="scripts/assessment/report.js" defer></script>
-<script src="scripts/ui/ending.js" defer></script>
-<script src="scripts/ui/journal.js" defer></script>
-<script src="scripts/game.js" defer></script>
+      <nav class="tablist" role="tablist" aria-label="Ba sản phẩm của nhóm">
+        <button class="tab is-selected" role="tab" type="button" id="tab-infographic" aria-controls="view-infographic" aria-selected="true" tabindex="0" data-tab="infographic">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16v18H4zM7 7h5M7 10h10M7 14h4v4H7zM14 14h3M14 18h3"/></svg>
+          <span>Infographic</span>
+        </button>
+        <button class="tab" role="tab" type="button" id="tab-game" aria-controls="view-game" aria-selected="false" tabindex="-1" data-tab="game">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8h11a4.1 4.1 0 0 1 4 3.1l1.1 6c.6 3.2-2.6 5.1-5 3.1L15 18H9l-2.6 2.2c-2.4 2-5.6.1-5-3.1l1.1-6A4.1 4.1 0 0 1 6.5 8ZM6 13h5M8.5 10.5v5M16 12h.1M19 14h.1"/></svg>
+          <span>Web game</span>
+        </button>
+        <button class="tab" role="tab" type="button" id="tab-video" aria-controls="view-video" aria-selected="false" tabindex="-1" data-tab="video">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="m10 8 6 4-6 4z"/></svg>
+          <span>Video</span>
+        </button>
+        <span class="tab-indicator" aria-hidden="true"></span>
+      </nav>
+
+      <div class="header-actions">
+        <span class="section-counter" id="sectionCounter" aria-live="polite">01 / 03</span>
+        <button id="openSeparate" class="icon-action" type="button" title="Mở nội dung hiện tại trong tab riêng" aria-label="Mở nội dung hiện tại trong tab riêng">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 5h6v6M19 5l-9 9M19 13v6H5V5h6"/></svg>
+        </button>
+        <button id="fullScreenButton" class="icon-action" type="button" title="Toàn màn hình" aria-label="Chuyển toàn màn hình">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5M16 3h5v5M3 16v5h5M21 16v5h-5"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="contentStage" class="content-stage">
+      <div class="stage-frame" aria-hidden="true"></div>
+
+      <section class="experience experience--iframe is-active" id="view-infographic" role="tabpanel" aria-labelledby="tab-infographic" aria-hidden="false">
+        <div class="loading-state" id="loading-infographic" aria-live="polite">
+          <span class="loading-mark" aria-hidden="true">✦</span>
+          <strong>Đang mở infographic…</strong><span>Nội dung nguyên bản của nhóm</span>
+        </div>
+        <iframe id="iframe-infographic" title="Infographic tương tác Vùng Cồn Xanh" data-src="experiences/infographic/index.html" src="experiences/infographic/index.html" allow="fullscreen; autoplay" loading="eager"></iframe>
+      </section>
+
+      <section class="experience experience--iframe" id="view-game" role="tabpanel" aria-labelledby="tab-game" aria-hidden="true" inert>
+        <div class="loading-state" id="loading-game" aria-live="polite">
+          <span class="loading-mark" aria-hidden="true">✦</span>
+          <strong>Đang mở web game…</strong><span>Giữ nguyên cốt truyện và cách chơi</span>
+        </div>
+        <iframe id="iframe-game" title="Web game Vùng Cồn Xanh" data-src="experiences/game/index.html" allow="fullscreen; autoplay" loading="lazy"></iframe>
+      </section>
+
+      <section class="experience experience--video" id="view-video" role="tabpanel" aria-labelledby="tab-video" aria-hidden="true" inert>
+        <div class="video-ambient" aria-hidden="true"></div>
+        <div class="video-layout">
+          <div class="video-heading">
+            <div class="video-kicker"><span class="video-kicker-dot" aria-hidden="true"></span> VIDEO MINH HỌA <span class="video-duration">06:10</span></div>
+            <h1>Nhà nước &amp; Nông nghiệp CNC</h1>
+            <p>Video của nhóm — phát trực tiếp tại đây.</p>
+          </div>
+          <div class="video-player-shell">
+            <video id="featureVideo" class="feature-video" controls playsinline preload="metadata" poster="assets/video/poster.jpg">
+              <source src="assets/video/nha-nuoc-nong-nghiep-cnc.mp4" type="video/mp4">
+              Trình duyệt của bạn chưa hỗ trợ video MP4.
+            </video>
+          </div>
+          <div class="video-footer">
+            <div class="video-footer-left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10M7 8l5 5 5-5M4 17v3h16v-3"/></svg><span>Video gốc, không chỉnh sửa nội dung</span></div>
+            <a href="assets/video/nha-nuoc-nong-nghiep-cnc.mp4" target="_blank" rel="noopener noreferrer" class="video-standalone-link">Mở video riêng <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="screenreader" id="tabAnnouncement" role="status" aria-live="polite" aria-atomic="true"></div>
+  </div>
 </body>
 </html>

@@ -1,8 +1,7 @@
+# Ignore accidental repo-in-repo metadata and temporary QA outputs
+**/.git/
 __pycache__/
-*.py[cod]
-.venv/
+*.pyc
 node_modules/
 .DS_Store
-
-# Nested archive is not used as source. Existing tracked copy stays unchanged.
-/Vung_Con_Xanh_Repo.zip
+Thumbs.db

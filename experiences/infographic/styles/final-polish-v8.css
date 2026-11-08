@@ -1,0 +1,87 @@
+/* Vùng Cồn Xanh – FINAL v8 | 08/11/2026
+   A protected narrative rail, clean typography, and restrained educational motion.
+   Do not convert the six linked infographic regions back into slides. */
+:root {--v8-leaf:#2b784e;--v8-ink:#123d2c;--v8-straw:#c5a24b;--v8-rail:#86b67c;}
+/* Route is visually behind the infographic and never crosses any numbered badge. */
+.narrative-route{z-index:1;opacity:.8;filter:drop-shadow(0 2px 2px #265a2930)}
+.narrative-route #routeBase{stroke-width:6;stroke-linecap:round}
+.narrative-route #routeTrace{stroke-width:1.8;stroke-dasharray:2 18;opacity:.9}
+.route-branch{fill:none;stroke:#7fb28b;stroke-width:2.2;stroke-dasharray:2 6;stroke-linecap:round;opacity:.85}
+.route-junction{fill:#eff9dd;stroke:#398256;stroke-width:3;transition:r .2s ease,fill .2s ease}
+.route-junction.is-current{fill:#e8bf65;stroke:#256e4b;stroke-width:3.5;r:8}
+/* Solid readable badge with its own quiet halo. Number is ABOVE the connector and rail. */
+.zone-number,.zone-hero .zone-number{z-index:11!important;isolation:isolate;background:#14563b!important;color:#fffbee!important;border-color:#fff9e5!important;box-shadow:0 0 0 4px #659e77,0 7px 14px #1b4f392a!important}
+.zone-topline{isolation:isolate;z-index:6}.zone-topline::before{z-index:0!important}
+.zone-ribbon{position:relative;z-index:3}
+.concept-bridge{z-index:6}.bridge-bead{background:#348457;border:4px solid #f9f8df;box-shadow:0 2px 0 #276744,0 0 0 2px #76a977;isolation:isolate}
+.bridge-insight{z-index:3;position:relative}
+/* Stronger editorial hierarchy with consistent visual weight across the six regions. */
+.paper-frame{--ink:#113d2d}
+.zone-head h2{letter-spacing:-.037em;text-wrap:balance;color:var(--v8-ink)}
+.zone-head p,.hero-lead{max-width:910px;line-height:1.52}
+.zone-kicker{letter-spacing:.09em}
+.zone-ribbon{box-shadow:0 5px 0 #143e3015}
+.zone-number{font-variant-numeric:tabular-nums}
+/* Lightweight depth: schematic, not frosted-glass app cards. */
+.actor-card,.issue-card,.state-card,.pillar-card{
+  transition:transform .32s cubic-bezier(.18,.7,.22,1),box-shadow .32s ease,border-color .32s ease,filter .32s ease;
+  will-change:auto;
+}
+.actor-card:hover,.issue-card:hover,.state-card:hover,.pillar-card:hover{
+  transform:translateY(-3px);box-shadow:0 14px 27px #163d271a!important;
+}
+.click-region:focus-visible,.crosswalk-row button:focus-visible{outline:4px solid #b48929;outline-offset:4px;position:relative;z-index:9}
+/* Continuous content rhythm; cross-section maps appear as causal flow, not 4 isolated text buttons. */
+.logic-crosswalk{border-color:#acd0aa;box-shadow:0 13px 27px #275e3312;background:linear-gradient(120deg,#fffdf5,#edf6e7)}
+.crosswalk-row{position:relative}
+.crosswalk-row:before{content:'';position:absolute;left:10%;right:10%;top:50%;border-top:2px dashed #9bbf93;z-index:0;pointer-events:none}
+.crosswalk-row button{position:relative;z-index:1}
+.crosswalk-row:hover button{border-color:#519769}
+.crosswalk-row:hover .link-issue{background:#fff0de}
+.crosswalk-row:hover .link-role{background:#d9efda}
+.crosswalk-row:hover .link-solution{background:#f2edce}
+/* Ribbon transitions remain part of the same long poster. */
+.concept-bridge::before{background:linear-gradient(90deg,#e9f3e3e6,#f9f8ec10 90%)}
+.bridge-insight strong{letter-spacing:-.025em}
+.bridge-arrow{color:#a38b3c}
+/* Meaningful, one-time reveal once a reader reaches the corresponding infographic module. */
+@keyframes v8-educational-rise{from{opacity:.82;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes v8-flow-indicator{0%,100%{opacity:.52}50%{opacity:1}}
+@media(min-width:901px){
+  .zone-actors.reveal-visible .actor-card{animation:v8-educational-rise .52s both;}
+  .zone-actors.reveal-visible .actor-card:nth-of-type(3){animation-delay:.13s}
+  .zone-actors.reveal-visible .actor-card:nth-of-type(5){animation-delay:.26s}
+  .zone-conflicts.reveal-visible .issue-card{animation:v8-educational-rise .48s both}
+  .zone-conflicts.reveal-visible .issue-card:nth-child(2){animation-delay:.08s}
+  .zone-conflicts.reveal-visible .issue-card:nth-child(3){animation-delay:.16s}
+  .zone-conflicts.reveal-visible .issue-card:nth-child(4){animation-delay:.24s}
+  .zone-governance.reveal-visible .state-card{animation:v8-educational-rise .5s both}
+  .zone-governance.reveal-visible .state-card:nth-child(2){animation-delay:.1s}
+  .zone-governance.reveal-visible .state-card:nth-child(3){animation-delay:.2s}
+  .zone-governance.reveal-visible .state-card:nth-child(4){animation-delay:.3s}
+  .zone-solutions.reveal-visible .pillar-card{animation:v8-educational-rise .48s both}
+  .zone-solutions.reveal-visible .pillar-card:nth-child(2){animation-delay:.15s}
+  .zone-solutions.reveal-visible .pillar-card:nth-child(3){animation-delay:.30s}
+}
+/* Active-value links draw the eye without an endless marquee. */
+.zone-actors.reveal-visible .flow-join,.zone-conflicts.reveal-visible .unity-chain .chain-segment{animation:v8-flow-indicator 2.3s ease-in-out 2}
+/* Preserve readability on mobile/projectors; no marker floats over text. */
+@media(min-width:901px) and (max-width:1549px){
+  .route-junction{r:5}
+  .zone-topline::before{max-width:69px}
+  .zone-head h2{font-size:clamp(34px,3.0vw,45px)}
+}
+@media(max-width:900px){
+  .zone-number,.zone-hero .zone-number{z-index:4!important}
+  .concept-bridge{background:linear-gradient(90deg,#e3f1dd,#fbf9ed)}
+  .crosswalk-row:before{display:none}
+  .zone-head h2{line-height:1.12}
+}
+@media(prefers-reduced-motion:reduce){
+  .poster-zone .actor-card,.poster-zone .issue-card,.poster-zone .state-card,.poster-zone .pillar-card,
+  .zone-actors .flow-join,.zone-conflicts .chain-segment{animation:none!important;transition:none!important}
+  .route-junction{transition:none!important}
+}
+.reduce-custom-motion .poster-zone .actor-card,.reduce-custom-motion .poster-zone .issue-card,
+.reduce-custom-motion .poster-zone .state-card,.reduce-custom-motion .poster-zone .pillar-card,
+.reduce-custom-motion .zone-actors .flow-join,.reduce-custom-motion .zone-conflicts .chain-segment{animation:none!important;transition:none!important}
